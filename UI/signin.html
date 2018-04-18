@@ -31,33 +31,23 @@
                             <a href="index.html">Home</a>
                         </li>
                         <li>
-                            <a href="#" class="current">Sign up</a>
+                            <a href="signup.html" >Sign up</a>
                         </li>
                         <li>
-                            <a href="signin.html">Sign in</a>
+                            <a href="signin.html" class="current">Sign in</a>
                         </li>
                     </ul>
                 </div>
             </nav>
         </header>
 
-        <!--Sign up -->
-        <section id="signup" class="container">
-            <div>
-                <h1>Signup</h1>
+        <!--Login Section -->
+        <section id="login" class="container">
+            <div >
+                <h1>Login</h1>
                 <form>
-                    <label for="Fullname"></label>
-                    <input type="text" name="fullname" id="fullname" class="fa" placeholder="&#xf007  Fullname">
-                    <br>
-                    <br>
-
-                    <label for="email"></label>
-                    <input type="email" name="email" id="email" class="fa" placeholder="&#xf003  e-mail">
-                    <br>
-                    <br>
-
-                    <label for="phone"></label>
-                    <input type="tel" name="phone" id="phone" class="fa" placeholder="&#xf095  Phone">
+                    <label for="username"></label>
+                    <input type="text" name="username" id="username" class="fa" placeholder="&#xf007  Username">
                     <br>
                     <br>
 
@@ -66,16 +56,19 @@
                     <br>
                     <br>
 
-                    <label for="password"></label>
-                    <input type="password" name="confirm_password" id="confrim_password" class="fa" placeholder="&#xf084  Confirm-Password">
+                    <label for="remember"></label>
+                    <input type="checkbox" name="remember" id="remember">
+                    <span id="remember">Remember me</span>
                     <br>
                     <br>
 
                     <button type="submit" id="submit">
-                        <i class="fa fa-sign-in"></i> Submit </button>
+                    <i class="fa fa-sign-in"></i> Login</button>
+                    <a href="signup.html">Create an Account?</a>
                 </form>
             </div>
         </section>
+
 
         <!--footer-->
         <footer id="footer" class="grid">

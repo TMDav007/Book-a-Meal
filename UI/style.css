@@ -62,8 +62,10 @@ a.btn{
 }
 
 nav {
+    top: 0;
     width: 100%;
     z-index: 999;
+    position: fixed;
 }
 
 nav ul {
@@ -269,7 +271,8 @@ footer p {
 input[type="text"],
 input[type="password"],
 input[type="email"],
-input[type="tel"]{
+input[type="tel"],
+button[type="submit"]{
    border:  #756c5b7e 1px solid;
    border-radius: 5px;
    height: 30px;
@@ -279,16 +282,11 @@ input[type="tel"]{
 }
 
 button[type="submit"]{
-    padding:0px 10px 2px 10px;
-    margin-right: 2em;
-    font-size: .8em;
-    border: none;
     color: #ffffff;
-    border-radius: 5px;
     height: 40px;
-    width: 91%;
     background-color: #13212a;
     transition : all 0.5s;
+    margin-bottom: .3em;
 }
 button[type="submit"]:hover{
     opacity: 0.8;
@@ -303,14 +301,15 @@ button[type="submit"]:hover{
 
 #login h1,#signup h1{
     font-size: 25px;
-    padding: 2em 0 0.5em 0;
-    margin: 1em 0 0 0 ;
+    padding: 2em 0 0em 0;
+    margin: 2em 0 0 0em ;
     opacity: 0.7;
     color: #000;
-    text-align: left;
+    text-align: center;
 }
 
 #login span#remember{
+    color: #000;
     font-size: .9em;
 }
 .login_content span#remember{
@@ -323,15 +322,13 @@ button[type="submit"]:hover{
     color: #13212a;
     transition : all 0.5s;
     font-size: .9em;
+    margin-top: .8em;
 }
 #login a:hover,#signup a:hover,.login_content a:hover{
     opacity: 0.7;
+    cursor: pointer;
 }
  
-/*sign in 
-#signup a{
-    margin-left:10px;
-}
 
 
 /* Media -query */

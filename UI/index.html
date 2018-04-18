@@ -1,68 +1,118 @@
 <!DOCTYPE html>
-<html class="no-js">
+<html lang="en">
+<!--<![endif]-->
 
 <head>
     <meta charset="utf-8">
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="stylesheet" type="" href="style.css">
     <title>Book-a-Meal | welcome</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Acme|Anton|Fugaz+One|Great+Vibes|Parisienne|Cookie|Lobster+Two|Satisfy"
+        rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 
 <body>
     <!-- Header -->
     <header id="showcase" class="grid">
-        <div class="bg-image"></div>
-        <h1>Book Your Meal at Once</h1>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad non autem molestias aliquam eligendi temporibus minus
-            odio fugit nam ullam.</p>
-        <a href="#section-c" class="btn">Register</a>
+        <nav>
+            <div class="menu-icon">
+                <i class="fa fa-bars fa-2x"></i>
+            </div>
+            <div class="logo">
+                <a href="index.html"><img src="images/logo.jpg" alt=""></a>
+            </div>
+            <div class="menu">
+                <ul>
+                    <li><a href="signin.html">Sign in</a></li>
+                    <li><a href="signup.html">Sign up</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div id="bg-image"></div>
+        <div class="content-wrap words">
+            <div>
+                <h1>Book a Meal</h1>
+                <p>Let's give you a life without having to worry about what to eat everyday of the week, Just Book a Meal.</p>
+                <a href="#section-b" class="btn">Register</a>
+            </div>
+        </div>
     </header>
 
     <!-- Main -->
     <main id="main">
+
+        <!-- Section A-->
         <section id="section-a" class="grid">
-            <ul>
-                <li>
-                    <div class="card">
-                        <img src="" alt="">
-                        <p class="card-content">
-                            Local Delicacy
-                        </p>
-                    </div>
-                </li>
-                <li>
-                    <div class="card">
-                        <img src="" alt="">
-                        <p class="card-content">
-                            Foreign Delicacy
-                        </p>
-                    </div>
-                </li>
-                <li>
-                    <div class="card">
-                        <img src="" alt="">
-                        <p class="card-content">
-                            We always on time
-                        </p>
-                    </div>
-                </li>
-            </ul>
+            <div class="content-wrap">
+                <h2 class="content-title"> What we do </h2>
+               
+                <p> We help build the bridge between eating and working. Now you can work as long without worries about what to eat.
+                    Our services ranges from breakfast, to lunch and dinner, with contentinal meals, locals foods, or just something light. All you need is Book a Meal
+                </p>
+            </div>
         </section>
 
-        <!--section b-->
+        <!--section B-->
         <section id="section-b" class="grid">
-            <img src="" alt="">
-            <a href="signin.html">Connect</a>
+            <div class="content-wrap">
+                <div class="box content-text">
+                    <img src="images/local-delicacy.jpg" alt="">
+                    <h3>Local Delicacy</h3>
+                    <p class="box-content">
+                        Have you got cravings for Local delicacy?, We have got you covered, Book a Meal Today
+                        and enjoy our varieties of local Dishes. We are sure that you will love it.
+                    </p>
+                </div>
+
+                <div class="box content-text">
+                    <img src="images/foreign.jpg" alt="">
+                    <h3> Foreign Delicacy</h3>
+                    <p class="box-content">
+                       We have it all round, If you love is for Intercontinental foods, We have got you covered, J
+                       ust Book a Meal Today and you will love it. Book a meal Today.
+                    </p>
+
+                </div>
+
+                <div class="box content-text">
+                    <img src="images/onTime.jpg" alt="">
+                    <h3> We are always on time</h3>
+                    <p class="box-content">
+                        Keeping to time is one of our core values, we won't delay as we have well trained staff 
+                        that keep to time. Book a Meal Today.
+                    </p>
+                </div>
+            </div>
         </section>
+
+        <!--section c-->
+        <section id="section-c" class="grid">
+            <div class="fixed-image">
+            </div>
+            <div class="content-wrap">
+                <a href="signin.html" class="btns">Connect</a>
+            </div>
+        </section>
+
     </main>
 
     <!--footer-->
     <footer id="footer" class="grid">
-        <div>talk to us</div>
-        <div>Project By TmD</div>
+        <div class="content-wrap">
+            <div>
+                <p>connect us at</p>
+            </div>
+            <a href="#" class="fa fa-facebook"></a>
+            <a href="#" class="fa fa-twitter"></a>
+            <a href="#" class="fa fa-instagram"></a>
+            <a href="#" class="fa fa-youtube"></a>
+            <p>&copy; 2018 TmD</p>
+        </div>
     </footer>
+    <script src="script.js"></script>
 </body>
 
 </html>

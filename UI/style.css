@@ -124,7 +124,7 @@ nav ul li a {
 
  #bg-image {
     position: absolute; 
-   background: #fff;
+   background: rgb(0, 0, 0);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -183,7 +183,6 @@ nav ul li a {
     color: #333;
 }
 
-
 .box-content{
     padding: 0 0 2em 0em;
 }
@@ -197,7 +196,6 @@ nav ul li a {
 
 .fixed-image {
     position: absolute;
-    display: fixed;
     background: url('images/chopsticks-close-up-cuisine-699544.jpg') fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -403,7 +401,6 @@ footer p {
         padding: 1.5em 2.5em;
         margin: 17em 0 0 0;
     }
-    
     
     /* footer */
     #footer{

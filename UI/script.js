@@ -1,3 +1,8 @@
+$(window).on("load",function(){
+    background(homepageAnimation);
+});
+
+
 // Menu -toggle-button
 $(document). ready(function() {
     $(".menu-icon").on("click", function(){
@@ -5,15 +10,6 @@ $(document). ready(function() {
     })
 });
 
-//Scrolling Effect
-$(window).on("scroll", function() {
-    if($(window).scrollTop()) {
-        $('nav ul').addClass('black');
-    }
-    else {
-       $('nav ul').removeClass('black');
-    }
-})
 
 // Background effect;
 /* Background Animation  */
@@ -44,12 +40,7 @@ let homepageAnimation = [
     }
 ];
 
-$(window).on("load",function(){
-    background(homepageAnimation);
-});
-
 function background(homepageAnimation){
-   // let count = Math.floor(Math.random() * homepageAnimation.length);
     let myInterval = setInterval (function(){
         let count = Math.floor(Math.random() * homepageAnimation.length);
         var html = " ";

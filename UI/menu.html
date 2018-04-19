@@ -60,29 +60,20 @@
 
             <div class="mainboard">
                 <section id="board">
-                    <div class="container">
+                    <div class="">
                         <table>
                             <thead>
                                 <tr>
-                                    <td colspan="6" id="add_center">
+                                    <td colspan="6" id="order">
                                         <label for="">Category</label>
                                         <select name="Category">
-                                            <option value="monday">Local dish</option>
-                                            <option value="tuesday">Intercontinental</option>
-                                            <option value="wednesday">Something light</option>
-
+                                            <option value="local">Local dish</option>
+                                            <option value="inter">Intercontinental</option>
+                                            <option value="light">Something light</option>
                                         </select>
 
                                         <label for="">Day</label>
-                                        <select name="duration">
-                                            <option value="monday">Monday</option>
-                                            <option value="tuesday">Tuesday</option>
-                                            <option value="wednesday">Wednesday</option>
-                                            <option value="thursday">Thursday</option>
-                                            <option value="friday">Friday</option>
-                                            <option value="saturday">Saturday</option>
-                                            <option value="sunday">Sunday</option>
-                                        </select>
+                                        <input type="date" name="date" value="">
                                     </td>
                                 </tr>
                                 <tr>
@@ -111,7 +102,7 @@
                                             <option value="9">9</option>
                                             <option value="10">10</option>
                                     </td>
-                                    <td class="modal_image">
+                                    <td>
                                         <a class="fa image" id="img1">&#xf03e</a>
                                     </td>
                                     <td> 5000 </td>
@@ -120,7 +111,7 @@
                                 </tr>
                                 <tr>
                                     <td>2</td>
-                                    <td>chicken-chops</td>
+                                    <td>Chicken-chops</td>
                                     <td>
                                         <select name="duration">
                                             <option value="1">1</option>
@@ -134,7 +125,7 @@
                                             <option value="9">9</option>
                                             <option value="10">10</option>
                                     </td>
-                                    <td class="modal_image">
+                                    <td>
                                         <a class="fa" id="img2">&#xf03e</a>
                                     </td>
                                     <td> 7000 </td>
@@ -143,7 +134,7 @@
                                 </tr>
                                 <tr>
                                     <td>3</td>
-                                    <td>pounded yam</td>
+                                    <td>Pounded yam</td>
                                     <td>
                                         <select name="duration">
                                             <option value="1">1</option>
@@ -157,7 +148,7 @@
                                             <option value="9">9</option>
                                             <option value="10">10</option>
                                     </td>
-                                    <td class="modal_image">
+                                    <td>
                                         <a class="fa image" id="img3">&#xf03e</a>
                                     </td>
                                     <td> 7000 </td>
@@ -188,8 +179,8 @@
         <div class="container-popup">
             <div class="popup">
                 <!--Order status-->
-                <span id="close">&times;</span>
-                <p>Order Pending</p>
+                <p>Status</p>
+                <p><i class="fa fa-exclamation-circle"></i> Order Pending</p>
                 <div class="options">
                     <a href="">Ok</a>
                 </div>
@@ -207,7 +198,7 @@
         <footer id="footer" class="grid">
             <div class="content-wrap">
                 <div>
-                    <p>connect us at</p>
+                    <p >connect us at</p>
                 </div>
                 <a href="#" class="fa fa-facebook"></a>
                 <a href="#" class="fa fa-twitter"></a>

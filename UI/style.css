@@ -429,8 +429,7 @@ section#board{
 #board table{
     width :100%;
     border: #000 0px solid;
-    border-collapse: collapse;
-    
+    border-collapse: collapse;  
 }
 
 #board table tr,#board table td{
@@ -455,12 +454,12 @@ section#board{
     text-align:center;
     background-color:rgba(148, 180, 185, 0.75);
 }
-#board table thead #add_center{
+#board table thead #order{
     text-align:right;
     border-radius:5px;
     font-size:10px;
 }
-#board table thead #add_evt a, #board table thead #add_center a{
+#board table thead #add_evt a, #board table thead #order a{
     background-color: transparent;
     border: #2d0a0d 1px solid;
     border-radius:5px;
@@ -472,7 +471,7 @@ section#board{
     
 }
 
-#board table thead #add_evt a:hover,#board table thead #add_center a:hover{
+#board table thead #add_evt a:hover,#board table thead #order a:hover{
     background-color: #2d0a0d;
    color:#fff;
 }
@@ -497,6 +496,7 @@ section#board{
     margin:0 5px;
 }
 
+#board input[type="date"],
 #board select,
 #board button[type="submit"]{
    border:  #756c5b7e 1px solid;
@@ -506,10 +506,17 @@ section#board{
    font-size: 13px;
 }
 
+#board input[type="date"]{
+    padding: 0 1px;
+    width: 7.8em;
+}
+
 button[type="submit"]{
     color: #3e3b46;
     height: 40px;
+    width: 15%;
     background-color: rgba(148, 180, 185, 0.75);
+    float: right;
     transition : all 0.5s;
     margin-top: .3em;
 }
@@ -522,10 +529,6 @@ button[type="submit"]:hover{
     text-align: right;
     font-weight: bold;
 }
-
-
-
-
 
 /**** Pop up ***/
 .container-popup{
@@ -542,7 +545,7 @@ button[type="submit"]:hover{
 .popup {
     display: none;
     width: 300px;
-    height: 150px;
+    height: 200px;
     background-color: #fff;
     border-radius: 4px;
     margin: 0 auto;
@@ -553,40 +556,52 @@ button[type="submit"]:hover{
 
 .popup p{
     font-size: 20px;
-    line-height: 50px;
     color: rgb(106, 143, 148);
     font-family: Arial, Helvetica, sans-serif;
+    padding: .5em 0
 }
 
-.popup #close{
-    width: 25px;
-    height: 25px;
-    line-height: 25px;
-    font-size: 25px;
-    border-radius: 50%;
-    float: right;
-    color: rgb(90, 66, 66);
+.popup p:first-child{
+    border-bottom: 1px solid #1a2025;
+
 }
+
+.popup p:nth-child(2){
+    padding: 1.5em 0 .5em 0em;
+    width: 100%;
+    text-align: center;
+}
+.popup p i{
+    position: relative;
+    top: -0.2em;
+    font-size:2em;
+    padding: 0;
+    float: left;
+}
+
 .popup a{
-    padding: 15px 0px;
+    padding: 1em 0px;
+    margin: 2em 0;
     text-decoration: none;
-    font-size: 14px;
+    font-size: 18px;
     color: rgb(106, 143, 148);
     text-align: center;
     transition: all .5s;
 }
-.popup a:hover{
-    opacity: 0.4;
-    cursor: pointer;
-}
 
 .popup a:first-child{
-    background-color: transparent;
+    background-color: #afbbc385;
 }
 .popup a:last-child{
     float:right;
     width: 100%;
-    background-color: transparent;
+    color: rgba(31, 28, 28, 0.589);
+    background-color: #afbbc385;
+    padding-bottom: .6em;
+}
+.popup a:last-child:hover{
+    background-color: rgba(0, 0, 0, 0.1);
+    cursor: pointer;
 }
 
 .cover{
@@ -792,8 +807,9 @@ button[type="submit"]{
     color: #ffffff;
     border-radius: 5px;
     height: 40px;
-    width: 103%;
-    background-color: #13212a;
+    width: 15%;
+    background-color: rgba(148, 180, 185, 0.75);
+    float: right;
     transition : all 0.5s;
 }
 button[type="submit"]:hover{
@@ -873,20 +889,21 @@ nav ul {
 
 section#board{
     font-size: 15px;
-    width :250%;
+    margin: 0;
 }
 
 #board table tr,#board table td{
     padding: 1em;
 }
 
-#board table tbody, #board table thead #add_center{
+#board table tbody, #board table thead #order{
     font-size: 16px;
 }
 #board label{
 font-size: 16px;
 }
 
+#board input[type="date"],
 #board select,
 #board button[type="submit"]{
     font-size: 15px;
@@ -923,11 +940,10 @@ button[type="submit"]{
 
 .container{
     display: grid;
-    grid-template-columns: .7fr 2fr;
+    grid-template-columns: 29% auto;
 }
 section#board{
     font-size: 15px;
-    width :370%;
 }
 /**** Pop up ***********/
 .container-popup{
@@ -949,7 +965,7 @@ section#board{
     /*** Menu **/
     .container{
         display: grid;
-        grid-template-columns: fr 2fr;
+        grid-template-columns: 28% auto;
     }
     
     .menu-sidebar {
@@ -958,9 +974,9 @@ section#board{
     }
 
     /**** Pop up ***********/
-.container-popup{
+    .container-popup    {
     margin-left: -3em;
     margin-top: -100px
-}
-
     }
+
+}

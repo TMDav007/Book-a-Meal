@@ -1,5 +1,6 @@
 $(window).on("load",function(){
     background(homepageAnimation);
+   
 });
 
 
@@ -8,8 +9,50 @@ $(document). ready(function() {
     $(".menu-icon").on("click", function(){
         $("nav ul").toggleClass("showing");
     })
+
+    //status show
+    $("#status").on("click", function(){
+        $("nav ul").toggleClass("showing");
+        $(".cover").fadeIn('slow');
+        $(".popup").fadeIn('slow');
+    })
+
+    //image show;
+    $("#img1").on("click", function(){
+        let $src = "./images/jollof.jpg";
+        $(".img-show").css({"z-index": '1006'});
+        $(".cover").fadeIn('slow');
+        $(".img-show img").attr("src", $src);
+    });
+    $("#img2").on("click", function(){
+        let $src = "./images/chicken.jpg";
+        $(".img-show").css({"z-index": '1006'});
+        $(".cover").fadeIn('slow');
+        $(".img-show img").attr("src", $src);
+    });
+    $("#img3").on("click", function(){
+        let $src = "./images/local-delicacy.jpg";
+        $(".img-show").css({"z-index": '1006'});
+        $(".cover").fadeIn('slow');
+        $(".img-show img").attr("src", $src);
+    });
+
+
+    $(".cover").on("click", function(){
+        $(".img-show img").attr("src", "");
+        $(".img-show").css({"z-index": '0'})
+
+        $(".cover").fadeOut();
+    })
+
 });
 
+//dashboard menu toggle
+$(document). ready(function() {
+    $(".menu-icon").on("click", function(){
+        $(".menu-sidebar").toggleClass("active");
+    })
+});
 
 // Background effect;
 /* Background Animation  */

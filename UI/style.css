@@ -102,6 +102,7 @@ nav ul li a {
 
 nav ul li a:hover {
     opacity: 0.6;
+    cursor: pointer;
 }
 
 
@@ -336,7 +337,289 @@ button[type="submit"]:hover{
 #admin nav .menu{
     display: none;
 }
+/******************** Menu **********/
+/***Das#board - sidebar **/
+#admin  {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: "Bree Serif", sans-serif;
+}
 
+.container{
+    position: relative;
+    background-color: #ededed;
+    padding: 0;
+}
+
+.dashboard .logo{
+    z-index: 4;
+}
+.dashboard .menu-icon {
+   background:  #1a2025;
+   position: fixed;
+   z-index: 2
+}
+
+.menu-sidebar {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 200px;
+    z-index:3;
+    height: 100vh;
+    padding: 5em 0em;
+    background: #1a2025;
+    text-align: center;
+    transform-origin: left;
+    transform:perspective(1200px) rotateY(90deg);
+    transition: all 400ms ease;
+}
+.menu-sidebar.active{
+    transform: perspective(1200px) rotateY(0deg);
+}
+.menu-sidebar ul{
+    margin: 0;
+    padding: 0;
+}
+.menu-sidebar ul li {
+    color: #fff;
+    font-size: .8em;
+    margin:0;
+    padding: 0;
+    width: 100%;
+    text-align: center;
+    list-style-type: none;
+    text-decoration: none;
+    height: 40px;
+    border-bottom: 1px solid #ffffff1e;
+    line-height: 50px;
+}
+
+
+.menu-sidebar ul li a{
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+}
+.menu-sidebar ul li a.current{
+    color: #fff;
+}
+.menu-sidebar ul li a:hover {
+    opacity: 0.6;
+    cursor: pointer;
+}
+
+
+/*#board table Section */
+
+section#board{
+    margin: 0 auto;
+    position: relative;
+    height: 100vh;
+    top:9em;
+    width :90%;
+    z-index:1;
+    border-radius:5px;
+    color:#3e3b46;
+    font-size:13px
+}
+
+
+#board table{
+    width :100%;
+    border: #000 0px solid;
+    border-collapse: collapse;
+    
+}
+
+#board table tr,#board table td{
+    border: #000 0px solid;
+    padding: 7px 3px;
+    text-align:center;
+}
+#board table thead tr td:first-child{
+	border: #000 0px solid;
+}
+
+#board table tbody tr:nth-child(even){
+    background-color: rgba(65, 92, 105, 0.22)
+}
+
+#board table tbody tr:nth-child(odd){
+    background-color: rgba(190, 124, 124, 0.075);
+}
+
+#board table thead{
+    font-weight: bold;
+    text-align:center;
+    background-color:rgba(148, 180, 185, 0.75);
+}
+#board table thead #add_center{
+    text-align:right;
+    border-radius:5px;
+    font-size:10px;
+}
+#board table thead #add_evt a, #board table thead #add_center a{
+    background-color: transparent;
+    border: #2d0a0d 1px solid;
+    border-radius:5px;
+    font-size:12px;
+    padding:5px 7px;
+    color:#3e3b46;
+    margin: 1px;
+    cursor: pointer;
+    
+}
+
+#board table thead #add_evt a:hover,#board table thead #add_center a:hover{
+    background-color: #2d0a0d;
+   color:#fff;
+}
+
+#board table .fa{
+    border:0;
+    cursor:pointer;
+}
+#board table a{
+    text-decoration:none;
+    color: #161514 ;
+    color:#530f17;
+}
+
+#board table a:hover{
+    border-bottom: #16151436 1px solid;
+    opacity:0.8;
+}
+
+#board label{
+    font-size: 14px;
+    margin:0 5px;
+}
+
+#board select,
+#board button[type="submit"]{
+   border:  #756c5b7e 1px solid;
+   border-radius: 5px;
+   height: 30px;
+   padding: 4px 6px;
+   font-size: 13px;
+}
+
+button[type="submit"]{
+    color: #3e3b46;
+    height: 40px;
+    background-color: rgba(148, 180, 185, 0.75);
+    transition : all 0.5s;
+    margin-top: .3em;
+}
+button[type="submit"]:hover{
+    opacity: 0.8;
+    cursor: pointer;
+} 
+
+#board table td#total {
+    text-align: right;
+    font-weight: bold;
+}
+
+
+
+
+
+/**** Pop up ***/
+.container-popup{
+    position: absolute;
+    text-align: center;
+    display: table;
+    left: 50%;
+    top: 50%;
+    margin-left: -9em;
+    margin-top: -100px
+}
+
+
+.popup {
+    display: none;
+    width: 300px;
+    height: 150px;
+    background-color: #fff;
+    border-radius: 4px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1005;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.popup p{
+    font-size: 20px;
+    line-height: 50px;
+    color: rgb(106, 143, 148);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.popup #close{
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
+    font-size: 25px;
+    border-radius: 50%;
+    float: right;
+    color: rgb(90, 66, 66);
+}
+.popup a{
+    padding: 15px 0px;
+    text-decoration: none;
+    font-size: 14px;
+    color: rgb(106, 143, 148);
+    text-align: center;
+    transition: all .5s;
+}
+.popup a:hover{
+    opacity: 0.4;
+    cursor: pointer;
+}
+
+.popup a:first-child{
+    background-color: transparent;
+}
+.popup a:last-child{
+    float:right;
+    width: 100%;
+    background-color: transparent;
+}
+
+.cover{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: none;
+    background: rgba(0, 0, 0, 0.356);
+    z-index: 1004;
+    top: 0;
+    left: 0;
+}
+
+/*Image popup */
+.show .img-show{
+    width: 10em;
+    height: 12em;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-59%, -50%);
+}
+span{
+    position: absolute;
+    top: 10px;
+    color: #000;
+    right: 10px;
+}
+
+.show-ing img{
+    width: 100%;
+    height: 100%
+}
 
 /* Media -query */
 @media (min-width: 700px) {
@@ -541,6 +824,89 @@ button[type="submit"]:hover{
 #admin nav .menu{
     display: block;
 }
+
+/********************* Dashboard Table Section ****/
+nav ul {
+    background: #1a2025;
+}
+
+.container{
+    display: grid;
+    grid-template-columns: .9fr 2fr;
+}
+
+.dashboard .logo{
+    z-index: 1000;
+}
+.dashboard .menu-icon {
+   background:  #1a2025;
+   position: fixed;
+   z-index: 2
+}
+
+.menu-sidebar {
+    width: 200px;
+    transform: none;
+}
+
+.menu-sidebar ul{
+    margin-top: 4em;
+}
+
+.menu-sidebar ul li {
+    font-size: 1em;
+    padding: .5em 0;
+}
+
+.menu-sidebar ul li a{
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+}
+.menu-sidebar ul li a.current{
+    color: #fff;
+}
+.menu-sidebar ul li a:hover {
+    opacity: 0.6;
+    cursor: pointer;
+}
+
+section#board{
+    font-size: 15px;
+    width :250%;
+}
+
+#board table tr,#board table td{
+    padding: 1em;
+}
+
+#board table tbody, #board table thead #add_center{
+    font-size: 16px;
+}
+#board label{
+font-size: 16px;
+}
+
+#board select,
+#board button[type="submit"]{
+    font-size: 15px;
+}
+button[type="submit"]{
+    color: #3e3b46;
+    width: 15%;
+    background-color: rgba(148, 180, 185, 0.75);
+    float: right;
+}
+
+/**** Pop up ***********/
+.container-popup{
+    margin-left: -8em;
+    margin-top: -100px
+}
+
+.show .img-show{
+    width: 20em;
+}
 }
 
 @media (min-width: 800px) {   
@@ -551,6 +917,22 @@ button[type="submit"]:hover{
     grid-gap: 1em;
     margin: 0 10em 5em 10em;
     padding: 0 5em;
+}
+
+/***Menu page ***/
+
+.container{
+    display: grid;
+    grid-template-columns: .7fr 2fr;
+}
+section#board{
+    font-size: 15px;
+    width :370%;
+}
+/**** Pop up ***********/
+.container-popup{
+    margin-left: -7em;
+    margin-top: -100px
 }
 }
 
@@ -563,4 +945,22 @@ button[type="submit"]:hover{
         margin: 0 15em 7em 15em;
         padding: 0 5em;
     }
+
+    /*** Menu **/
+    .container{
+        display: grid;
+        grid-template-columns: fr 2fr;
+    }
+    
+    .menu-sidebar {
+        width: 300px;
+        transform: none;
+    }
+
+    /**** Pop up ***********/
+.container-popup{
+    margin-left: -3em;
+    margin-top: -100px
+}
+
     }

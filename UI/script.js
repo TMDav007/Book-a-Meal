@@ -122,7 +122,7 @@ function background(homepageAnimation){
 		html += "<div class = 'words'>";
         html += "<div> <h1>  " +  homepageAnimation[count].title + "</h1>";
         html += "<p> " +  homepageAnimation[count].body + "</p>";
-        html += "<a href='#section-b' class='btn'>Register</a>"
+        html += "<a href='#section-b' class='fa fa-chevron-circle-down'></a>"
 		html += "<div>";
         document.getElementById("bg-image").style.backgroundImage = "url("+homepageAnimation[count].img+")";
         $(".words").html(html);

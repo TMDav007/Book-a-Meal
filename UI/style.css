@@ -156,6 +156,11 @@ nav ul li a:hover {
     font-weight: thin;
     font-size: 1.2em;
 }
+#showcase .fa{
+    font-size: 3em;
+    color: #00000038;
+    text-decoration: none;
+}
 
 .content-wrap {
     padding: 0 1.5em;
@@ -378,7 +383,7 @@ button[type="submit"]:hover{
     z-index:3;
     height: 100vh;
     padding: 5em 0em;
-    background: #1a2025;
+    background: #13212a;
     text-align: center;
     transform-origin: left;
     transform:perspective(1200px) rotateY(90deg);
@@ -1060,7 +1065,8 @@ button[type="submit"]:hover{
 
 .menu-sidebar ul li {
     font-size: 1em;
-    padding: .5em 0;
+    margin: 1.5em 0;
+  
 }
 
 .menu-sidebar ul li a{

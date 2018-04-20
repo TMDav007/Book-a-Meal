@@ -411,7 +411,7 @@ button[type="submit"]:hover{
 }
 
 
-/*#board table Section */
+/*#User MenuPage and Admin board table Section */
 
 section#board{
     margin: 0 auto;
@@ -428,17 +428,14 @@ section#board{
 
 #board table{
     width :100%;
-    border: #000 0px solid;
+    
     border-collapse: collapse;  
 }
 
 #board table tr,#board table td{
-    border: #000 0px solid;
+    
     padding: 7px 3px;
     text-align:center;
-}
-#board table thead tr td:first-child{
-	border: #000 0px solid;
 }
 
 #board table tbody tr:nth-child(even){
@@ -483,17 +480,36 @@ section#board{
 #board table a{
     text-decoration:none;
     color: #161514 ;
-    color:#530f17;
 }
 
 #board table a:hover{
     border-bottom: #16151436 1px solid;
     opacity:0.8;
+    cursor: pointer;
 }
 
 #board label{
     font-size: 14px;
     margin:0 5px;
+}
+
+/*** Table input button ***/
+#board thead #add-meal{
+    text-align:right;
+}
+#board thead #add-meal a{
+    background-color: transparent;
+    border: #697490 1px solid;
+    border-radius:5px;
+    font-size:14px;
+    padding:5px 7px;
+    margin: 1px;
+    cursor: pointer;
+    
+}
+#board thead #add-meal a:hover{
+    background-color: #43486fad;
+   color:#fff;
 }
 
 #board input[type="date"],
@@ -529,6 +545,91 @@ button[type="submit"]:hover{
     text-align: right;
     font-weight: bold;
 }
+
+
+/**** Modals ****/
+/*Add Meal */
+#modal-add-meal, #modal-edit-meal{
+    display: none;
+    position: fixed;
+    z-index: 1004;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.356);
+   
+}
+
+#addMeal_content, #editMeal_content{
+    position: relative;
+    z-index: 100;
+    background-color: #fefefe;
+    margin: 15% auto 15% auto;
+    padding: 0 2em;
+    width: 80%;
+    padding-bottom: 30px;
+}
+
+#addMeal_content h1, #editMeal_content h1{
+    color: #000;
+    font-size: 1.2em;
+}
+#addMeal_content table, #editMeal_content table{
+    width: 100%;
+    margin: 0 auto;
+    
+}
+#addMeal_content label, #editMeal_content label{
+    color: #000;
+    font-size: .8em;
+    font-weight: bold;
+    padding: 0 0 1em 0;
+    text-align: center;
+    margin-right: 0.4em;
+}
+
+#addMeal_content input[type="text"]
+,#editMeal_content input[type="text"],
+#addMeal_content input[type="number"],
+#editMeal_content input[type="number"]{
+    width: 60%;
+    border:  #1f1d1a7e 1px solid;
+    border-radius: 2px;
+    height: 1.5em;
+    padding: .5em;
+    font-size: 14px;
+}
+
+
+#addMeal_content input[type="file"],#editMeal_content input[type="file"]{
+    width: 10em;
+    border-radius: 2px;
+    height: 1.3em;
+    padding: .5em;
+}
+
+#addMeal_content select,#editMeal_content select {
+    width: 60%;
+    border:  #1f1d1a7e 1px solid;
+    border-radius: 2px;
+    height: 2.6em;
+    font-size: 14px;
+    color: #3e3b46;
+}
+
+#addMeal_content option,#editMeal_content select option{
+    font-size: 13px; 
+}
+
+#addMeal_content button[type='submit'],#editMeal_content button[type='submit']{
+    width: 6em;
+    background-color: rgba(143, 155, 156, 0.75);
+    
+}
+
+
 
 /**** Pop up ***/
 .container-popup{
@@ -604,6 +705,76 @@ button[type="submit"]:hover{
     cursor: pointer;
 }
 
+/*ppopup delte */
+.container-popup-delete{
+    position: absolute;
+    text-align: center;
+    display: table;
+    left: 50%;
+    top: 50%;
+    margin-left: -10em;
+    margin-top: -100px
+}
+.popup_delete{
+    display: none;
+    width: 350px;
+    height: 200px;
+    background-color: #fff;
+    border-radius: 4px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1005;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.popup_delete  p{
+    font-size: 19px;
+    color: rgb(71, 77, 78);
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 3em 0 .5em 0em;
+    width: 100%;
+    text-align: center;
+}
+
+.popup_delete  p i{
+    position: relative;
+    top: -0.2em;
+    font-size:2em;
+    padding: 0 0 0 .2em;
+    float: left;
+}
+
+.popup_delete .options{
+    padding: 1em 0px;
+    margin: 2.1em 0 0 0;
+}
+
+.popup_delete a{
+    text-decoration: none;
+    font-size: 18px;
+    color: rgb(106, 143, 148);
+    text-align: center;
+    transition: all .5s;
+}
+.popup_delete a:first-child{
+    float:left;
+    width: 50%;
+    color: rgba(239, 230, 230, 0.7);
+    background-color: #27405085;
+    padding: 1em 0;
+}
+.popup_delete a:last-child{
+    float:right;
+    width: 50%;
+    color: rgba(0, 0, 0, 0.5);
+    background-color: #afbbc385;
+    padding: 1em 0;
+}
+.popup_delete a:hover{
+    background-color: rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+}
+
 .cover{
     width: 100%;
     height: 100%;
@@ -626,9 +797,12 @@ button[type="submit"]:hover{
 }
 span{
     position: absolute;
-    top: 10px;
+    font-size: 1.5em;
     color: #000;
     right: 10px;
+}
+span:hover {
+    cursor: pointer;
 }
 
 .show-ing img{
@@ -915,8 +1089,36 @@ button[type="submit"]{
     float: right;
 }
 
+/*********** Modals *******/
+#addMeal_content,#editMeal_content{
+    height: 29em;
+}
+
+#addMeal_content,#editMeal_content h1{
+    font-size: 1.7em;
+}
+#addMeal_content,#editMeal_content label{
+    font-size: 1em;
+    padding: 0;
+}
+#addMeal_content,#editMeal_content input[type="text"],
+#addMeal_content,#editMeal_content input[type="number"]{
+    width: 70%;
+    font-size: 1.1em;
+}
+#addMeal_content,#editMeal_content input[type="file"]{
+    width: 70%;
+    padding: 1em;
+    font-size: 1em;
+}
+
+#addMeal_content,#editMeal_content select {
+    width: 70%;
+    font-size: 1.1em;
+}
+
 /**** Pop up ***********/
-.container-popup{
+.container-popup, .container-popup-delete{
     margin-left: -8em;
     margin-top: -100px
 }
@@ -978,5 +1180,13 @@ section#board{
     margin-left: -3em;
     margin-top: -100px
     }
+
+    /**** Modals ****/
+/*Add Meal */
+
+
+#addMeal_content,#editMeal_content{
+    margin: 7% auto 15% auto;
+}
 
 }

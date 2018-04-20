@@ -17,6 +17,34 @@ $(document). ready(function() {
         $(".popup").fadeIn('slow');
     })
 
+    //delte meal
+    $(".del-Meal").on("click", function(){
+        $("nav ul").toggleClass("showing");
+        $(".cover").fadeIn('slow');
+        $(".popup_delete").fadeIn('slow');
+    })
+
+    //modals
+    $("#add-meal").on("click", function(){
+        $("#modal-add-meal").fadeIn('slow');
+        $("#addMeal_content").fadeIn('slow');
+    })
+    $(".edit-Meal").on("click", function(){
+        $("#modal-edit-meal").fadeIn('slow');
+        $("#editMeal_content").fadeIn('slow');
+    })
+
+    // close
+    $(".close").on("click", function(){
+        $("#modal-add-meal").fadeOut('slow');
+        $("#addMeal_content").fadeOut('slow');
+        $(".cover").fadeOut('slow');
+        $(".popup_delete").fadeOut('slow');
+    })
+    $(".close").on("click", function(){
+        $("#modal-edit-meal").fadeOut('slow');
+        $("#editMeal_content").fadeOut('slow');
+    })
     //image show;
     $("#img1").on("click", function(){
         let $src = "./images/jollof.jpg";

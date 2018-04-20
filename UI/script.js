@@ -33,10 +33,14 @@ $(document). ready(function() {
         $("#modal-edit-meal").fadeIn('slow');
         $("#editMeal_content").fadeIn('slow');
     })
+    $("#edit-meal").on("click", function(){
+        $("#modal-set-meal").fadeIn('slow');
+        $("#setMeal_content").fadeIn('slow');
+    })
 
     // close
     $(".close").on("click", function(){
-        $("#modal-add-meal").fadeOut('slow');
+        $("#modal-add-meal, #modal-set-meal,setMeal_content").fadeOut('slow');
         $("#addMeal_content").fadeOut('slow');
         $(".cover").fadeOut('slow');
         $(".popup_delete").fadeOut('slow');

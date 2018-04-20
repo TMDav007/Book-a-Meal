@@ -494,10 +494,10 @@ section#board{
 }
 
 /*** Table input button ***/
-#board thead #add-meal{
+#board thead #add-meal, #board thead #edit-meal{
     text-align:right;
 }
-#board thead #add-meal a{
+#board thead #add-meal a, #board thead #edit-meal a{
     background-color: transparent;
     border: #697490 1px solid;
     border-radius:5px;
@@ -507,7 +507,7 @@ section#board{
     cursor: pointer;
     
 }
-#board thead #add-meal a:hover{
+#board thead #add-meal a:hover, #board thead #edit-meal a:hover{
     background-color: #43486fad;
    color:#fff;
 }
@@ -530,7 +530,7 @@ section#board{
 button[type="submit"]{
     color: #3e3b46;
     height: 40px;
-    width: 15%;
+    width: 25%;
     background-color: rgba(148, 180, 185, 0.75);
     float: right;
     transition : all 0.5s;
@@ -549,7 +549,7 @@ button[type="submit"]:hover{
 
 /**** Modals ****/
 /*Add Meal */
-#modal-add-meal, #modal-edit-meal{
+#modal-add-meal, #modal-edit-meal,#modal-set-meal{
     display: none;
     position: fixed;
     z-index: 1004;
@@ -562,7 +562,7 @@ button[type="submit"]:hover{
    
 }
 
-#addMeal_content, #editMeal_content{
+#addMeal_content, #editMeal_content,#setMeal_content{
     position: relative;
     z-index: 100;
     background-color: #fefefe;
@@ -572,16 +572,16 @@ button[type="submit"]:hover{
     padding-bottom: 30px;
 }
 
-#addMeal_content h1, #editMeal_content h1{
+#addMeal_content h1, #editMeal_content h1,#setMeal_content h1{
     color: #000;
     font-size: 1.2em;
 }
-#addMeal_content table, #editMeal_content table{
+#addMeal_content table, #editMeal_content table, #setMeal_content table{
     width: 100%;
     margin: 0 auto;
     
 }
-#addMeal_content label, #editMeal_content label{
+#addMeal_content label, #editMeal_content label, #setMeal_content table{
     color: #000;
     font-size: .8em;
     font-weight: bold;
@@ -592,6 +592,8 @@ button[type="submit"]:hover{
 
 #addMeal_content input[type="text"]
 ,#editMeal_content input[type="text"],
+#setMeal_content input[type="text"],
+#setMeal_content input[type="text"],
 #addMeal_content input[type="number"],
 #editMeal_content input[type="number"]{
     width: 60%;
@@ -603,14 +605,14 @@ button[type="submit"]:hover{
 }
 
 
-#addMeal_content input[type="file"],#editMeal_content input[type="file"]{
+#addMeal_content input[type="file"],#editMeal_content input[type="file"], #setMeal_content input[type="file"]{
     width: 10em;
     border-radius: 2px;
     height: 1.3em;
     padding: .5em;
 }
 
-#addMeal_content select,#editMeal_content select {
+#addMeal_content select,#editMeal_content select,#setMeal_content select {
     width: 60%;
     border:  #1f1d1a7e 1px solid;
     border-radius: 2px;
@@ -619,11 +621,13 @@ button[type="submit"]:hover{
     color: #3e3b46;
 }
 
-#addMeal_content option,#editMeal_content select option{
+#addMeal_content option,#editMeal_content select option, #setMeal_content select option{
     font-size: 13px; 
 }
 
-#addMeal_content button[type='submit'],#editMeal_content button[type='submit']{
+#addMeal_content button[type='submit'],
+#editMeal_content button[type='submit'],
+ #setMeal_content button[type='submit']{
     width: 6em;
     background-color: rgba(143, 155, 156, 0.75);
     

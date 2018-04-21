@@ -298,6 +298,7 @@ button[type="submit"]{
    font-size: .8em;
 }
 
+
 #remember {
     text-align: left;
 }
@@ -465,7 +466,7 @@ section#board{
 
 #board table tr,#board table td{
     
-    padding: 7px 3px;
+    padding: 7px 0px;
     text-align:center;
 }
 
@@ -1076,7 +1077,7 @@ button[type="submit"]:hover{
 
 .container{
     display: grid;
-    grid-template-columns: .9fr 2fr;
+    grid-template-columns: 30% 70%;
 }
 
 .dashboard .logo{
@@ -1089,7 +1090,7 @@ button[type="submit"]:hover{
 }
 
 .menu-sidebar {
-    width: 200px;
+    width: 30%;
     transform: none;
 }
 
@@ -1116,13 +1117,17 @@ button[type="submit"]:hover{
     cursor: pointer;
 }
 
+.mainboard {
+    margin-left: 3%;
+}
+
 section#board{
     font-size: 15px;
     margin: 0;
 }
 
 #board table tr,#board table td{
-    padding: 1em;
+    padding: 1em .33em;
 }
 
 #board table tbody, #board table thead #order{
@@ -1192,10 +1197,6 @@ font-size: 16px;
 
 /***Menu page ***/
 
-.container{
-    display: grid;
-    grid-template-columns: 29% auto;
-}
 section#board{
     font-size: 15px;
 }
@@ -1209,17 +1210,6 @@ section#board{
 @media (min-width: 900px) {   
     #login,#signup {
         padding: 3em 15em 0 15em
-    }
-
-    /*** Menu **/
-    .container{
-        display: grid;
-        grid-template-columns: 28% auto;
-    }
-    
-    .menu-sidebar {
-        width: 300px;
-        transform: none;
     }
 
     /**** Pop up ***********/
@@ -1249,5 +1239,9 @@ section#board{
         font-size: .9em;
         width: 6em;
         padding: 0;
+    }
+
+    .mainboard {
+      
     }
 }

@@ -1,5 +1,4 @@
-# Book-a
--Meal
+# Book-a-Meal
 
 Book a Meal is an Applications that enable users order food based on the menu of the a day.
 

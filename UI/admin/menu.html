@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Book-a-Meal | Admin</title>
+    <title>Book-a-Meal | Menu</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="./../style.css">
     <link href="https://fonts.googleapis.com/css?family=Acme|Anton|Fugaz+One|Great+Vibes|Parisienne|Cookie|Lobster+Two|Satisfy"
@@ -25,7 +25,9 @@
                         <li>
                             <a href="signup.html"></a>
                         </li>
-
+                        <li>
+                            <a href="signout.html" class="current"></a>
+                        </li>
                     </ul>
                 </div>
             </nav>
@@ -44,16 +46,13 @@
                 <div class="menu-sidebar">
                     <ul>
                         <li>
-                            <a href="home.html" class="current">Home</a>
+                            <a href="home.html">Meals</a>
                         </li>
                         <li>
-                            <a href="menu.html">Menu</a>
+                            <a href="menu.html"  class="current">Menu</a>
                         </li>
                         <li>
                             <a href="order.html">Order</a>
-                        </li>
-                        <li>
-                            <a href="index.html">Add Admin</a>
                         </li>
                         <li>
                             <a href="signout.html">Sign out</a>
@@ -61,15 +60,19 @@
                     </ul>
                 </div>
             </div>
+
             <div class="mainboard">
                 <section id="board">
                     <div class="">
-                        <h1 style="text-align: left;">Admin</h1>
+                            <h1 style="text-align: left;">Admin Menu</h1>
                         <table>
                             <thead>
                                 <tr>
-                                    <td colspan="7" id="add-meal">
-                                        <a>Add-Meal</a>
+                                    <td colspan="7" id="edit-meal">
+                                        <label for="">Day</label>
+                                        <input type="date" name="date" value="">
+                                    
+                                        <a>Add to Menu</a>
                                     </td>
                                 </tr>
                                 <tr>
@@ -129,6 +132,13 @@
                                     </td>
                                 </tr>
                             </tbody>
+                            <tfoot>
+                                    <tr>
+                                        <td colspan="7">
+                                            <button type="submit">Set Menu</button>
+                                        </td>
+                                    </tr>
+                            </tfoot>
                         </table>
                     </div>
                 </section>
@@ -298,6 +308,80 @@
             </section>
         </div>
 
+        <!--set menu-->
+        <div id="modal-set-meal">
+            <section>
+                <div class="">
+                    <form id="setMeal_content">
+                        <span class="close">&times;</span>
+                        <fieldset>
+                            <legend>
+                                <h1>Add Meal</h1>
+                            </legend>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <label for="Category">Category</label>
+                                    </td>
+                                    <td align="left">
+                                        <select name="Category">
+                                            <option value="local">Local dish</option>
+                                            <option value="inter">Intercontinental</option>
+                                            <option value="light">Something light</option>
+                                        </select>
+                                        <br>
+                                        <br>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <label for="Meal">Meal: </label>
+                                    </td>
+                                    <td align="left">
+                                        <select name="Meal">
+                                            <option value="local">Amala</option>
+                                            <option value="inter">Pounded Yam</option>
+                                            <option value="light">Ofada rice</option>
+                                        </select>
+                                        <br>
+                                        <br>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <label for="amount">Amount(&#8358;) : </label>
+                                    </td>
+                                    <td align="left">
+                                        <input type="number" name="amount" id="amount" placeholder="Amount">
+                                        <br>
+                                        <br>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="img">Images: </label>
+                                    </td>
+                                    <td align="left">
+                                        <input type="file" name="img" id="img" placeholder="">
+                                        <br>
+                                        <br>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <button type="submit" id="addMealBtn">Add Meal</button>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                            </table>
+
+                        </fieldset>
+                    </form>
+                </div>
+            </section>
+        </div>
 
         <!--delete meal-->
         <div class="container-popup-delete">
@@ -325,33 +409,3 @@
     </body>
 
 </html>
-
-
-<!--Pop ups--
-        <div class="container-popup">
-                <div class="popup">
-                    <span id="close">&times;</span>
-                        <p>Do you want to?</p>
-                        <div class="options">
-                            <a href="">Ok</a>
-                            <a href="">Check-Order</a>
-                        </div>
-                </div>
-            </div>
-        <div class="cover">
-        </div>
-
-        <class--Modal--
-
-        <div id="delCenter">
-                <section id = "delCenter_content">
-                  <span class="close">&times;</span>
-                      <div class = "container">
-                          <p><i class="fa fa-exclamation-circle"></i> Are you sure you want to delete this center?</p>
-                          <div class="btn">
-                              <button>Delete</button>
-                              <button>Cancel</button>
-                          </div>
-                      </div>
-                </section>
-            </div>

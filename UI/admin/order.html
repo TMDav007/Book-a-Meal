@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Book-a-Meal | Admin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./../style.css">
+    <link href="https://fonts.googleapis.com/css?family=Acme|Anton|Fugaz+One|Great+Vibes|Parisienne|Cookie|Lobster+Two|Satisfy"
+        rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <body>
+        <!-- Header -->
+        <header id="admin">
+            <nav>
+                <div class="menu">
+                    <ul>
+                        <li>
+                            <a href="index.html"></a>
+                        </li>
+                        <li>
+                            <a href="signup.html"></a>
+                        </li>
+                        <li>
+                            <a href="signout.html" class="current"></a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+        <div class="container">
+            <div class="dashboard">
+                <div class="logo">
+                    <a href="#">
+                        <img src="./../images/logo.jpg" alt="">
+                    </a>
+                </div>
+                <div class="menu-icon">
+                    <i class="fa fa-bars fa-2x"></i>
+                </div>
+                <div class="menu-sidebar">
+                    <ul>
+                        <li>
+                            <a href="home.html">Meals</a>
+                        </li>
+                        <li>
+                            <a href="menu.html">Menu</a>
+                        </li>
+                        <li>
+                            <a href="order.html" class="current">Order</a>
+                        </li>
+                        <li>
+                            <a href="signout.html">Sign out</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="mainboard">
+                <section id="board">
+                    <div class="">
+                        <h1 style="text-align: left;">Order</h1>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <td colspan="4" id="edit-meal">
+                                        <label for="">Day</label>
+                                        <input type="date" name="date" value="">
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>S/N</td>
+                                    <td>Customer</td>
+                                    <td>Meal</td>
+                                    <td>Amount(&#8358;)</td>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Mr Ab</td>
+                                    <td>Jollof</td>
+                                    <td>10,000</td>
+
+                                </tr>
+                                <tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>Pet</td>
+                                        <td>Amala</td>
+                                        <td>15,000</td>
+
+                                    </tr>
+                                </tr>
+                                <tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>Mr Tutu</td>
+                                        <td>Ofada</td>
+                                        <td>11,000</td>
+
+                                    </tr>
+                                </tr>
+                                <tr>
+                                    <td colspan="4" id="total"> Total(&#8358;) = 15000</td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!--footer-->
+        <footer id="footer" class="grid">
+            <div class="content-wrap">
+                <p>&copy; 2018 TmD</p>
+            </div>
+        </footer>
+        <script src="./../script.js"></script>
+    </body>
+
+</html>

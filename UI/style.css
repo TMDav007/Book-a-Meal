@@ -9,10 +9,6 @@ body {
     text-align: center;
 }
 
-* {
-    box-sizing: border-box;
-}
-
 *,*:before,*:after{
 	-webkit-user-select:none;
 	-moz-user-select:none;
@@ -521,7 +517,7 @@ section#board{
 }
 
 #board label{
-    font-size: 14px;
+    font-size: 12px;
     margin:0 5px;
 }
 
@@ -554,6 +550,7 @@ section#board{
    font-size: 13px;
 }
 
+
 #board input[type="date"]{
     padding: 0 1px;
     width: 7.8em;
@@ -582,7 +579,7 @@ section#board{
 /**** Modals ****/
 /*Add Meal */
 #modal-add-meal, #modal-edit-meal,#modal-set-meal{
-    display: none;
+    display: ;
     position: fixed;
     z-index: 1004;
     left: 0;
@@ -1241,7 +1238,4 @@ section#board{
         padding: 0;
     }
 
-    .mainboard {
-      
-    }
 }

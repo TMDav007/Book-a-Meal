@@ -579,7 +579,7 @@ section#board{
 /**** Modals ****/
 /*Add Meal */
 #modal-add-meal, #modal-edit-meal,#modal-set-meal{
-    display: ;
+    display: none;
     position: fixed;
     z-index: 1004;
     left: 0;

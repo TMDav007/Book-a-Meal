@@ -2,3 +2,5 @@ language : node_js
 
 node_js : 
 - "node"
+
+COVERALLS_REPO_TOKEN: J4VhWE6p6kBsTQcAel6QLFbJgBc3Qb6vA

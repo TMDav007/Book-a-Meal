@@ -91,16 +91,6 @@ class mealController {
     controlFunction.getByGroup(menu[0].meals, req, res, category);
   }
 
-  /**
-       * it GET a meal
-       * @param {string} req
-       * @param {string} res
-       * @param {string} id
-       * @returns {object} a meal
-       */
-  static getMealById(req, res, id) {
-    controlFunction.getById(menu[0].meals, req, res, id);
-  }
 }
 
 export default mealController;

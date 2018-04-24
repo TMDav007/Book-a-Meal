@@ -1,7 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 
-import routes from './route/index'
+import routes from './route/index';
 
 const app = express();
 
@@ -12,7 +12,7 @@ app.use(bodyParser.json({ type: 'application/json' }));
 
 routes(app);
 
-let port = 3030;
+const port = 3030;
 app.set('port', port);
 
 app.listen(port, () => {

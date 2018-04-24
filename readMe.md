@@ -1,4 +1,5 @@
 # Book-a-Meal
+[![Build Status](https://travis-ci.org/TMDav007/Book-a-Meal.svg?branch=develop)](https://travis-ci.org/TMDav007/Book-a-Meal)
 
 Book a Meal is an Applications that enable users order food based on the menu of the a day.
 

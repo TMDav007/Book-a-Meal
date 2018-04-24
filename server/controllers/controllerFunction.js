@@ -54,7 +54,7 @@ const remove = (element, req, res) => {
   for (let i = 0; i < element.length; i += 1) {
     if (element[i].id === parseInt(req.params.id, 10)) {
       element.splice(i, 1);
-      return res.json({
+      return res.status(200).json({
         message: 'Success',
         error: false
       });
@@ -69,7 +69,7 @@ const remove = (element, req, res) => {
 const getById = (element, req, res) => {
   for (let i = 0; i < element.length; i += 1) {
     if (element[i].id === parseInt(req.params.id, 10) || (element[i].date === req.params.date)) {
-      return res.json({
+      return res.status(200).json({
         result: element[i],
         message: 'Success',
         error: false
@@ -90,7 +90,7 @@ const getByGroup = (element, req, res) => {
     }
   }
   if (result.length > 1) {
-    return res.json({
+    return res.status(200).json({
       result,
       message: 'Success',
       error: false

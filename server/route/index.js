@@ -23,8 +23,7 @@ const routes = (app) => {
     .delete('/api/v1/meals/:id', mealsController.removeMeal);
 
   // Menu
-  app.get('/api/v1/menu', menuController.getAllMenu)
-    .post('/api/v1/menu', menuController.addMenu);
+  app.post('/api/v1/menu', menuController.addMenu);
 
   app.get('/api/v1/menu/:date', menuController.getMenu);
 

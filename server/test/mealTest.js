@@ -17,7 +17,7 @@ let meal = {
   category: 'local-dish'
 };
 
-// Test for /Get meal
+// meal
 describe('/GET meal', () => {
   it('it should GET all the meal', (done) => {
     chai
@@ -43,9 +43,6 @@ describe('/POST a meal', () => {
       .post('/api/v1/meals')
       .field('id', meal.id)
       .field('food', meal.food)
-      .field('quantity', meal.quantity)
-      .field('image', meal.amount)
-      .field('category', meal.category)
       .then((err, res) => {
         res.body.should.be.a('object');
         res.body.should.have.property('message');
@@ -98,10 +95,9 @@ describe('/POST a meal', () => {
 describe('/Update a meal', () => {
   // PUT a meal
   it('it should update the meal', () => {
-    const id = 1;
     chai
       .request(app)
-      .put(`/api/v1/meals/${(meal.id = 1)}`)
+      .put(`/api/v1/meals/${meal.id = 1}`)
       .field('food', (meal.food = 'amala'))
       .then((err, res) => {
         res.body.should.be.a('object');
@@ -159,7 +155,6 @@ describe('/get a meal', () => {
 
 // Delete a meal
 describe('/Delete a meal', () => {
-  // DELETE a meal
   it('it should delete a meal', () => {
     chai
       .request(app)

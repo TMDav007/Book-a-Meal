@@ -25,8 +25,6 @@ let menu = [
   }
 ];
 
-
-// Menu
 // POST a menu
 describe('/POST a menu', () => {
   // Test for post with an existing date
@@ -50,12 +48,7 @@ describe('/POST a menu', () => {
       {
         meals: [
           {
-            id: 1,
-            food: 'Jollof-rice',
-            quantity: 1,
-            image: 'img.png',
-            amount: '5000',
-            category: 'local-dish'
+            id: 1
           }
         ]
       }

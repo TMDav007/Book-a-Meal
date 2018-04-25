@@ -6,17 +6,6 @@ import controlFunction from './controllerFunction';
  */
 class menuController {
   /**
-   * it GET all menu
-   * @param {string} req
-   * @param {string} res
-   * @param {string} date
-   * @returns {object} all menu
-   */
-  static getAllMenu(req, res) {
-    controlFunction.getAll(menu, req, res);
-  }
-
-  /**
    * it ADD a menu
    * @param {string} req
    * @param {string} res

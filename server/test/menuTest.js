@@ -30,25 +30,24 @@ let menu = [
 // POST a menu
 describe('/POST a menu', () => {
   // Test for post with an existing date
-  it('it should not POST a menu with an existing date field', () => {
+  it('it should not POST a menu with an existing id field', () => {
     chai
       .request(app)
       .post('/api/v1/menu')
-      .field('date', (menu.date = '16-09-2018'))
+      .field('id', (menu.id = 1))
       .then((err, res) => {
         res.body.should.be.a('object');
         res.body.should.have.property('message');
-        res.body.message.should.eql('date is already existing');
+        res.body.message.should.eql('id is already existing');
         res.body.should.have.property('error');
         res.body.error.should.eql(true);
       });
   });
 
   // Test for post with no Id
-  it('it should not POST a menu without an date field', (done) => {
+  it('it should not POST a menu without an i field', (done) => {
     menu = [
       {
-        id: 1,
         meals: [
           {
             id: 1,
@@ -68,7 +67,7 @@ describe('/POST a menu', () => {
       .end((err, res) => {
         res.body.should.be.a('object');
         res.body.should.have.property('message');
-        res.body.message.should.eql('date is required');
+        res.body.message.should.eql('id is required');
         res.body.should.have.property('error');
         res.body.error.should.eql(true);
         done();

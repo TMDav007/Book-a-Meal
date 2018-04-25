@@ -1,3 +1,7 @@
+const errorStatus = (statusCode, errorMessage, res) => {
+  res.status(statusCode).json({ message: errorMessage, error: true });
+};
+
 const getAll = (element, req, res) => {
   if (element.length > 0) {
     return res.json({
@@ -5,9 +9,22 @@ const getAll = (element, req, res) => {
       error: false
     });
   }
+  return errorStatus(400, 'not found, it is empty', res);
+};
+
+const add = (model, req, res) => {
+  for (let i = 0; i < model.length; i += 1) {
+    if (model[i].id === req.body.id) {
+      return errorStatus(400, 'id is already existing', res);
+    } else if (!req.body.id) {
+      return errorStatus(400, 'id is required', res);
+    }
+  }
+  model.push(req.body);
   return res.json({
-    message: 'not found, it is empty',
-    error: true
+    model,
+    message: 'Success',
+    error: false
   });
 };
 
@@ -70,5 +87,6 @@ export default {
   getAll,
   remove,
   getById,
-  getByGroup
+  getByGroup,
+  add
 };

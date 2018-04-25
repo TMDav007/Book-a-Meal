@@ -16,31 +16,13 @@ class orderController {
   }
 
   /**
-   * it ADD a order
+   * it ADD an order
    * @param {string} req
    * @param {string} res
    * @returns {object} add order
    */
   static addOrder(req, res) {
-    for (let i = 0; i < order.length; i += 1) {
-      if (req.body.id === order[i].id) {
-        return res.json({
-          message: 'id is already existing',
-          error: true
-        });
-      } else if (!req.body.id) {
-        return res.json({
-          message: 'id is required',
-          error: true
-        });
-      }
-    }
-    order.push(req.body);
-    return res.json({
-      order,
-      message: 'Success',
-      error: false
-    });
+    controlFunction.add(order, req, res);
   }
 
   /**

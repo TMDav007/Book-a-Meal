@@ -84,11 +84,10 @@ class mealController {
    * it GET meals
    * @param {string} req
    * @param {string} res
-   * @param {string} category
    * @returns {object} meals
    */
-  static getMealByName(req, res, category) {
-    controlFunction.getByGroup(menu[0].meals, req, res, category);
+  static getMealByName(req, res) {
+    controlFunction.getByGroup(menu[0].meals, req, res);
   }
 }
 

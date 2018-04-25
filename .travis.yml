@@ -13,6 +13,6 @@ before_script:
 script:
   - npm run test
 after_script:
-  - ./cc-test-reporter after-build -t lcov
+  - ./cc-test-reporter after-build -t coverage/lcov.info
 
 COVERALLS_REPO_TOKEN: WJkiU7W556R1lKHCPys50oS35Fx503KQr

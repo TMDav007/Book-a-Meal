@@ -11,8 +11,8 @@ before_script:
   - ./cc-test-reporter before-build
 
 script:
-  - bundle exec server/test/
+  - npm run test
 after_script:
-  - ./cc-test-reporter after-build --exit-code lcov.info
+  - ./cc-test-reporter after-build -code coverage/lcov.info
 
 COVERALLS_REPO_TOKEN: WJkiU7W556R1lKHCPys50oS35Fx503KQr

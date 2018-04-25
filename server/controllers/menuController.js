@@ -5,7 +5,7 @@ import controlFunction from './controllerFunction';
  * it is a class that control all menu api;
  */
 class menuController {
-/**
+  /**
    * it GET all menu
    * @param {string} req
    * @param {string} res

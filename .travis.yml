@@ -2,4 +2,4 @@ language : node_js
 
 node_js: 'stable'
 
-COVERALLS_REPO_TOKEN: kdEFKwEYHKXFg2rfBrcAVQmbgZaQWIJ1K
+COVERALLS_REPO_TOKEN: WJkiU7W556R1lKHCPys50oS35Fx503KQr

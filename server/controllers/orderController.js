@@ -6,21 +6,21 @@ import controlFunction from './controllerFunction';
  */
 class orderController {
   /**
-       * it GET all order
-       * @param {string} req
-       * @param {string} res
-       * @returns {object} all order
-       */
+   * it GET all order
+   * @param {string} req
+   * @param {string} res
+   * @returns {object} all order
+   */
   static getAllOrder(req, res) {
     controlFunction.getAll(order, req, res);
   }
 
   /**
-       * it ADD a order
-       * @param {string} req
-       * @param {string} res
-       * @returns {object} add order
-       */
+   * it ADD a order
+   * @param {string} req
+   * @param {string} res
+   * @returns {object} add order
+   */
   static addOrder(req, res) {
     for (let i = 0; i < order.length; i += 1) {
       if (req.body.id === order[i].id) {
@@ -44,11 +44,11 @@ class orderController {
   }
 
   /**
-       * it PUT(update) an order
-       * @param {string} req
-       * @param {string} res
-       * @returns {object} PUT(update) an order
-       */
+   * it PUT(update) an order
+   * @param {string} req
+   * @param {string} res
+   * @returns {object} PUT(update) an order
+   */
   static updateorder(req, res) {
     for (let j = 0; j < order.length; j += 1) {
       if (order[j].id === parseInt(req.body.id, 10)) {

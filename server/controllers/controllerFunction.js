@@ -1,4 +1,3 @@
-
 const getAll = (element, req, res) => {
   if (element.length > 0) {
     return res.json({
@@ -30,7 +29,10 @@ const remove = (element, req, res) => {
 
 const getById = (element, req, res) => {
   for (let i = 0; i < element.length; i += 1) {
-    if (element[i].id === parseInt(req.params.id, 10) || (element[i].date === req.params.date)) {
+    if (
+      element[i].id === parseInt(req.params.id, 10) ||
+      element[i].date === req.params.date
+    ) {
       return res.status(200).json({
         result: element[i],
         message: 'Success',
@@ -64,7 +66,9 @@ const getByGroup = (element, req, res) => {
   });
 };
 
-
 export default {
-  getAll, remove, getById, getByGroup
+  getAll,
+  remove,
+  getById,
+  getByGroup
 };

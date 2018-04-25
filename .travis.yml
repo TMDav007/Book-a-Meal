@@ -3,3 +3,16 @@ language : node_js
 node_js: 'stable'
 
 COVERALLS_REPO_TOKEN: WJkiU7W556R1lKHCPys50oS35Fx503KQr
+
+env:
+  global:
+    - CC_TEST_REPORTER_ID=b023d51ccf099ee6f0950e3165beea7834af0d68ae8774e55b182bad8e77eb9d
+
+before_script:
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
+script:
+  - bundle exec rspec
+after_script:
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT

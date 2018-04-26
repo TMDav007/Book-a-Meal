@@ -3,7 +3,7 @@ import mealsController from './../controllers/mealsController';
 import orderController from './../controllers/orderController';
 
 const routes = (app) => {
-  app.get('/', (req, res) =>
+  app.get('', (req, res) =>
     res.status(200).send({
       message: 'Welcome to the Book-A-Meal, add "/api/v1/" to use the api'
     }));
@@ -23,7 +23,8 @@ const routes = (app) => {
     .delete('/api/v1/meals/:id', mealsController.removeMeal);
 
   // Menu
-  app.post('/api/v1/menu', menuController.addMenu);
+  app.post('/api/v1/menu', menuController.addMenu)
+    .get('/api/v1/menu', menuController.getMenus);
 
   app.get('/api/v1/menu/:date', menuController.getMenu);
 

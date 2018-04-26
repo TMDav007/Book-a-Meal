@@ -7,21 +7,10 @@ const should = chai.should();
 
 chai.use(chaiHttp);
 
-// Global
-let meal = {
-  id: 10,
-  food: 'Jollof-rice',
-  quantity: 1,
-  image: 'img.png',
-  amount: '5000',
-  category: 'local-dish'
-};
-
 // meal
 describe('/GET meal', () => {
   it('it should GET all the meal', (done) => {
-    chai
-      .request(app)
+    chai.request(app)
       .get('/api/v1/meals')
       .end((err, res) => {
         res.should.have.status(200);
@@ -37,34 +26,38 @@ describe('/GET meal', () => {
 // POST meal
 describe('/POST a meal', () => {
   // Test for post with an existing Id
-  it('it should not POST a meal with an existing id field', () => {
-    chai
-      .request(app)
+  it('it should not POST a meal with an existing id field', (done) => {
+    chai.request(app)
       .post('/api/v1/meals')
-      .field('id', meal.id)
-      .field('food', meal.food)
-      .then((err, res) => {
+      .send({
+        id: 1,
+        food: 'Jollof-rice',
+        quantity: 1,
+        image: 'img.png',
+        amount: '5000',
+        category: 'local-dish'
+      })
+      .end((err, res) => {
         res.body.should.be.a('object');
         res.body.should.have.property('message');
         res.body.message.should.eql('id is already existing');
         res.body.should.have.property('error');
         res.body.error.should.eql(true);
+        done();
       });
   });
 
   // Test for post with no Id
   it('it should not POST a meal without an id field', (done) => {
-    meal = {
-      food: 'Jollof-rice',
-      quantity: 1,
-      image: 'img.png',
-      amount: '5000',
-      category: 'local-dish'
-    };
-    chai
-      .request(app)
+    chai.request(app)
       .post('/api/v1/meals')
-      .send(meal)
+      .send({
+        food: 'Jollof-rice',
+        quantity: 1,
+        image: 'img.png',
+        amount: '5000',
+        category: 'local-dish'
+      })
       .end((err, res) => {
         res.body.should.be.a('object');
         res.body.should.have.property('message');
@@ -76,17 +69,24 @@ describe('/POST a meal', () => {
   });
 
   // Test for post with to add a new meal.
-  it('it should Add(post) a new meal', () => {
-    chai
-      .request(app)
+  it('it should Add(post) a new meal', (done) => {
+    chai.request(app)
       .post('/api/v1/meals')
-      .send(meal)
-      .then((res) => {
+      .send({
+        id: 10,
+        food: 'Jollof-rice',
+        quantity: 1,
+        image: 'img.png',
+        amount: '5000',
+        category: 'local-dish'
+      })
+      .end((err, res) => {
         res.body.should.be.a('object');
         res.body.should.have.property('message');
         res.body.message.should.eql('Success');
         res.body.should.have.property('error');
         res.body.error.should.eql(false);
+        done();
       });
   });
 });
@@ -94,26 +94,36 @@ describe('/POST a meal', () => {
 // PUT(Update) a meal
 describe('/Update a meal', () => {
   // PUT a meal
-  it('it should update the meal', () => {
-    chai
-      .request(app)
-      .put(`/api/v1/meals/${meal.id = 1}`)
-      .field('food', (meal.food = 'amala'))
-      .then((err, res) => {
+  it('it should update the meal', (done) => {
+    chai.request(app)
+      .put('/api/v1/meals/1')
+      .send({
+        id: 1,
+        food: 'Jollof-rice'
+      })
+      .end((err, res) => {
         res.body.should.be.a('object');
         res.body.should.have.property('message');
         res.body.message.should.eql('Update Successful');
         res.body.should.have.property('error');
         res.body.error.should.eql(false);
+        done();
       });
   });
 
   // PUT a meal
   it('it should not update', (done) => {
-    const id = 20;
     chai
       .request(app)
-      .put(`/api/v1/meals/${id}`)
+      .put('/api/v1/meals/20')
+      .send({
+        id: 20,
+        food: 'Jollof-rice',
+        quantity: 1,
+        image: 'img.png',
+        amount: '5000',
+        category: 'local-dish'
+      })
       .end((err, res) => {
         res.body.should.be.a('object');
         res.body.should.have.property('message');
@@ -127,55 +137,55 @@ describe('/Update a meal', () => {
 
 // get a meal
 describe('/get a meal', () => {
-  it('it should get a meal', () => {
-    chai
-      .request(app)
-      .get(`/api/v1/meals/${meal.category}`)
-      .then((err, res) => {
+  it('it should get a meal', (done) => {
+    chai.request(app)
+      .get('/api/v1/meals/local-dish')
+      .end((err, res) => {
         res.should.have.status(200);
         res.body.should.be.a('object');
         res.body.should.have.property('message');
         res.body.message.should.eql('Success');
         res.body.should.have.property('result');
+        done();
       });
   });
 
-  it('it should not get a meal', () => {
-    chai
-      .request(app)
-      .get(`/api/v1/meals/${20}`)
-      .then((err, res) => {
+  it('it should not get a meal', (done) => {
+    chai.request(app)
+      .get('/api/v1/meals/local')
+      .end((err, res) => {
         res.should.have.status(404);
         res.body.should.be.a('object');
         res.body.should.have.property('error');
-        res.body.error.should.eql('not found');
+        res.body.error.should.eql(true);
+        done();
       });
   });
 });
 
 // Delete a meal
 describe('/Delete a meal', () => {
-  it('it should delete a meal', () => {
-    chai
-      .request(app)
-      .delete(`/api/v1/meals/${meal.id}`)
-      .then((err, res) => {
+  it('it should delete a meal', (done) => {
+    chai.request(app)
+      .delete('/api/v1/meals/1')
+      .end((err, res) => {
         res.should.have.status(200);
         res.body.should.be.a('object');
         res.body.should.have.property('message');
         res.body.message.should.eql('Success');
+        done();
       });
   });
 
-  it('it should not delete a meal', () => {
-    chai
-      .request(app)
-      .delete(`/api/v1/meals/${20}`)
-      .then((err, res) => {
+  it('it should not delete a meal', (done) => {
+    chai.request(app)
+      .delete('/api/v1/meals/20')
+      .end((err, res) => {
         res.should.have.status(404);
         res.body.should.be.a('object');
         res.body.should.have.property('error');
-        res.body.error.should.eql('not found');
+        res.body.error.should.eql(true);
+        done();
       });
   });
 });

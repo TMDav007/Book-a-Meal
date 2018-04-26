@@ -7,56 +7,48 @@ const should = chai.should();
 
 chai.use(chaiHttp);
 
-// Global
-let menu = [
-  {
-    id: 2,
-    date: '17-09-2018',
-    meals: [
-      {
-        id: 1,
-        food: 'Jollof-rice',
-        quantity: 1,
-        image: 'img.png',
-        amount: '5000',
-        category: 'local-dish'
-      }
-    ]
-  }
-];
-
 // POST a menu
 describe('/POST a menu', () => {
   // Test for post with an existing date
-  it('it should not POST a menu with an existing id field', () => {
-    chai
-      .request(app)
+  it('it should not POST a menu with an existing id field', (done) => {
+    chai.request(app)
       .post('/api/v1/menu')
-      .field('id', (menu.id = 1))
-      .then((err, res) => {
+      .send({
+        id: 1,
+        date: '17-09-2018',
+        meals: [
+          {
+            id: 1,
+            food: 'Jollof-rice',
+            quantity: 1,
+            image: 'img.png',
+            amount: '5000',
+            category: 'local-dish'
+          }
+        ]
+      })
+      .end((err, res) => {
         res.body.should.be.a('object');
         res.body.should.have.property('message');
         res.body.message.should.eql('id is already existing');
         res.body.should.have.property('error');
         res.body.error.should.eql(true);
+        done();
       });
   });
 
   // Test for post with no Id
   it('it should not POST a menu without an i field', (done) => {
-    menu = [
-      {
+    chai
+      .request(app)
+      .post('/api/v1/menu')
+      .send({
         meals: [
           {
             id: 1
           }
         ]
-      }
-    ];
-    chai
-      .request(app)
-      .post('/api/v1/menu')
-      .send(menu)
+      })
       .end((err, res) => {
         res.body.should.be.a('object');
         res.body.should.have.property('message');
@@ -68,45 +60,74 @@ describe('/POST a menu', () => {
   });
 
   // Test for to add a new menu.
-  it('it should Add(post) a new meal', () => {
-    chai
-      .request(app)
+  it('it should Add(post) a new meal', (done) => {
+    chai.request(app)
       .post('/api/v1/menu')
-      .send(menu)
-      .then((res) => {
+      .send({
+        id: 5,
+        date: '17-09-2018',
+        meals: [
+          {
+            id: 1,
+            food: 'Jollof-rice',
+            quantity: 1,
+            image: 'img.png',
+            amount: '5000',
+            category: 'local-dish'
+          }
+        ]
+      })
+      .end((err, res) => {
         res.body.should.be.a('object');
         res.body.should.have.property('message');
         res.body.message.should.eql('Success');
         res.body.should.have.property('error');
         res.body.error.should.eql(false);
+        done();
+      });
+  });
+});
+
+// get menu
+describe('/get all menu', () => {
+  it('it should get all menu', (done) => {
+    chai.request(app)
+      .get('/api/v1/menu')
+      .end((err, res) => {
+        res.should.have.status(200);
+        res.body.should.have.property('result');
+        res.body.result.should.be.a('array');
+        res.body.should.have.property('error');
+        res.body.error.should.eql(false);
+        done();
       });
   });
 });
 
 // get a menu
 describe('/get a menu', () => {
-  it('it should get a menu', () => {
-    chai
-      .request(app)
+  it('it should get a menu', (done) => {
+    chai.request(app)
       .get(`/api/v1/menu/${'16-09-2018'}`)
-      .then((err, res) => {
+      .end((err, res) => {
         res.should.have.status(200);
         res.body.should.be.a('object');
         res.body.should.have.property('message');
         res.body.message.should.eql('Success');
         res.body.should.have.property('result');
+        done();
       });
   });
 
-  it('it should not get a menu', () => {
-    chai
-      .request(app)
+  it('it should not get a menu', (done) => {
+    chai.request(app)
       .get(`/api/v1/menu/${20}`)
-      .then((err, res) => {
+      .end((err, res) => {
         res.should.have.status(404);
         res.body.should.be.a('object');
         res.body.should.have.property('error');
-        res.body.error.should.eql('not found');
+        res.body.error.should.eql(true);
+        done();
       });
   });
 });

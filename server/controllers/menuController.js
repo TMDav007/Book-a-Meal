@@ -21,6 +21,16 @@ class menuController {
    * @param {string} res
    * @returns {object} a menu
    */
+  static getMenus(req, res) {
+    controlFunction.getAll(menu, req, res);
+  }
+
+  /**
+   * it GET a menu
+   * @param {string} req
+   * @param {string} res
+   * @returns {object} a menu
+   */
   static getMenu(req, res) {
     controlFunction.getById(menu, req, res);
   }

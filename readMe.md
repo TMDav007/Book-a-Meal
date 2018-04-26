@@ -26,5 +26,26 @@ The application UI is on https://tmdav007.github.io/Book-a-Meal/UI/index.html
 ## API Reference
 - https://booka-meal-app.herokuapp.com/
 
+### API Routes
+ - The API route to add:
+ 
+    > POST: /
+    
+ - The API route to get all:
+ 
+    > GET: /
+    
+ - The API route to get by id:
+ 
+    > GET: /id/
+    
+- The API route to edit:
+
+    > PUT: /id/
+    
+- The API route to delete:
+
+    > DELETE: /id/
+
 ## Author
  - Afolabi, Opeyemi T.

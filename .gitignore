@@ -9,3 +9,6 @@ coverage
 
 # dist folder
 dist
+
+#coverall
+.coveralls.yml

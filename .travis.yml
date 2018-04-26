@@ -18,5 +18,3 @@ after_script:
 
 notifications:
   email: false
-
-COVERALLS_REPO_TOKEN: WJkiU7W556R1lKHCPys50oS35Fx503KQr

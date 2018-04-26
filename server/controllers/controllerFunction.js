@@ -4,7 +4,7 @@ const errorStatus = (statusCode, errorMessage, res) => {
 
 const getAll = (element, req, res) => {
   if (element.length > 0) {
-    return res.json({
+    return res.status(200).json({
       result: element,
       error: false
     });

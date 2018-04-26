@@ -30,11 +30,11 @@ var orderController = function () {
     key: 'getAllOrder',
 
     /**
-         * it GET all order
-         * @param {string} req
-         * @param {string} res
-         * @returns {object} all order
-         */
+     * it GET all order
+     * @param {string} req
+     * @param {string} res
+     * @returns {object} all order
+     */
     value: function () {
       function getAllOrder(req, res) {
         _controllerFunction2['default'].getAll(_order2['default'], req, res);
@@ -44,46 +44,28 @@ var orderController = function () {
     }()
 
     /**
-         * it ADD a order
-         * @param {string} req
-         * @param {string} res
-         * @returns {object} add order
-         */
+     * it ADD an order
+     * @param {string} req
+     * @param {string} res
+     * @returns {object} add order
+     */
 
   }, {
     key: 'addOrder',
     value: function () {
       function addOrder(req, res) {
-        for (var i = 0; i < _order2['default'].length; i += 1) {
-          if (req.body.id === _order2['default'][i].id) {
-            return res.json({
-              message: 'id is already existing',
-              error: true
-            });
-          } else if (!req.body.id) {
-            return res.json({
-              message: 'id is required',
-              error: true
-            });
-          }
-        }
-        _order2['default'].push(req.body);
-        return res.json({
-          order: _order2['default'],
-          message: 'Success',
-          error: false
-        });
+        _controllerFunction2['default'].add(_order2['default'], req, res);
       }
 
       return addOrder;
     }()
 
     /**
-         * it PUT(update) an order
-         * @param {string} req
-         * @param {string} res
-         * @returns {object} PUT(update) an order
-         */
+     * it PUT(update) an order
+     * @param {string} req
+     * @param {string} res
+     * @returns {object} PUT(update) an order
+     */
 
   }, {
     key: 'updateorder',

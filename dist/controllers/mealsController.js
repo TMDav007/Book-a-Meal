@@ -30,11 +30,11 @@ var mealController = function () {
     key: 'getAllMeal',
 
     /**
-         * it GET all meal
-         * @param {string} req
-         * @param {string} res
-         * @returns {object} all meal
-         */
+     * it GET all meal
+     * @param {string} req
+     * @param {string} res
+     * @returns {object} all meal
+     */
     value: function () {
       function getAllMeal(req, res) {
         _controllerFunction2['default'].getAll(_menu2['default'][0].meals, req, res);
@@ -44,11 +44,11 @@ var mealController = function () {
     }()
 
     /**
-         * it ADD a meal
-         * @param {string} req
-         * @param {string} res
-         * @returns {object} add meal
-         */
+     * it ADD a meal
+     * @param {string} req
+     * @param {string} res
+     * @returns {object} add meal
+     */
 
   }, {
     key: 'addMeal',
@@ -79,11 +79,11 @@ var mealController = function () {
     }()
 
     /**
-         * it PUT(update) a meal
-         * @param {string} req
-         * @param {string} res
-         * @returns {object} PUT(update) a meal
-         */
+     * it PUT(update) a meal
+     * @param {string} req
+     * @param {string} res
+     * @returns {object} PUT(update) a meal
+     */
 
   }, {
     key: 'updateMeal',
@@ -113,11 +113,11 @@ var mealController = function () {
     }()
 
     /**
-         * it DELETE meal
-         * @param {string} req
-         * @param {string} res
-         * @returns {object} remove an meal
-         */
+     * it DELETE meal
+     * @param {string} req
+     * @param {string} res
+     * @returns {object} remove an meal
+     */
 
   }, {
     key: 'removeMeal',
@@ -130,18 +130,17 @@ var mealController = function () {
     }()
 
     /**
-         * it GET meals
-         * @param {string} req
-         * @param {string} res
-         * @param {string} category
-         * @returns {object} meals
-         */
+     * it GET meals
+     * @param {string} req
+     * @param {string} res
+     * @returns {object} meals
+     */
 
   }, {
     key: 'getMealByName',
     value: function () {
-      function getMealByName(req, res, category) {
-        _controllerFunction2['default'].getByGroup(_menu2['default'][0].meals, req, res, category);
+      function getMealByName(req, res) {
+        _controllerFunction2['default'].getByGroup(_menu2['default'][0].meals, req, res);
       }
 
       return getMealByName;

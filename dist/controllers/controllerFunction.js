@@ -1,8 +1,11 @@
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+var errorStatus = function errorStatus(statusCode, errorMessage, res) {
+  res.status(statusCode).json({ message: errorMessage, error: true });
+};
 
 var getAll = function getAll(element, req, res) {
   if (element.length > 0) {
@@ -11,47 +14,22 @@ var getAll = function getAll(element, req, res) {
       error: false
     });
   }
-  return res.json({
-    message: 'not found, it is empty',
-    error: true
-  });
+  return errorStatus(400, 'not found, it is empty', res);
 };
 
-var add = function add(element, req, res) {
-  for (var i = 0; i < element.length; i += 1) {
-    if (req.body.id === element[i].id) {
-      return res.json({
-        message: "the 'id' already existing",
-        error: true
-      });
+var add = function add(model, req, res) {
+  for (var i = 0; i < model.length; i += 1) {
+    if (model[i].id === req.body.id) {
+      return errorStatus(400, 'id is already existing', res);
     } else if (!req.body.id) {
-      return res.json({
-        message: "the 'id' is required",
-        error: true
-      });
+      return errorStatus(400, 'id is required', res);
     }
   }
-  element.push(req.body);
+  model.push(req.body);
   return res.json({
+    model: model,
     message: 'Success',
     error: false
-  });
-};
-
-var update = function update(element, req, res) {
-  for (var i = 0; i < element.length; i += 1) {
-    if (element[i].id === parseInt(req.params.id, 10)) {
-      element[i].name = req.body.name;
-      element[i].cost = req.body.cost;
-      return res.json({
-        message: 'Update Successful',
-        error: false
-      });
-    }
-  }
-  return res.status(404).json({
-    message: 'not found',
-    error: true
   });
 };
 
@@ -107,7 +85,11 @@ var getByGroup = function getByGroup(element, req, res) {
   });
 };
 
-exports["default"] = {
-  getAll: getAll, add: add, update: update, remove: remove, getById: getById, getByGroup: getByGroup
+exports['default'] = {
+  getAll: getAll,
+  remove: remove,
+  getById: getById,
+  getByGroup: getByGroup,
+  add: add
 };
 //# sourceMappingURL=controllerFunction.js.map

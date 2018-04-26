@@ -27,22 +27,7 @@ var menuController = function () {
   }
 
   _createClass(menuController, null, [{
-    key: 'getAllMenu',
-
-    /**
-       * it GET all menu
-       * @param {string} req
-       * @param {string} res
-       * @param {string} date
-       * @returns {object} all menu
-       */
-    value: function () {
-      function getAllMenu(req, res) {
-        _controllerFunction2['default'].getAll(_menu2['default'], req, res);
-      }
-
-      return getAllMenu;
-    }()
+    key: 'addMenu',
 
     /**
      * it ADD a menu
@@ -50,30 +35,9 @@ var menuController = function () {
      * @param {string} res
      * @returns {object} add menu
      */
-
-  }, {
-    key: 'addMenu',
     value: function () {
       function addMenu(req, res) {
-        for (var i = 0; i < _menu2['default'].length; i += 1) {
-          if (req.body.date === _menu2['default'][i].date) {
-            return res.json({
-              message: 'date is already existing',
-              error: true
-            });
-          } else if (!req.body.date) {
-            return res.json({
-              message: 'date is required',
-              error: true
-            });
-          }
-        }
-        _menu2['default'].push(req.body);
-        return res.json({
-          menu: _menu2['default'],
-          message: 'Success',
-          error: false
-        });
+        _controllerFunction2['default'].add(_menu2['default'], req, res);
       }
 
       return addMenu;
@@ -83,15 +47,14 @@ var menuController = function () {
      * it GET a menu
      * @param {string} req
      * @param {string} res
-     * @param {string} date
      * @returns {object} a menu
      */
 
   }, {
     key: 'getMenu',
     value: function () {
-      function getMenu(req, res, date) {
-        _controllerFunction2['default'].getById(_menu2['default'], req, res, date);
+      function getMenu(req, res) {
+        _controllerFunction2['default'].getById(_menu2['default'], req, res);
       }
 
       return getMenu;

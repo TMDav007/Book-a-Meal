@@ -39,7 +39,7 @@ var routes = function routes(app) {
   app.put('/api/v1/meals/:id', _mealsController2['default'].updateMeal)['delete']('/api/v1/meals/:id', _mealsController2['default'].removeMeal);
 
   // Menu
-  app.get('/api/v1/menu', _menuController2['default'].getAllMenu).post('/api/v1/menu', _menuController2['default'].addMenu);
+  app.post('/api/v1/menu', _menuController2['default'].addMenu);
 
   app.get('/api/v1/menu/:date', _menuController2['default'].getMenu);
 

@@ -27,7 +27,7 @@ app.use(_bodyParser2['default'].json({ type: 'application/json' }));
 
 (0, _index2['default'])(app);
 
-var port = 3030;
+var port = parseInt(process.env.PORT, 10) || 3030;
 app.set('port', port);
 
 app.listen(port, function () {

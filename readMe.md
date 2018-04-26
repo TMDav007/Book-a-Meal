@@ -7,3 +7,24 @@
 Book a Meal is an Applications that enable users order food based on the menu of the a day.
 
 The application UI is on https://tmdav007.github.io/Book-a-Meal/UI/index.html
+
+## Installation
+- To run this app, install node version 8.9.1 or above
+
+- install node modules with command:
+  > npm install
+
+- Start API server with command:
+  > npm start
+
+- use the url on Postman:
+  > http://localhost:3030
+
+- Run test with:
+  > npm test
+
+## API Reference
+- https://booka-meal-app.herokuapp.com/
+
+## Author
+ - Afolabi, Opeyemi T.

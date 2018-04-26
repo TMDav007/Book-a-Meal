@@ -12,7 +12,7 @@ app.use(bodyParser.json({ type: 'application/json' }));
 
 routes(app);
 
-const port = 3030;
+const port = parseInt(process.env.PORT, 10) || 3030;
 app.set('port', port);
 
 app.listen(port, () => {

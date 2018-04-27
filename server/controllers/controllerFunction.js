@@ -38,10 +38,7 @@ const remove = (element, req, res) => {
       });
     }
   }
-  return res.status(404).json({
-    message: 'not found',
-    error: true
-  });
+  return errorStatus(404, 'not found', res);
 };
 
 const getById = (element, req, res) => {
@@ -57,10 +54,7 @@ const getById = (element, req, res) => {
       });
     }
   }
-  return res.status(404).json({
-    message: 'not found',
-    error: true
-  });
+  return errorStatus(404, 'not found', res);
 };
 
 const getByGroup = (element, req, res) => {
@@ -77,10 +71,7 @@ const getByGroup = (element, req, res) => {
       error: false
     });
   }
-  return res.status(404).json({
-    message: 'not found',
-    error: true
-  });
+  return errorStatus(404, 'not found', res);
 };
 
 export default {

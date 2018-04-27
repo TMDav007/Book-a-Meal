@@ -1,0 +1,14 @@
+# dependencies
+node_modules
+
+# nyc output
+.nyc_output
+
+# coverage
+coverage
+
+# dist folder
+dist
+
+#coverall
+.coveralls.yml

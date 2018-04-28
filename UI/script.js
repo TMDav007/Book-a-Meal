@@ -7,7 +7,7 @@ $(window).on("load",function(){
 // Menu -toggle-button
 $(document). ready(function() {
     $(".menu-icon").on("click", function(){
-        $("nav ul").toggleClass("showing");
+        $("nav .menu ul").toggleClass("showing");
     })
 
     //status show
@@ -39,7 +39,7 @@ $(document). ready(function() {
     })
 
     // close
-    $(".close").on("click", function(){
+    $(".close,#close").on("click", function(){
         $("#modal-add-meal, #modal-set-meal,setMeal_content").fadeOut('slow');
         $("#addMeal_content").fadeOut('slow');
         $(".cover").fadeOut('slow');
@@ -82,7 +82,7 @@ $(document). ready(function() {
 //dashboard menu toggle
 $(document). ready(function() {
     $(".menu-icon").on("click", function(){
-        $(".menu-sidebar").toggleClass("active");
+        $(".sidebar").toggleClass("active");
     })
 });
 

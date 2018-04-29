@@ -6,205 +6,210 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Book-a-Meal | Menu</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./styles/style.css">
     <link href="https://fonts.googleapis.com/css?family=Acme|Anton|Fugaz+One|Great+Vibes|Parisienne|Cookie|Lobster+Two|Satisfy"
         rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
     <body>
-        <!-- Header -->
-        <header id="admin">
-            <nav>
-                <div class="menu">
-                    <ul>
-                        <li>
-                            <a href="index.html"></a>
-                        </li>
-                        <li>
-                            <a href="signup.html"></a>
-                        </li>
-                        <li>
-                            <a href="signout.html" class="current"></a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-        </header>
-
-        <div class="container">
-            <div class="dashboard">
-                <div class="logo">
-                    <a href="#">
-                        <img src="images/logo.jpg" alt="">
-                    </a>
-                </div>
-                <div class="menu-icon">
-                    <i class="fa fa-bars fa-2x"></i>
-                </div>
-                <div class="menu-sidebar">
-                    <ul>
-                        <li>
-                            <a href="menu.html" class="current">Order</a>
-                        </li>
-                        <li>
-                            <a id="status">Status</a>
-                        </li>
-                        <li>
-                            <a href="">Your orders</a>
-                        </li>
-                        <li>
-                            <a href="index.html">Sign out</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="mainboard">
-                <section id="board">
-                    <div class="">
-                            <h1 style="text-align: left;">Menu</h1>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <td colspan="6" id="order">
-                                        <label for="">Category</label>
-                                        <select name="Category">
-                                            <option value="local">Local dish</option>
-                                            <option value="inter">Intercontinental</option>
-                                            <option value="light">Something light</option>
-                                        </select>
-
-                                        <label for="">Day</label>
-                                        <input type="date" name="date" value="">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>S/N</td>
-                                    <td>Meals</td>
-                                    <td>Qty</td>
-                                    <td>Image</td>
-                                    <td>Amount &#8358;</td>
-                                    <td>check</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Jollof-rice</td>
-                                    <td>
-                                        <select name="duration">
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                            <option value="6">6</option>
-                                            <option value="7">7</option>
-                                            <option value="8">8</option>
-                                            <option value="9">9</option>
-                                            <option value="10">10</option>
-                                    </td>
-                                    <td>
-                                        <a class="fa image" id="img1">&#xf03e</a>
-                                    </td>
-                                    <td> 5000 </td>
-                                    <td>
-                                        <input type="checkbox" name="remember" id="remember"> </td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Chicken-chops</td>
-                                    <td>
-                                        <select name="duration">
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                            <option value="6">6</option>
-                                            <option value="7">7</option>
-                                            <option value="8">8</option>
-                                            <option value="9">9</option>
-                                            <option value="10">10</option>
-                                    </td>
-                                    <td>
-                                        <a class="fa" id="img2">&#xf03e</a>
-                                    </td>
-                                    <td> 7000 </td>
-                                    <td>
-                                        <input type="checkbox" name="remember" id="remember"> </td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Pounded yam</td>
-                                    <td>
-                                        <select name="duration">
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                            <option value="6">6</option>
-                                            <option value="7">7</option>
-                                            <option value="8">8</option>
-                                            <option value="9">9</option>
-                                            <option value="10">10</option>
-                                    </td>
-                                    <td>
-                                        <a class="fa image" id="img3">&#xf03e</a>
-                                    </td>
-                                    <td> 7000 </td>
-                                    <td>
-                                        <input type="checkbox" name="remember" id="remember"> </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="6" id="total"> Total(&#8358;) = 15000</td>
-                                </tr>
-
-                            </tbody>
-                            <tfoot>
-                                <tr>
-                                    <td colspan="7">
-                                        <button type="submit">Order</button>
-
-                                    </td>
-                                </tr>
-                            </tfoot>
-                        </table>
-                    </div>
-                </section>
-            </div>
+  <!-- Header -->
+  <header id="admin">
+    <nav>
+        <div class="menu">
+            <ul>
+                <li>
+                    <a href="index.html"></a>
+                </li>
+                <li>
+                    <a href="signup.html"></a>
+                </li>
+                <li>
+                    <a href="signout.html" class="current"></a>
+                </li>
+            </ul>
         </div>
+    </nav>
+</header>
 
-
-        <!--Pop ups-->
-        <div class="container-popup">
-            <div class="popup">
-                <!--Order status-->
-                <p>Status</p>
-                <p><i class="fa fa-exclamation-circle"></i> Order Pending</p>
-                <div class="options">
-                    <a href="">Ok</a>
-                </div>
-            </div>
+<div class="container">
+    <div class="dashboard">
+        <div class="logo">
+            <a href="#">
+                <img src="images/logo.jpg" alt="">
+            </a>
         </div>
-
-        <div class="show">
-            <div class="cover"></div>
-            <div class="img-show">
-                <img src="">
-            </div>
+        <div class="menu-icon">
+            <i class="fa fa-bars fa-2x"></i>
         </div>
+        <div class="sidebar">
+            <ul>
+                <li>
+                    <a href="menu.html" class="current">Order</a>
+                </li>
+                <li>
+                    <a id="status">Status</a>
+                </li>
+                <li>
+                    <a href="">Your orders</a>
+                </li>
+                <li>
+                    <a href="index.html">Sign out</a>
+                </li>
+            </ul>
+        </div>
+    </div>
 
-        <!--footer-->
-        <footer id="footer" class="grid">
-            <div class="content-wrap">
-        
-                <p>&copy; 2018 TmD</p>
+    <div class="mainboard">
+        <section id="board">
+            <div class="">
+                    <h1 style="text-align: left;">Menu</h1>
+                <table>
+                    <thead>
+                        <tr>
+                            <td colspan="6" id="order">
+                                <label for="">Category</label>
+                                <select name="Category">
+                                    <option value="local">Local dish</option>
+                                    <option value="inter">Intercontinental</option>
+                                    <option value="light">Something light</option>
+                                </select>
+
+                                <label for="">Day</label>
+                                <input type="date" name="date" value="">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>S/N</td>
+                            <td>Meals</td>
+                            <td>Qty</td>
+                            <td>Image</td>
+                            <td>Amount &#8358;</td>
+                            <td>check</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Jollof-rice</td>
+                            <td>
+                                <select name="duration">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                </select>
+                            </td>
+                            <td>
+                                <a class="fa image" id="img1">&#xf03e</a>
+                            </td>
+                            <td> 5000 </td>
+                            <td>
+                                <input type="checkbox" name="remember" id="remember"> </td>
+                        </tr>
+
+                        <tr>
+                            <td>2</td>
+                            <td>Chicken-chops</td>
+                            <td>
+                                <select name="duration">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                </select>
+                            </td>
+                            <td>
+                                <a class="fa" id="img2">&#xf03e</a>
+                            </td>
+                            <td> 7000 </td>
+                            <td>
+                                <input type="checkbox" name="remember" id="remember"> </td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Pounded yam</td>
+                            <td>
+                                <select name="duration">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                </select>
+                            </td>
+                            <td>
+                                <a class="fa image" id="img3">&#xf03e</a>
+                            </td>
+                            <td> 7000 </td>
+                            <td>
+                                <input type="checkbox" name="remember" id="remember"> </td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="6" id="total"> Total(&#8358;) = 15000</td>
+                        </tr>
+
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="6">
+                                <button type="submit">Order</button>
+
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
             </div>
-        </footer>
-        <script src="script.js"></script>
-    </body>
+        </section>
+    </div>
+</div>
+
+
+<!--Pop ups-->
+<div class="container-popup">
+    <div class="popup">
+        <!--Order status-->
+        <p>Status</p>
+        <p><i class="fa fa-exclamation-circle"></i> Order Pending</p>
+        <div class="options">
+            <a href="">Ok</a>
+        </div>
+    </div>
+</div>
+
+<div class="show">
+    <div class="cover"></div>
+    <div class="img-show">
+        <img src="">
+    </div>
+</div>
+
+<!--footer-->
+<footer id="footer" class="grid">
+    <div class="content-wrap">
+
+        <p>&copy; 2018 TmD</p>
+    </div>
+</footer>
+<script src="./script.js"></script>
+</body>
 
 </html>

@@ -9,8 +9,10 @@ body {
     text-align: center;
 }
 
-* {
-    box-sizing: border-box;
+*,*:before,*:after{
+	-webkit-user-select:none;
+	-moz-user-select:none;
+	-ms-user-select:none;
 }
 
 img {
@@ -27,10 +29,10 @@ h1, h2, h3{
 
 p {
     margin: 0;
-    padding: 1em 0;
     text-align: center;
-    font-size: 1em;
-    font-family: 'Cookie',cursive;
+    font-size: .65em;
+    line-height: 1.4em;
+    word-spacing: .25em;
 }
 
 a.btn{
@@ -75,11 +77,11 @@ nav {
 nav ul {
     max-height: 0px;
     background: #13212a;
+    padding: 0;
     list-style: none;
     overflow: hidden;
     margin: 0;
-    transition: all 1s;
-    
+    transition: all .1s;   
 }
 
 .showing {
@@ -89,8 +91,9 @@ nav ul {
 nav ul li {
     box-sizing: border-box;
     width: 100%;
-    padding: 25px 0;
+    padding: 1.3em 0;
     text-align: center;
+    border-bottom: 1px solid #fbfbfb14;;
 }
 
 
@@ -283,7 +286,7 @@ input[type="password"],
 input[type="email"],
 input[type="tel"],
 button[type="submit"]{
-   border:  #756c5b7e 1px solid;
+   border:  #0808085e 1px solid;
    border-radius: 5px;
    height: 30px;
    width: 90%;
@@ -291,9 +294,7 @@ button[type="submit"]{
    font-size: .8em;
 }
 
-input[type='checkbox']{
-    margin-right: 20em;
-}
+
 #remember {
     text-align: left;
 }
@@ -301,19 +302,31 @@ button[type="submit"]{
     color: #ffffff;
     height: 40px;
     background-color: #13212a;
-    transition : all 0.5s;
+    transition : all ;
     margin-bottom: .3em;
 }
 button[type="submit"]:hover{
     opacity: 0.8;
     cursor: pointer;
-} 
+}
+button[type="submit"]:focus{
+    outline: none;
+}
 
+
+.form-box{
+    border: 1px solid #271e2b8a;
+    margin: 4em 0 6em 0;
+    padding: 0 2em 4em 2em;
+    background: #fff;
+}
 
 #login,#signup {
     position: relative;
     margin-bottom: 0;
-    padding: 2em 1em 12em 1em;
+    padding: 2em 1em 0 1em;
+    height: 100vh;
+    background-color: #00000094;
 }
 
 #login h1,#signup h1{
@@ -338,8 +351,9 @@ button[type="submit"]:hover{
     text-decoration: none;
     color: #13212a;
     transition : all 0.5s;
-    font-size: .9em;
-    margin-top: .8em;
+    font-size: .8em;   
+    margin-top: .9em;
+    padding-left: 0em;
 }
 #login a:hover,#signup a:hover,.login_content a:hover{
     opacity: 0.7;
@@ -448,7 +462,7 @@ section#board{
 
 #board table tr,#board table td{
     
-    padding: 7px 3px;
+    padding: 7px 0px;
     text-align:center;
 }
 
@@ -503,7 +517,7 @@ section#board{
 }
 
 #board label{
-    font-size: 14px;
+    font-size: 12px;
     margin:0 5px;
 }
 
@@ -535,6 +549,7 @@ section#board{
    padding: 4px 6px;
    font-size: 13px;
 }
+
 
 #board input[type="date"]{
     padding: 0 1px;
@@ -915,6 +930,13 @@ span:hover {
         z-index: -2;
         transition: all .5s;
     }
+    p{
+        margin: 0;
+        padding: 1em .5em;
+        text-align: center;
+        line-height: 1.4em;
+        word-spacing: .25em;
+    }
 
     /*Main */
     /*section a */
@@ -923,6 +945,9 @@ span:hover {
         color: #333;
         padding: 0 1.5em 2em 1.5em;
         font-size: 1.6em;
+    }
+    #section-a p{
+        padding: 1em 9em;
     }
     .content-wrap{
         padding: 0;
@@ -936,10 +961,10 @@ span:hover {
     }
     .box h3{
         padding-bottom: .8em;
-        font-size: 1.5em
+        font-size: 1.5em;
     }
     .box p{
-        font-size: 1.6em;
+        font-size: .9em;
     }
 
     /*section c */
@@ -957,6 +982,7 @@ span:hover {
         padding: 1.5em 2.5em;
         margin: 17em 0 0 0;
     }
+
     
     /* footer */
     #footer{
@@ -986,18 +1012,18 @@ input[type="tel"]{
    height: 30px;
    width: 100%;
    padding: 4px 6px;
-   font-size: 1em;
+   font-size: .9em;
 }
 
 button[type="submit"]{
     padding:0px 10px 2px 10px;
-    font-size: 1em;
+    font-size: .9em;
     border: none;
     color: #ffffff;
     background-color: #13212a;
     border-radius: 5px;
     height: 40px;
-    width: 30%;
+    width: 35%;
     float: right;
     transition : all 0.5s;
 }
@@ -1014,9 +1040,13 @@ button[type="submit"]:hover{
     grid-template-columns:  1fr;
     grid-gap: 1em;
     margin-bottom: 0;
-    padding: 2em 10em 3em 10em;
+    padding: 2em 10em 0 10em;
 }
-
+#login form, #signup form {
+    width: 17em;
+    padding: 0;
+    margin: 0 auto;
+}
 #login a, #signup a, .login_content a {
    float: left;
 }
@@ -1028,6 +1058,8 @@ button[type="submit"]:hover{
     opacity: 0.7;
     color: rgba(0, 0, 0, 0.801);
 }
+
+
 
 /******************* Admin ***************/
 #admin nav ul {
@@ -1042,7 +1074,7 @@ button[type="submit"]:hover{
 
 .container{
     display: grid;
-    grid-template-columns: .9fr 2fr;
+    grid-template-columns: 30% 70%;
 }
 
 .dashboard .logo{
@@ -1051,11 +1083,11 @@ button[type="submit"]:hover{
 .dashboard .menu-icon {
    background:  #1a2025;
    position: fixed;
-   z-index: 2
+   z-index: 2;
 }
 
 .menu-sidebar {
-    width: 200px;
+    width: 30%;
     transform: none;
 }
 
@@ -1082,13 +1114,17 @@ button[type="submit"]:hover{
     cursor: pointer;
 }
 
+.mainboard {
+    margin-left: 3%;
+}
+
 section#board{
     font-size: 15px;
     margin: 0;
 }
 
 #board table tr,#board table td{
-    padding: 1em;
+    padding: 1em .33em;
 }
 
 #board table tbody, #board table thead #order{
@@ -1153,15 +1189,11 @@ font-size: 16px;
 #login,#signup {
     
     margin: 0;
-    padding: 3em 13em 7em 13em;
+    padding: 3em 13em 0 13em;
 }
 
 /***Menu page ***/
 
-.container{
-    display: grid;
-    grid-template-columns: 29% auto;
-}
 section#board{
     font-size: 15px;
 }
@@ -1174,18 +1206,7 @@ section#board{
 
 @media (min-width: 900px) {   
     #login,#signup {
-        padding: 3em 20em 7em 20em;
-    }
-
-    /*** Menu **/
-    .container{
-        display: grid;
-        grid-template-columns: 28% auto;
-    }
-    
-    .menu-sidebar {
-        width: 300px;
-        transform: none;
+        padding: 3em 15em 0 15em
     }
 
     /**** Pop up ***********/
@@ -1201,5 +1222,20 @@ section#board{
 #addMeal_content,#editMeal_content{
     margin: 7% auto 15% auto;
 }
+}
+
+@media (min-width: 1000px) {
+    .form-box {
+        border: 1px solid #271e2b8a;
+        margin: 4em 0 6em 0;
+        padding: 0 7em 4em 7em;
+        background: #fff;
+    }
+
+    button[type="submit"] {
+        font-size: .9em;
+        width: 6em;
+        padding: 0;
+    }
 
 }

@@ -5,6 +5,7 @@ const errorStatus = (statusCode, errorMessage, res) => {
 const getAll = (element, req, res) => {
   if (element.length > 0) {
     return res.status(200).json({
+      message: 'Success',
       result: element,
       error: false
     });
@@ -22,9 +23,9 @@ const add = (model, req, res) => {
   }
   model.push(req.body);
   return res.json({
-    model,
     message: 'Success',
-    error: false
+    error: false,
+    result: model
   });
 };
 
@@ -48,9 +49,9 @@ const getById = (element, req, res) => {
       element[i].date === req.params.date
     ) {
       return res.status(200).json({
-        result: element[i],
         message: 'Success',
-        error: false
+        error: false,
+        result: element[i]
       });
     }
   }
@@ -66,9 +67,9 @@ const getByGroup = (element, req, res) => {
   }
   if (result.length > 1) {
     return res.status(200).json({
-      result,
       message: 'Success',
-      error: false
+      error: false,
+      result
     });
   }
   return errorStatus(404, 'not found', res);

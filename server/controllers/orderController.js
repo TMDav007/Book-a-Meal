@@ -33,7 +33,7 @@ class orderController {
    */
   static updateorder(req, res) {
     for (let j = 0; j < order.length; j += 1) {
-      if (order[j].id === parseInt(req.body.id, 10)) {
+      if (order[j].id === parseInt(req.params.id, 10)) {
         order[j].user = req.body.user;
         order[j].qty = req.body.qty;
         order[j].food = req.body.food;

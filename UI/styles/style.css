@@ -160,49 +160,49 @@ header #showcase {
   100% {
     opacity: 100%; } }
 
-#section-a {
+#service {
   background: #eaeaea;
   color: #333;
   padding: 1em 1.5em 2em 1.5em;
   text-align: center;
   margin-bottom: 2em; }
   @media only screen and (min-width: 700px) {
-    #section-a {
+    #service {
       font-size: 1.6em; } }
-  #section-a p {
+  #service p {
     margin: 0;
     font-size: .65em;
     line-height: 1.4em;
     word-spacing: .25em; }
     @media only screen and (min-width: 700px) {
-      #section-a p {
+      #service p {
         padding: 0 3%;
         font-size: .6em; } }
 
-#section-b {
+#food_showcase {
   padding: 2em 1em 1em;
   background: #fff;
   color: #333; }
-  #section-b .box-content {
+  #food_showcase .box-content {
     padding: 0 0 2em 0em;
     margin: 0;
     font-size: .65em;
     line-height: 1.4em;
     word-spacing: .25em; }
   @media only screen and (min-width: 700px) {
-    #section-b .box {
+    #food_showcase .box {
       padding: .5em 0; }
-      #section-b .box h3 {
+      #food_showcase .box h3 {
         padding-bottom: .8em;
         font-size: 1.5em; }
-      #section-b .box p {
+      #food_showcase .box p {
         font-size: .9em; } }
 
-#section-c {
+#connect {
   min-height: 400px;
   color: #fff;
   text-align: center; }
-  #section-c .fixed-image {
+  #connect .fixed-image {
     position: absolute;
     background: url("./../images/fixedImage.jpg") fixed;
     background-position: center;
@@ -212,7 +212,7 @@ header #showcase {
     height: 400px;
     z-index: -2;
     opacity: .8; }
-  #section-c a {
+  #connect a {
     position: relative;
     display: inline-block;
     background: rgba(21, 9, 7, 0.88);
@@ -226,11 +226,11 @@ header #showcase {
     -o-transition: all .5s;
     transition: all .5s; }
     @media only screen and (min-width: 700px) {
-      #section-c a {
+      #connect a {
         font-size: .9em;
         padding: 1.5em 2.5em;
         margin: 17em 0 0 0; } }
-    #section-c a:hover {
+    #connect a:hover {
       opacity: 0.4;
       cursor: pointer;
       text-decoration: none; }

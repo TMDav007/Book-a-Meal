@@ -569,7 +569,7 @@ button[type="submit"] {
         text-align: center; }
         @media only screen and (min-width: 700px) {
           .container .mainboard #board table tr, .container .mainboard #board table td {
-            padding: 1em .33em; } }
+            padding: 1em 0em; } }
       .container .mainboard #board table td#total {
         text-align: right;
         font-weight: bold;

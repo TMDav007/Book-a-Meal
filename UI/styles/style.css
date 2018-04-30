@@ -277,9 +277,7 @@ button[type="submit"] {
     input[type="tel"],
     button[type="submit"] {
       width: 90%;
-      font-size: .9em;
-      padding: 4px 0px 4px 6px;
-      margin-right: 16px; } }
+      font-size: .9em; } }
   @media only screen and (min-width: 900px) {
     input[type="text"],
     input[type="password"],
@@ -295,6 +293,7 @@ button[type="submit"] {
   -webkit-transition: all 0.5s;
   -o-transition: all 0.5s;
   transition: all 0.5s;
+  margin-right: 10px;
   margin-bottom: .3em; }
   @media only screen and (min-width: 700px) {
     button[type="submit"] {
@@ -325,10 +324,6 @@ button[type="submit"] {
   margin: 4em 0 0em 0;
   padding: 0 2em 3em 2em;
   background: #fff; }
-  @media only screen and (min-width: 900px) {
-    .form-box {
-      margin: 4em 0 6em 0;
-      padding: 0 7em 4em 7em; } }
 
 #login, #signup {
   position: relative;
@@ -360,7 +355,7 @@ button[type="submit"] {
       #login h1, #signup h1 {
         font-size: 1.9em;
         padding: 1em 6px 0em 0;
-        margin: 2em 0 .5em 0;
+        margin: 1.5em 0 .5em 0;
         opacity: 0.7;
         color: rgba(0, 0, 0, 0.801); } }
     @media only screen and (min-width: 900px) {
@@ -508,7 +503,7 @@ button[type="submit"] {
     z-index: 1;
     border-radius: 5px;
     color: #3e3b46;
-    font-size: 13px; }
+    font-size: 12px; }
     @media only screen and (min-width: 700px) {
       .container .mainboard #board {
         font-size: 15px;
@@ -571,7 +566,8 @@ button[type="submit"] {
             padding: 1em .33em; } }
       .container .mainboard #board table td#total {
         text-align: right;
-        font-weight: bold; }
+        font-weight: bold;
+        padding-right: 1em; }
     .container .mainboard #board label {
       font-size: 12px;
       margin: 0 5px; }
@@ -585,14 +581,14 @@ button[type="submit"] {
       border-radius: 5px;
       height: 30px;
       padding: 4px 6px;
-      font-size: 13px; }
+      font-size: 12px; }
       @media only screen and (min-width: 700px) {
         .container .mainboard #board input[type="date"],
         .container .mainboard #board select,
         .container .mainboard #board button[type="submit"] {
           font-size: 14px; } }
     .container .mainboard #board input[type="date"] {
-      padding: 0 1px;
+      padding: 0;
       width: 7.8em; }
     .container .mainboard #board button[type="submit"] {
       color: #3e3b46;

@@ -65,6 +65,10 @@
             width: 30%;
             transform: none;
         }
+        @media only screen and (min-width: 900px) {
+            width: 20%;
+            transform: none;
+        }
         &.active{
             transform: perspective(1200px) rotateY(0deg);
         }
@@ -206,6 +210,9 @@
     input[type="date"]{
         padding: 0;
         width: 7.8em;
+        @media only screen and (min-width: 700px) {
+            width: 9em;
+        }
     }
     button[type="submit"]{
         color: #3e3b46;

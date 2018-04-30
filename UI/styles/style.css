@@ -397,6 +397,10 @@ button[type="submit"] {
     .container {
       display: grid;
       grid-template-columns: 30% 70%; } }
+  @media only screen and (min-width: 900px) {
+    .container {
+      display: grid;
+      grid-template-columns: 20% 80%; } }
   .container .dashboard .logo {
     position: fixed;
     top: 0;
@@ -457,6 +461,12 @@ button[type="submit"] {
         -webkit-transform: none;
         -ms-transform: none;
         transform: none; } }
+    @media only screen and (min-width: 900px) {
+      .container .dashboard .sidebar {
+        width: 20%;
+        -webkit-transform: none;
+        -ms-transform: none;
+        transform: none; } }
     .container .dashboard .sidebar.active {
       -webkit-transform: perspective(1200px) rotateY(0deg);
       transform: perspective(1200px) rotateY(0deg); }
@@ -491,14 +501,11 @@ button[type="submit"] {
         cursor: pointer; }
       .container .dashboard li a.current {
         color: #fff; }
-  @media only screen and (min-width: 700px) {
-    .container .mainboard {
-      margin-left: 3%; } }
   .container .mainboard #board {
     margin: 0 auto;
     position: relative;
     height: 100vh;
-    padding: 9em 0 0 0;
+    padding: 6em 0 0 0;
     width: 90%;
     z-index: 1;
     border-radius: 5px;
@@ -506,8 +513,7 @@ button[type="submit"] {
     font-size: 12px; }
     @media only screen and (min-width: 700px) {
       .container .mainboard #board {
-        font-size: 15px;
-        margin: 0; } }
+        font-size: 15px; } }
     .container .mainboard #board h1 {
       margin: 0;
       padding: 1em 0;
@@ -590,6 +596,9 @@ button[type="submit"] {
     .container .mainboard #board input[type="date"] {
       padding: 0;
       width: 7.8em; }
+      @media only screen and (min-width: 700px) {
+        .container .mainboard #board input[type="date"] {
+          width: 9em; } }
     .container .mainboard #board button[type="submit"] {
       color: #3e3b46;
       height: 40px;
@@ -746,15 +755,10 @@ button[type="submit"] {
   .popup p:first-child {
     border-bottom: 1px solid #1a2025; }
   .popup p:nth-child(2) {
-    padding: 1.5em 0 .5em 0em;
+    padding: 1.5em 0 .6em 0em;
     width: 100%;
+    font-size: 1.1em;
     text-align: center; }
-  .popup i {
-    position: relative;
-    top: -0.2em;
-    font-size: 2em;
-    padding: 0;
-    float: left; }
   .popup a {
     padding: 1em 0px;
     margin: .2em 0 0 0;

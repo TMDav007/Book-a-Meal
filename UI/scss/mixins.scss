@@ -65,6 +65,10 @@
             width: 30%;
             transform: none;
         }
+        @media only screen and (min-width: 900px) {
+            width: 20%;
+            transform: none;
+        }
         &.active{
             transform: perspective(1200px) rotateY(0deg);
         }
@@ -175,12 +179,13 @@
             padding: 7px 0px;
             text-align:center;
             @media only screen and (min-width: 700px) {
-                padding: 1em .33em;
+                padding: 1em 0em;
             }
         }
         td#total {
             text-align: right;
             font-weight: bold;
+            padding-right: 1em;
         }
     }
     label{
@@ -197,14 +202,17 @@
         border-radius: 5px;
         height: 30px;
         padding: 4px 6px;
-        font-size: 13px;
+        font-size: 12px;
         @media only screen and (min-width: 700px) {
             font-size: 14px;
         }
     }
     input[type="date"]{
-        padding: 0 1px;
+        padding: 0;
         width: 7.8em;
+        @media only screen and (min-width: 700px) {
+            width: 9em;
+        }
     }
     button[type="submit"]{
         color: #3e3b46;

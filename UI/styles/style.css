@@ -160,49 +160,49 @@ header #showcase {
   100% {
     opacity: 100%; } }
 
-#section-a {
+#service {
   background: #eaeaea;
   color: #333;
   padding: 1em 1.5em 2em 1.5em;
   text-align: center;
   margin-bottom: 2em; }
   @media only screen and (min-width: 700px) {
-    #section-a {
+    #service {
       font-size: 1.6em; } }
-  #section-a p {
+  #service p {
     margin: 0;
     font-size: .65em;
     line-height: 1.4em;
     word-spacing: .25em; }
     @media only screen and (min-width: 700px) {
-      #section-a p {
+      #service p {
         padding: 0 3%;
         font-size: .6em; } }
 
-#section-b {
+#food_showcase {
   padding: 2em 1em 1em;
   background: #fff;
   color: #333; }
-  #section-b .box-content {
+  #food_showcase .box-content {
     padding: 0 0 2em 0em;
     margin: 0;
     font-size: .65em;
     line-height: 1.4em;
     word-spacing: .25em; }
   @media only screen and (min-width: 700px) {
-    #section-b .box {
+    #food_showcase .box {
       padding: .5em 0; }
-      #section-b .box h3 {
+      #food_showcase .box h3 {
         padding-bottom: .8em;
         font-size: 1.5em; }
-      #section-b .box p {
+      #food_showcase .box p {
         font-size: .9em; } }
 
-#section-c {
+#connect {
   min-height: 400px;
   color: #fff;
   text-align: center; }
-  #section-c .fixed-image {
+  #connect .fixed-image {
     position: absolute;
     background: url("./../images/fixedImage.jpg") fixed;
     background-position: center;
@@ -212,7 +212,7 @@ header #showcase {
     height: 400px;
     z-index: -2;
     opacity: .8; }
-  #section-c a {
+  #connect a {
     position: relative;
     display: inline-block;
     background: rgba(21, 9, 7, 0.88);
@@ -226,11 +226,11 @@ header #showcase {
     -o-transition: all .5s;
     transition: all .5s; }
     @media only screen and (min-width: 700px) {
-      #section-c a {
+      #connect a {
         font-size: .9em;
         padding: 1.5em 2.5em;
         margin: 17em 0 0 0; } }
-    #section-c a:hover {
+    #connect a:hover {
       opacity: 0.4;
       cursor: pointer;
       text-decoration: none; }
@@ -277,9 +277,7 @@ button[type="submit"] {
     input[type="tel"],
     button[type="submit"] {
       width: 90%;
-      font-size: .9em;
-      padding: 4px 0px 4px 6px;
-      margin-right: 16px; } }
+      font-size: .9em; } }
   @media only screen and (min-width: 900px) {
     input[type="text"],
     input[type="password"],
@@ -295,6 +293,7 @@ button[type="submit"] {
   -webkit-transition: all 0.5s;
   -o-transition: all 0.5s;
   transition: all 0.5s;
+  margin-right: 10px;
   margin-bottom: .3em; }
   @media only screen and (min-width: 700px) {
     button[type="submit"] {
@@ -325,10 +324,6 @@ button[type="submit"] {
   margin: 4em 0 0em 0;
   padding: 0 2em 3em 2em;
   background: #fff; }
-  @media only screen and (min-width: 900px) {
-    .form-box {
-      margin: 4em 0 6em 0;
-      padding: 0 7em 4em 7em; } }
 
 #login, #signup {
   position: relative;
@@ -360,7 +355,7 @@ button[type="submit"] {
       #login h1, #signup h1 {
         font-size: 1.9em;
         padding: 1em 6px 0em 0;
-        margin: 2em 0 .5em 0;
+        margin: 1.5em 0 .5em 0;
         opacity: 0.7;
         color: rgba(0, 0, 0, 0.801); } }
     @media only screen and (min-width: 900px) {
@@ -402,6 +397,10 @@ button[type="submit"] {
     .container {
       display: grid;
       grid-template-columns: 30% 70%; } }
+  @media only screen and (min-width: 900px) {
+    .container {
+      display: grid;
+      grid-template-columns: 20% 80%; } }
   .container .dashboard .logo {
     position: fixed;
     top: 0;
@@ -462,6 +461,12 @@ button[type="submit"] {
         -webkit-transform: none;
         -ms-transform: none;
         transform: none; } }
+    @media only screen and (min-width: 900px) {
+      .container .dashboard .sidebar {
+        width: 20%;
+        -webkit-transform: none;
+        -ms-transform: none;
+        transform: none; } }
     .container .dashboard .sidebar.active {
       -webkit-transform: perspective(1200px) rotateY(0deg);
       transform: perspective(1200px) rotateY(0deg); }
@@ -496,23 +501,19 @@ button[type="submit"] {
         cursor: pointer; }
       .container .dashboard li a.current {
         color: #fff; }
-  @media only screen and (min-width: 700px) {
-    .container .mainboard {
-      margin-left: 3%; } }
   .container .mainboard #board {
     margin: 0 auto;
     position: relative;
     height: 100vh;
-    padding: 9em 0 0 0;
+    padding: 6em 0 0 0;
     width: 90%;
     z-index: 1;
     border-radius: 5px;
     color: #3e3b46;
-    font-size: 13px; }
+    font-size: 12px; }
     @media only screen and (min-width: 700px) {
       .container .mainboard #board {
-        font-size: 15px;
-        margin: 0; } }
+        font-size: 15px; } }
     .container .mainboard #board h1 {
       margin: 0;
       padding: 1em 0;
@@ -568,10 +569,11 @@ button[type="submit"] {
         text-align: center; }
         @media only screen and (min-width: 700px) {
           .container .mainboard #board table tr, .container .mainboard #board table td {
-            padding: 1em .33em; } }
+            padding: 1em 0em; } }
       .container .mainboard #board table td#total {
         text-align: right;
-        font-weight: bold; }
+        font-weight: bold;
+        padding-right: 1em; }
     .container .mainboard #board label {
       font-size: 12px;
       margin: 0 5px; }
@@ -585,15 +587,18 @@ button[type="submit"] {
       border-radius: 5px;
       height: 30px;
       padding: 4px 6px;
-      font-size: 13px; }
+      font-size: 12px; }
       @media only screen and (min-width: 700px) {
         .container .mainboard #board input[type="date"],
         .container .mainboard #board select,
         .container .mainboard #board button[type="submit"] {
           font-size: 14px; } }
     .container .mainboard #board input[type="date"] {
-      padding: 0 1px;
+      padding: 0;
       width: 7.8em; }
+      @media only screen and (min-width: 700px) {
+        .container .mainboard #board input[type="date"] {
+          width: 9em; } }
     .container .mainboard #board button[type="submit"] {
       color: #3e3b46;
       height: 40px;
@@ -750,15 +755,10 @@ button[type="submit"] {
   .popup p:first-child {
     border-bottom: 1px solid #1a2025; }
   .popup p:nth-child(2) {
-    padding: 1.5em 0 .5em 0em;
+    padding: 1.5em 0 .6em 0em;
     width: 100%;
+    font-size: 1.1em;
     text-align: center; }
-  .popup i {
-    position: relative;
-    top: -0.2em;
-    font-size: 2em;
-    padding: 0;
-    float: left; }
   .popup a {
     padding: 1em 0px;
     margin: .2em 0 0 0;

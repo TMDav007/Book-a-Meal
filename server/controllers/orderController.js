@@ -66,7 +66,7 @@ class orderController {
    */
   static updateorder(req, res) {
     // variable declaration
-    let updateOrder;
+    let updateOrder = [];
     // loop through the orders
     orders.forEach(((order) => {
       if (order.id === parseInt(req.params.id, 10)) {

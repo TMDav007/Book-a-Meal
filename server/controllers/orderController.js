@@ -2,7 +2,7 @@ import orders from './../models/order';
 import controlFunction from './controllerFunction';
 
 const {
-  errorStatus, orderTotal
+  errorStatus, orderTotal, add
 } = controlFunction;
 
 /**
@@ -38,15 +38,7 @@ class orderController {
    */
   static addOrder(req, res) {
     const order = [];
-    for (let i = 0; i < orders.length; i += 1) {
-      if (orders[i].id === req.body.id) {
-        return errorStatus(400, 'id is already existing', res);
-      } else if (!req.body.id) {
-        return errorStatus(400, 'id is required', res);
-      }
-    }
-
-
+    add(orders, req, res);
     orders.push(req.body);
     order.push(req.body);
     const total = orderTotal(order[0].meals);
@@ -68,7 +60,7 @@ class orderController {
     // variable declaration
     let updateOrder = [];
     // loop through the orders
-    orders.forEach(((order) => {
+    orders.forEach((order) => {
       if (order.id === parseInt(req.params.id, 10)) {
       /*eslint-disable*/
       // map req.body.meals to order meals
@@ -85,11 +77,8 @@ class orderController {
           error: false
         });
       }
-    }));
-    return res.status(404).json({
-      message: 'id not found',
-      error: true
     });
+    return errorStatus(404, 'id not found', res);
   }
 }
 

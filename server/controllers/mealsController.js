@@ -2,7 +2,7 @@ import meals from './../models/meals';
 import controllerFunction from './controllerFunction';
 
 const {
-  getAll, remove, getByGroup, errorStatus
+  getAll, remove, getByGroup, errorStatus, add
 } = controllerFunction;
 /**
  * it is a class that control all meal api;
@@ -25,13 +25,7 @@ class mealController {
    * @returns {object} add meal
    */
   static addMeal(req, res) {
-    for (let i = 0; i < meals.length; i += 1) {
-      if (req.body.id === meals[i].id) {
-        return errorStatus(404, 'id is already existing', res);
-      } else if (!req.body.id) {
-        return errorStatus(404, 'id is required', res);
-      }
-    }
+    add(meals, req, res);
     meals.push(req.body);
     return res.json({
       meals,

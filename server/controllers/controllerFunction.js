@@ -13,6 +13,15 @@ const getAll = (element, req, res) => {
   // return errorStatus(400, 'not found, it is empty', res);
 };
 
+const add = (models, req, res) => {
+  models.forEach((model) => {
+    if (model.id === req.body.id) {
+      return errorStatus(400, 'id is already existing', res);
+    } else if (!req.body.id) {
+      return errorStatus(404, 'id is required', res);
+    }
+  });
+};
 
 const remove = (element, req, res) => {
   for (let i = 0; i < element.length; i += 1) {
@@ -59,5 +68,6 @@ export default {
   remove,
   getByGroup,
   errorStatus,
-  orderTotal
+  orderTotal,
+  add
 };

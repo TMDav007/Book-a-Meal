@@ -23,7 +23,6 @@ class menuController {
       }
     }
     menu.push(req.body);
-
     newMenu.push(req.body);
     return res.json({
       message: 'successfully added',

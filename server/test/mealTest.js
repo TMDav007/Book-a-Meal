@@ -83,7 +83,7 @@ describe('/POST a meal', () => {
       .end((err, res) => {
         res.body.should.be.a('object');
         res.body.should.have.property('message');
-        res.body.message.should.eql('Success');
+        res.body.message.should.eql('successfully added');
         res.body.should.have.property('error');
         res.body.error.should.eql(false);
         done();
@@ -104,7 +104,7 @@ describe('/Update a meal', () => {
       .end((err, res) => {
         res.body.should.be.a('object');
         res.body.should.have.property('message');
-        res.body.message.should.eql('Update Successful');
+        res.body.message.should.eql('update successful');
         res.body.should.have.property('error');
         res.body.error.should.eql(false);
         done();
@@ -127,7 +127,7 @@ describe('/Update a meal', () => {
       .end((err, res) => {
         res.body.should.be.a('object');
         res.body.should.have.property('message');
-        res.body.message.should.eql('not found');
+        res.body.message.should.eql('id not found');
         res.body.should.have.property('error');
         res.body.error.should.eql(true);
         done();
@@ -144,7 +144,7 @@ describe('/get a meal', () => {
         res.should.have.status(200);
         res.body.should.be.a('object');
         res.body.should.have.property('message');
-        res.body.message.should.eql('Success');
+        res.body.message.should.eql('success');
         res.body.should.have.property('result');
         done();
       });
@@ -172,7 +172,7 @@ describe('/Delete a meal', () => {
         res.should.have.status(200);
         res.body.should.be.a('object');
         res.body.should.have.property('message');
-        res.body.message.should.eql('Success');
+        res.body.message.should.eql('successfully deleted');
         done();
       });
   });

@@ -1,6 +1,9 @@
-import menu from './../models/menu';
-import controlFunction from './controllerFunction';
+import meals from './../models/meals';
+import controllerFunction from './controllerFunction';
 
+const {
+  getAll, remove, getByGroup, errorStatus
+} = controllerFunction;
 /**
  * it is a class that control all meal api;
  */
@@ -12,7 +15,7 @@ class mealController {
    * @returns {object} all meal
    */
   static getAllMeal(req, res) {
-    controlFunction.getAll(menu[0].meals, req, res);
+    getAll(meals, req, res);
   }
 
   /**
@@ -22,23 +25,17 @@ class mealController {
    * @returns {object} add meal
    */
   static addMeal(req, res) {
-    for (let i = 0; i < menu[0].meals.length; i += 1) {
-      if (req.body.id === menu[0].meals[i].id) {
-        return res.json({
-          message: 'id is already existing',
-          error: true
-        });
+    for (let i = 0; i < meals.length; i += 1) {
+      if (req.body.id === meals[i].id) {
+        return errorStatus(404, 'id is already existing', res);
       } else if (!req.body.id) {
-        return res.json({
-          message: 'id is required',
-          error: true
-        });
+        return errorStatus(404, 'id is required', res);
       }
     }
-    menu[0].meals.push(req.body);
+    meals.push(req.body);
     return res.json({
-      meals: menu[0].meals,
-      message: 'Success',
+      meals,
+      message: 'successfully added',
       error: false
     });
   }
@@ -50,24 +47,21 @@ class mealController {
    * @returns {object} PUT(update) a meal
    */
   static updateMeal(req, res) {
-    for (let j = 0; j < menu[0].meals.length; j += 1) {
-      if (menu[0].meals[j].id === parseInt(req.body.id, 10)) {
-        menu[0].meals[j].food = req.body.food;
-        menu[0].meals[j].quantity = req.body.quantity;
-        menu[0].meals[j].image = req.body.image;
-        menu[0].meals[j].amount = req.body.amount;
-        menu[0].meals[j].category = req.body.category;
+    for (let j = 0; j < meals.length; j += 1) {
+      if (meals[j].id === parseInt(req.params.id, 10)) {
+        meals[j].food = req.body.food;
+        meals[j].quantity = req.body.quantity;
+        meals[j].image = req.body.image;
+        meals[j].amount = req.body.amount;
+        meals[j].category = req.body.category;
         return res.json({
-          meals: menu[0].meals[j],
-          message: 'Update Successful',
+          meals: meals[j],
+          message: 'update successful',
           error: false
         });
       }
     }
-    return res.status(404).json({
-      message: 'not found',
-      error: true
-    });
+    return errorStatus(404, 'id not found', res);
   }
 
   /**
@@ -77,7 +71,7 @@ class mealController {
    * @returns {object} remove an meal
    */
   static removeMeal(req, res) {
-    controlFunction.remove(menu[0].meals, req, res);
+    remove(meals, req, res);
   }
 
   /**
@@ -87,7 +81,7 @@ class mealController {
    * @returns {object} meals
    */
   static getMealByName(req, res) {
-    controlFunction.getByGroup(menu[0].meals, req, res);
+    getByGroup(meals, req, res);
   }
 }
 

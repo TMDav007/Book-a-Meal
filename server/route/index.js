@@ -24,15 +24,13 @@ const routes = (app) => {
 
   // Menu
   app.post('/api/v1/menu', menuController.addMenu)
-    .get('/api/v1/menu', menuController.getMenus);
-
-  app.get('/api/v1/menu/:date', menuController.getMenu);
+    .get('/api/v1/menu', menuController.getMenu);
 
   // Order
-  app.get('/api/v1/order', orderController.getAllOrder)
-    .post('/api/v1/order', orderController.addOrder);
+  app.get('/api/v1/orders', orderController.getAllOrder)
+    .post('/api/v1/orders', orderController.addOrder);
 
-  app.put('/api/v1/order/:id', orderController.updateorder);
+  app.put('/api/v1/orders/:id', orderController.updateorder);
 };
 
 export default routes;

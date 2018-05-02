@@ -15,7 +15,7 @@ describe('/POST a menu', () => {
       .post('/api/v1/menu')
       .send({
         id: 1,
-        date: '17-09-2018',
+        date: '16-09-2018',
         meals: [
           {
             id: 1,
@@ -30,7 +30,7 @@ describe('/POST a menu', () => {
       .end((err, res) => {
         res.body.should.be.a('object');
         res.body.should.have.property('message');
-        res.body.message.should.eql('id is already existing');
+        res.body.message.should.eql('date is already existing');
         res.body.should.have.property('error');
         res.body.error.should.eql(true);
         done();
@@ -38,7 +38,7 @@ describe('/POST a menu', () => {
   });
 
   // Test for post with no Id
-  it('it should not POST a menu without an i field', (done) => {
+  it('it should not POST a menu without a date field', (done) => {
     chai
       .request(app)
       .post('/api/v1/menu')
@@ -52,7 +52,7 @@ describe('/POST a menu', () => {
       .end((err, res) => {
         res.body.should.be.a('object');
         res.body.should.have.property('message');
-        res.body.message.should.eql('id is required');
+        res.body.message.should.eql('date is required');
         res.body.should.have.property('error');
         res.body.error.should.eql(true);
         done();
@@ -80,7 +80,7 @@ describe('/POST a menu', () => {
       .end((err, res) => {
         res.body.should.be.a('object');
         res.body.should.have.property('message');
-        res.body.message.should.eql('Success');
+        res.body.message.should.eql('successfully added');
         res.body.should.have.property('error');
         res.body.error.should.eql(false);
         done();
@@ -96,7 +96,7 @@ describe('/get all menu', () => {
       .end((err, res) => {
         res.should.have.status(200);
         res.body.should.have.property('result');
-        res.body.result.should.be.a('array');
+        res.body.result.should.be.a('object');
         res.body.should.have.property('error');
         res.body.error.should.eql(false);
         done();
@@ -104,30 +104,3 @@ describe('/get all menu', () => {
   });
 });
 
-// get a menu
-describe('/get a menu', () => {
-  it('it should get a menu', (done) => {
-    chai.request(app)
-      .get(`/api/v1/menu/${'16-09-2018'}`)
-      .end((err, res) => {
-        res.should.have.status(200);
-        res.body.should.be.a('object');
-        res.body.should.have.property('message');
-        res.body.message.should.eql('Success');
-        res.body.should.have.property('result');
-        done();
-      });
-  });
-
-  it('it should not get a menu', (done) => {
-    chai.request(app)
-      .get(`/api/v1/menu/${20}`)
-      .end((err, res) => {
-        res.should.have.status(404);
-        res.body.should.be.a('object');
-        res.body.should.have.property('error');
-        res.body.error.should.eql(true);
-        done();
-      });
-  });
-});

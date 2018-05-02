@@ -46,6 +46,7 @@ class orderController {
       }
     }
 
+
     orders.push(req.body);
     order.push(req.body);
     const total = orderTotal(order[0].meals);
@@ -64,24 +65,27 @@ class orderController {
    * @returns {object} PUT(update) an order
    */
   static updateorder(req, res) {
-    let updateOrder = [];
+    // variable declaration
+    let updateOrder;
+    // loop through the orders
     orders.forEach(((order) => {
       if (order.id === parseInt(req.params.id, 10)) {
       /*eslint-disable*/
-        order.meals = order.meals.map(meal => (meal = req.body.meals[0]));
-        updateOrder = order;
+      // map req.body.meals to order meals
+        order.meals = order.meals.map(meal => (meal = req.body.meals));
+        // remove duplicate arrays and flatten to make the array one length
+       order.meals = order.meals.splice(1).flatten();
+       updateOrder = order;
+       // get total amount of orders
+        const total = orderTotal(updateOrder.meals);
+        return res.json({
+          order: updateOrder,
+          total,
+          message: 'update successful',
+          error: false
+        });
       }
     }));
-    
-    if (updateOrder.length !== 0) {
-      const total = orderTotal(updateOrder.meals);
-      return res.json({
-        order: updateOrder,
-        total,
-        message: 'update successful',
-        error: false
-      });
-    }
     return res.status(404).json({
       message: 'id not found',
       error: true

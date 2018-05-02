@@ -22,7 +22,6 @@ class menuController {
         return errorStatus(400, 'date is required', res);
       }
     }
-    // add new menu to existing menus
     menu.push(req.body);
 
     newMenu.push(req.body);

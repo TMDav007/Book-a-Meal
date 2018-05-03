@@ -15,7 +15,7 @@ class orderController {
    * @param {string} res
    * @returns {object} all order
    */
-  static getAllOrder(req, res) {
+  static getAllOrders(req, res) {
     let total = 0;
     orders.forEach(((order) => {
       total += orderTotal(order.meals);

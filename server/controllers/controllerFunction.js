@@ -10,7 +10,6 @@ const getAll = (element, req, res) => {
       error: false
     });
   }
-  // return errorStatus(400, 'not found, it is empty', res);
 };
 
 const add = (models, req, res) => {
@@ -57,7 +56,7 @@ const orderTotal = (model) => {
   // variable declaration.
   let total = 0;
   for (let j = 0; j < model.length; j += 1) {
-    // loop through meals , find the total of (amount * quantity)
+    // loop through model, find the total of (amount * quantity)
     total += parseInt(model[j].amount, 10) * model[j].quantity;
   }
   return total;

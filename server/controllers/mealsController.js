@@ -14,7 +14,7 @@ class mealController {
    * @param {string} res
    * @returns {object} all meal
    */
-  static getAllMeal(req, res) {
+  static getAllMeals(req, res) {
     getAll(meals, req, res);
   }
 
@@ -69,7 +69,7 @@ class mealController {
   }
 
   /**
-   * it GET meals
+   * it GET a meal
    * @param {string} req
    * @param {string} res
    * @returns {object} meals

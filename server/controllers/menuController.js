@@ -13,8 +13,6 @@ class menuController {
    * @returns {object} add menu
    */
   static addMenu(req, res) {
-    // controlFunction.add(menu, req, res);
-    const newMenu = [];
     for (let i = 0; i < menu.length; i += 1) {
       if (menu[i].date === req.body.date) {
         return errorStatus(400, 'date is already existing', res);
@@ -23,11 +21,10 @@ class menuController {
       }
     }
     menu.push(req.body);
-    newMenu.push(req.body);
     return res.json({
       message: 'successfully added',
       error: false,
-      result: newMenu
+      result: menu[menu.length - 1]
     });
   }
 
@@ -48,7 +45,6 @@ class menuController {
         });
       }
     }
-    // return errorStatus(404, 'menu not found', res);
   }
 }
 

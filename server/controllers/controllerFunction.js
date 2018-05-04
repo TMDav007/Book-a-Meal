@@ -5,26 +5,22 @@ const errorStatus = (statusCode, errorMessage, res) => {
 const getAll = (element, req, res) => {
   if (element.length > 0) {
     return res.status(200).json({
+      message: 'Success',
       result: element,
       error: false
     });
   }
-  return errorStatus(400, 'not found, it is empty', res);
+
+  return errorStatus(404, 'not available', res);
 };
 
-const add = (model, req, res) => {
-  for (let i = 0; i < model.length; i += 1) {
-    if (model[i].id === req.body.id) {
-      return errorStatus(400, 'id is already existing', res);
+const add = (models, req, res, id) => {
+  models.forEach((model) => {
+    if (model[id] === req.body[id]) {
+      return errorStatus(404, 'this field isalready existing', res);
     } else if (!req.body.id) {
-      return errorStatus(400, 'id is required', res);
+      return errorStatus(404, 'id is required', res);
     }
-  }
-  model.push(req.body);
-  return res.json({
-    model,
-    message: 'Success',
-    error: false
   });
 };
 
@@ -33,28 +29,12 @@ const remove = (element, req, res) => {
     if (element[i].id === parseInt(req.params.id, 10)) {
       element.splice(i, 1);
       return res.status(200).json({
-        message: 'Success',
+        message: 'successfully deleted',
         error: false
       });
     }
   }
-  return errorStatus(404, 'not found', res);
-};
-
-const getById = (element, req, res) => {
-  for (let i = 0; i < element.length; i += 1) {
-    if (
-      element[i].id === parseInt(req.params.id, 10) ||
-      element[i].date === req.params.date
-    ) {
-      return res.status(200).json({
-        result: element[i],
-        message: 'Success',
-        error: false
-      });
-    }
-  }
-  return errorStatus(404, 'not found', res);
+  return errorStatus(404, 'id not found', res);
 };
 
 const getByGroup = (element, req, res) => {
@@ -66,18 +46,29 @@ const getByGroup = (element, req, res) => {
   }
   if (result.length > 1) {
     return res.status(200).json({
-      result,
-      message: 'Success',
-      error: false
+      message: 'success',
+      error: false,
+      result
     });
   }
-  return errorStatus(404, 'not found', res);
+  return errorStatus(404, 'id not found', res);
+};
+
+const orderTotal = (model) => {
+  // variable declaration.
+  let total = 0;
+  for (let j = 0; j < model.length; j += 1) {
+    // loop through model, find the total of (amount * quantity)
+    total += parseInt(model[j].amount, 10) * model[j].quantity;
+  }
+  return total;
 };
 
 export default {
   getAll,
   remove,
-  getById,
   getByGroup,
+  errorStatus,
+  orderTotal,
   add
 };

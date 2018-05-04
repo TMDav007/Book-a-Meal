@@ -1,6 +1,7 @@
 import menuController from './../controllers/menuController';
 import mealsController from './../controllers/mealsController';
 import orderController from './../controllers/orderController';
+import mealValidate from './../controllers/validators/mealsValidate';
 
 const routes = (app) => {
   app.get('', (req, res) =>
@@ -14,8 +15,8 @@ const routes = (app) => {
     }));
 
   // Meals
-  app.get('/api/v1/meals', mealsController.getAllMeal)
-    .post('/api/v1/meals', mealsController.addMeal);
+  app.get('/api/v1/meals', mealsController.getAllMeals)
+    .post('/api/v1/meals', mealValidate.validateMeals, mealsController.addMeal);
 
   app.get('/api/v1/meals/:category', mealsController.getMealByName);
 
@@ -24,15 +25,13 @@ const routes = (app) => {
 
   // Menu
   app.post('/api/v1/menu', menuController.addMenu)
-    .get('/api/v1/menu', menuController.getMenus);
-
-  app.get('/api/v1/menu/:date', menuController.getMenu);
+    .get('/api/v1/menu', menuController.getMenu);
 
   // Order
-  app.get('/api/v1/order', orderController.getAllOrder)
-    .post('/api/v1/order', orderController.addOrder);
+  app.get('/api/v1/orders', orderController.getAllOrders)
+    .post('/api/v1/orders', orderController.addOrder);
 
-  app.put('/api/v1/order/:id', orderController.updateorder);
+  app.put('/api/v1/orders/:id', orderController.updateorder);
 };
 
 export default routes;

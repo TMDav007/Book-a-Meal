@@ -1,6 +1,9 @@
-import menu from './../models/menu';
-import controlFunction from './controllerFunction';
+import meals from './../models/meals';
+import controllerFunction from './controllerFunction';
 
+const {
+  getAll, remove, getByGroup, errorStatus
+} = controllerFunction;
 /**
  * it is a class that control all meal api;
  */
@@ -9,36 +12,37 @@ class mealController {
    * it GET all meal
    * @param {string} req
    * @param {string} res
+   * @param {string} meal
    * @returns {object} all meal
    */
-  static getAllMeal(req, res) {
-    controlFunction.getAll(menu[0].meals, req, res);
+  static getAllMeals(req, res, meal) {
+    getAll(meals, req, res, meal);
   }
 
   /**
    * it ADD a meal
    * @param {string} req
    * @param {string} res
+   * @param {string} food
    * @returns {object} add meal
    */
   static addMeal(req, res) {
-    for (let i = 0; i < menu[0].meals.length; i += 1) {
-      if (req.body.id === menu[0].meals[i].id) {
-        return res.json({
-          message: 'id is already existing',
-          error: true
-        });
-      } else if (!req.body.id) {
-        return res.json({
-          message: 'id is required',
-          error: true
-        });
+    const id = meals.length + 1;
+    const {
+      food, quantity, image, category
+    } = req.body;
+
+    for (let i = 0; i < meals.length; i += 1) {
+      if (meals[i].food === req.body.food) {
+        return errorStatus(400, 'food is already existing', res);
       }
     }
-    menu[0].meals.push(req.body);
+    meals.push({
+      id, food, quantity, image, category
+    });
     return res.json({
-      meals: menu[0].meals,
-      message: 'Success',
+      meals,
+      message: 'successfully added',
       error: false
     });
   }
@@ -50,24 +54,29 @@ class mealController {
    * @returns {object} PUT(update) a meal
    */
   static updateMeal(req, res) {
-    for (let j = 0; j < menu[0].meals.length; j += 1) {
-      if (menu[0].meals[j].id === parseInt(req.body.id, 10)) {
-        menu[0].meals[j].food = req.body.food;
-        menu[0].meals[j].quantity = req.body.quantity;
-        menu[0].meals[j].image = req.body.image;
-        menu[0].meals[j].amount = req.body.amount;
-        menu[0].meals[j].category = req.body.category;
-        return res.json({
-          meals: menu[0].meals[j],
-          message: 'Update Successful',
-          error: false
-        });
+    const {
+      food, quantity, image, amount, category
+    } = req.body;
+
+    for (let j = 0; j < meals.length; j += 1) {
+      if (meals[j].id !== parseInt(req.params.id, 10)) {
+        return errorStatus(404, 'id not found', res);
+      } else if (meals[j].food === req.body.food) {
+        return errorStatus(400, 'food is already existing', res);
+      } else if (!req.body.food) {
+        return errorStatus(400, 'food is required', res);
       }
+      meals[j].food = food;
+      meals[j].quantity = quantity;
+      meals[j].image = image;
+      meals[j].amount = amount;
+      meals[j].category = category;
+      return res.json({
+        meals: meals[j],
+        message: 'update successful',
+        error: false
+      });
     }
-    return res.status(404).json({
-      message: 'not found',
-      error: true
-    });
   }
 
   /**
@@ -77,17 +86,17 @@ class mealController {
    * @returns {object} remove an meal
    */
   static removeMeal(req, res) {
-    controlFunction.remove(menu[0].meals, req, res);
+    remove(meals, req, res);
   }
 
   /**
-   * it GET meals
+   * it GET a meal
    * @param {string} req
    * @param {string} res
    * @returns {object} meals
    */
   static getMealByName(req, res) {
-    controlFunction.getByGroup(menu[0].meals, req, res);
+    getByGroup(meals, req, res);
   }
 }
 

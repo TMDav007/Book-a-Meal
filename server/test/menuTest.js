@@ -10,79 +10,47 @@ chai.use(chaiHttp);
 // POST a menu
 describe('/POST a menu', () => {
   // Test for post with an existing date
-  it('it should not POST a menu with an existing id field', (done) => {
+  it('it should POST a menu', (done) => {
+    const today = new Date();
     chai.request(app)
       .post('/api/v1/menu')
       .send({
         id: 1,
-        date: '17-09-2018',
+        date: today,
         meals: [
-          {
-            id: 1,
-            food: 'Jollof-rice',
-            quantity: 1,
-            image: 'img.png',
-            amount: '5000',
-            category: 'local-dish'
-          }
+          1, 2
         ]
       })
       .end((err, res) => {
         res.body.should.be.a('object');
         res.body.should.have.property('message');
-        res.body.message.should.eql('id is already existing');
+        res.body.message.should.eql('menu successfully added');
         res.body.should.have.property('error');
-        res.body.error.should.eql(true);
+        res.body.error.should.eql(false);
         done();
       });
   });
 
   // Test for post with no Id
-  it('it should not POST a menu without an i field', (done) => {
+  it('it should not POST a menu with wrong date', (done) => {
     chai
       .request(app)
       .post('/api/v1/menu')
       .send({
         meals: [
           {
-            id: 1
+            id: 1,
+            date: '12-03-233',
+            meals: [1, 2]
           }
         ]
       })
       .end((err, res) => {
         res.body.should.be.a('object');
         res.body.should.have.property('message');
-        res.body.message.should.eql('id is required');
+        res.body.message.should.eql('date is required');
         res.body.should.have.property('error');
         res.body.error.should.eql(true);
-        done();
-      });
-  });
-
-  // Test for to add a new menu.
-  it('it should Add(post) a new meal', (done) => {
-    chai.request(app)
-      .post('/api/v1/menu')
-      .send({
-        id: 5,
-        date: '17-09-2018',
-        meals: [
-          {
-            id: 1,
-            food: 'Jollof-rice',
-            quantity: 1,
-            image: 'img.png',
-            amount: '5000',
-            category: 'local-dish'
-          }
-        ]
-      })
-      .end((err, res) => {
-        res.body.should.be.a('object');
-        res.body.should.have.property('message');
-        res.body.message.should.eql('Success');
-        res.body.should.have.property('error');
-        res.body.error.should.eql(false);
         done();
       });
   });
@@ -96,7 +64,7 @@ describe('/get all menu', () => {
       .end((err, res) => {
         res.should.have.status(200);
         res.body.should.have.property('result');
-        res.body.result.should.be.a('array');
+        res.body.result.should.be.a('object');
         res.body.should.have.property('error');
         res.body.error.should.eql(false);
         done();
@@ -104,30 +72,3 @@ describe('/get all menu', () => {
   });
 });
 
-// get a menu
-describe('/get a menu', () => {
-  it('it should get a menu', (done) => {
-    chai.request(app)
-      .get(`/api/v1/menu/${'16-09-2018'}`)
-      .end((err, res) => {
-        res.should.have.status(200);
-        res.body.should.be.a('object');
-        res.body.should.have.property('message');
-        res.body.message.should.eql('Success');
-        res.body.should.have.property('result');
-        done();
-      });
-  });
-
-  it('it should not get a menu', (done) => {
-    chai.request(app)
-      .get(`/api/v1/menu/${20}`)
-      .end((err, res) => {
-        res.should.have.status(404);
-        res.body.should.be.a('object');
-        res.body.should.have.property('error');
-        res.body.error.should.eql(true);
-        done();
-      });
-  });
-});

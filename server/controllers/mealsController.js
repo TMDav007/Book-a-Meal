@@ -2,7 +2,7 @@ import meals from './../models/meals';
 import controllerFunction from './controllerFunction';
 
 const {
-  getAll, remove, getByGroup, errorStatus, add
+  getAll, remove, getByGroup, errorStatus
 } = controllerFunction;
 /**
  * it is a class that control all meal api;
@@ -12,21 +12,34 @@ class mealController {
    * it GET all meal
    * @param {string} req
    * @param {string} res
+   * @param {string} meal
    * @returns {object} all meal
    */
-  static getAllMeals(req, res) {
-    getAll(meals, req, res);
+  static getAllMeals(req, res, meal) {
+    getAll(meals, req, res, meal);
   }
 
   /**
    * it ADD a meal
    * @param {string} req
    * @param {string} res
+   * @param {string} food
    * @returns {object} add meal
    */
   static addMeal(req, res) {
-    add(meals, req, res);
-    meals.push(req.body);
+    const id = meals.length + 1;
+    const {
+      food, quantity, image, category
+    } = req.body;
+
+    for (let i = 0; i < meals.length; i += 1) {
+      if (meals[i].food === req.body.food) {
+        return errorStatus(400, 'food is already existing', res);
+      }
+    }
+    meals.push({
+      id, food, quantity, image, category
+    });
     return res.json({
       meals,
       message: 'successfully added',
@@ -41,21 +54,29 @@ class mealController {
    * @returns {object} PUT(update) a meal
    */
   static updateMeal(req, res) {
+    const {
+      food, quantity, image, amount, category
+    } = req.body;
+
     for (let j = 0; j < meals.length; j += 1) {
-      if (meals[j].id === parseInt(req.params.id, 10)) {
-        meals[j].food = req.body.food;
-        meals[j].quantity = req.body.quantity;
-        meals[j].image = req.body.image;
-        meals[j].amount = req.body.amount;
-        meals[j].category = req.body.category;
-        return res.json({
-          meals: meals[j],
-          message: 'update successful',
-          error: false
-        });
+      if (meals[j].id !== parseInt(req.params.id, 10)) {
+        return errorStatus(404, 'id not found', res);
+      } else if (meals[j].food === req.body.food) {
+        return errorStatus(400, 'food is already existing', res);
+      } else if (!req.body.food) {
+        return errorStatus(400, 'food is required', res);
       }
+      meals[j].food = food;
+      meals[j].quantity = quantity;
+      meals[j].image = image;
+      meals[j].amount = amount;
+      meals[j].category = category;
+      return res.json({
+        meals: meals[j],
+        message: 'update successful',
+        error: false
+      });
     }
-    return errorStatus(404, 'id not found', res);
   }
 
   /**

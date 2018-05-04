@@ -1,6 +1,7 @@
 import menuController from './../controllers/menuController';
 import mealsController from './../controllers/mealsController';
 import orderController from './../controllers/orderController';
+import mealValidate from './../controllers/validators/mealsValidate';
 
 const routes = (app) => {
   app.get('', (req, res) =>
@@ -15,7 +16,7 @@ const routes = (app) => {
 
   // Meals
   app.get('/api/v1/meals', mealsController.getAllMeals)
-    .post('/api/v1/meals', mealsController.addMeal);
+    .post('/api/v1/meals', mealValidate.validateMeals, mealsController.addMeal);
 
   app.get('/api/v1/meals/:category', mealsController.getMealByName);
 

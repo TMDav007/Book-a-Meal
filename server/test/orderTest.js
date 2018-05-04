@@ -57,54 +57,32 @@ describe('/GET orders', () => {
 // POST meal
 describe('/POST a order', () => {
   // Test for post with an existing Id
-  it('it should not POST a order with an existing id field', (done) => {
+  it('it should not POST a order for an empty meal', (done) => {
     chai.request(app)
       .post('/api/v1/orders')
       .send({
         id: 1,
+        user: 'ade',
+        meals: []
       })
       .end((err, res) => {
         res.should.have.status(400);
         res.body.should.be.a('object');
         res.body.should.have.property('message');
-        res.body.message.should.eql('id is already existing');
-        done();
-      });
-  });
-
-  // Test for post with no Id
-  it('it should not POST a meal without an id field', (done) => {
-    chai.request(app)
-      .post('/api/v1/orders')
-      .send({
-        amount: 12000
-      })
-      .end((err, res) => {
-        res.body.should.be.a('object');
-        res.body.should.have.property('message');
-        res.body.message.should.eql('id is required');
-        res.body.should.have.property('error');
-        res.body.error.should.eql(true);
+        res.body.message.should.eql('meals cannot be empty');
         done();
       });
   });
 
   // Test for post with to add a new order.
-  it('it should Add(post) a new meal', (done) => {
+  it('it should Add(post) a new order', (done) => {
     chai.request(app)
       .post('/api/v1/orders')
       .send({
         id: 6,
-        user: 'Ade',
+        user: 'Addde',
         meals: [
-          {
-            id: 1,
-            food: 'Jollof-rice',
-            quantity: 1,
-            image: 'img.png',
-            amount: '5000',
-            category: 'local-dish'
-          }
+          1, 2
         ]
       })
       .end((err, res) => {
@@ -125,31 +103,18 @@ describe('/Update a order', () => {
     chai.request(app)
       .put('/api/v1/orders/2')
       .send({
+        id: 2,
+        user: 'ade',
         meals: [
-          {
-            id: 1,
-            food: 'Jollof-rice',
-            quantity: 1,
-            image: 'img.png',
-            amount: '5000',
-            category: 'local-dish'
-          },
-          {
-            id: 2,
-            food: 'Amala',
-            quantity: 2,
-            image: 'img.png',
-            amount: '5000',
-            category: 'local-dish'
-          }
+          1, 3
         ]
       })
       .end((err, res) => {
         res.body.should.be.a('object');
-        // res.body.should.have.property('message');
-        // res.body.message.should.eql('update successful');
-        // res.body.should.have.property('error');
-        // res.body.error.should.eql(false);
+        res.body.should.have.property('message');
+        res.body.message.should.eql('update successfully');
+        res.body.should.have.property('error');
+        res.body.error.should.eql(false);
         done();
       });
   });

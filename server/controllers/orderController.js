@@ -1,8 +1,9 @@
-import orders from './../models/order';
+import orderDB from './../models/order';
+import menuDB from './../models/menu';
 import controlFunction from './controllerFunction';
 
 const {
-  errorStatus, orderTotal, add
+  errorStatus, orderTotal
 } = controlFunction;
 
 /**
@@ -16,18 +17,22 @@ class orderController {
    * @returns {object} all order
    */
   static getAllOrders(req, res) {
+    // variables
     let total = 0;
-    orders.forEach(((order) => {
-      total += orderTotal(order.meals);
+    // loop through the db
+    orderDB.forEach(((order) => {
+      total += orderTotal(order.meals); // calcuate amount of all orders
     }));
-    if (orders.length > 0) {
+
+    if (orderDB.length > 0) {
       return res.status(200).json({
-        result: orders,
+        result: orderDB,
         total,
         message: 'Success',
         error: false
       });
     }
+    errorStatus(404, 'order not available', res);
   }
 
   /**
@@ -37,16 +42,40 @@ class orderController {
    * @returns {object} add order
    */
   static addOrder(req, res) {
-    const order = [];
-    add(orders, req, res);
-    orders.push(req.body);
-    order.push(req.body);
-    const total = orderTotal(order[0].meals);
+    // variable declaration
+    const id = orderDB.length + 1;
+    const ordersList = req.body.meals;
+    const orderedMeal = [];
+
+    orderDB.forEach((order) => {
+      if (order.user === req.body.user) {
+        errorStatus(400, 'user name already existing', res);
+      }
+    });
+
+    if (ordersList.length === 0 || ordersList === undefined) {
+      errorStatus(400, 'meals cannot be empty', res);
+    }
+    // loop through and check for meals on menuDb
+    ordersList.forEach((order) => {
+      orderedMeal.push(...menuDB[0].meals.filter(meal => meal.id === order));
+    });
+    // add to the db
+    orderDB.push({
+      id,
+      user: req.body.user,
+      meals: orderedMeal
+    });
+
+    // calculate  total of amount
+    const total = orderTotal(orderDB[orderDB.length - 1].meals);
+
+    // return response
     return res.json({
       message: 'successfully added',
       error: false,
       total,
-      result: order
+      result: orderDB[orderDB.length - 1]
     });
   }
 
@@ -58,26 +87,35 @@ class orderController {
    */
   static updateorder(req, res) {
     // variable declaration
-    let updateOrder = [];
-    // loop through the orders
-    orders.forEach((order) => {
-      if (order.id === parseInt(req.params.id, 10)) {
-      /*eslint-disable*/
-      // map req.body.meals to order meals
-        order.meals = order.meals.map(meal => (meal = req.body.meals));
-        // remove duplicate arrays and flatten to make the array one length
-       order.meals = order.meals.splice(1).flatten();
-       updateOrder = order;
-       // get total amount of orders
-        const total = orderTotal(updateOrder.meals);
+    const updatedOrdersList = req.body.meals;
+    const updatedOrders = [];
+
+    // loop through the orderDB
+    for (let i = 0; i < orderDB.length; i += 1) {
+      if (orderDB[i].id === parseInt(req.params.id, 10)) {
+        updatedOrdersList.forEach((updatedOrder) => {
+          updatedOrders.push(...menuDB[0].meals.filter(meal => meal.id === updatedOrder));
+        });
+
+        // add to the db
+        orderDB.push({
+          id: req.body.id,
+          user: req.body.user,
+          meals: updatedOrders
+        });
+
+        // get total
+        const total = orderTotal(orderDB[orderDB.length - 1].meals);
+
+        // return response
         return res.json({
-          order: updateOrder,
+          message: 'update successfully',
+          error: false,
           total,
-          message: 'update successful',
-          error: false
+          result: orderDB[orderDB.length - 1]
         });
       }
-    });
+    }
     return errorStatus(404, 'id not found', res);
   }
 }

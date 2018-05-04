@@ -37,7 +37,7 @@ class menuDbController {
       if (!Number.isInteger(menu)) {
         return errorStatus(400, 'meal Id should be an integer', res);
       }
-      selectedMeals.push(Meals.filter(meal => meal.id === menu));
+      selectedMeals.push(...Meals.filter(meal => meal.id === menu));
     });
 
     // if meal selected is not on the mealDB, it should send a message
@@ -51,7 +51,7 @@ class menuDbController {
     menuDb.push({
       id,
       date: req.body.date,
-      meals: selectedMeals.flatten()
+      meals: selectedMeals
     });
     // return response
     return res.json({

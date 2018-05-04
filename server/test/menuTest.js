@@ -24,7 +24,7 @@ describe('/POST a menu', () => {
       .end((err, res) => {
         res.body.should.be.a('object');
         res.body.should.have.property('message');
-        res.body.message.should.eql('success');
+        res.body.message.should.eql('menu successfully added');
         res.body.should.have.property('error');
         res.body.error.should.eql(false);
         done();
@@ -48,7 +48,7 @@ describe('/POST a menu', () => {
       .end((err, res) => {
         res.body.should.be.a('object');
         res.body.should.have.property('message');
-        res.body.message.should.eql('menuDb is not set for this date');
+        res.body.message.should.eql('date is required');
         res.body.should.have.property('error');
         res.body.error.should.eql(true);
         done();

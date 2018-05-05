@@ -10,18 +10,6 @@ const getAll = (element, req, res) => {
       error: false
     });
   }
-
-  return errorStatus(404, 'not available', res);
-};
-
-const add = (models, req, res, id) => {
-  models.forEach((model) => {
-    if (model[id] === req.body[id]) {
-      return errorStatus(404, 'this field isalready existing', res);
-    } else if (!req.body.id) {
-      return errorStatus(404, 'id is required', res);
-    }
-  });
 };
 
 const remove = (element, req, res) => {
@@ -69,6 +57,5 @@ export default {
   remove,
   getByGroup,
   errorStatus,
-  orderTotal,
-  add
+  orderTotal
 };

@@ -40,7 +40,7 @@ class mealController {
     meals.push({
       id, food, quantity, image, category
     });
-    return res.json({
+    return res.status(201).json({
       meals,
       message: 'successfully added',
       error: false
@@ -63,14 +63,12 @@ class mealController {
         return errorStatus(404, 'id not found', res);
       } else if (meals[j].food === req.body.food) {
         return errorStatus(400, 'food is already existing', res);
-      } else if (!req.body.food) {
-        return errorStatus(400, 'food is required', res);
       }
-      meals[j].food = food;
-      meals[j].quantity = quantity;
-      meals[j].image = image;
-      meals[j].amount = amount;
-      meals[j].category = category;
+      meals[j].food = food || meals[j].food;
+      meals[j].quantity = quantity || meals[j].quantity;
+      meals[j].image = image || meals[j].image;
+      meals[j].amount = amount || meals[j].amount;
+      meals[j].category = category || meals[j].category;
       return res.json({
         meals: meals[j],
         message: 'update successful',

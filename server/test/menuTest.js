@@ -7,11 +7,12 @@ const should = chai.should();
 
 chai.use(chaiHttp);
 
+// variable
+const today = (new Date()).toLocaleDateString();
+
 // POST a menu
 describe('/POST a menu', () => {
-  // Test for post with an existing date
   it('it should POST a menu', (done) => {
-    const today = new Date();
     chai.request(app)
       .post('/api/v1/menu')
       .send({
@@ -32,7 +33,7 @@ describe('/POST a menu', () => {
   });
 
   // Test for post with no Id
-  it('it should not POST a menu with wrong date', (done) => {
+  it('it should not POST a menu with no date', (done) => {
     chai
       .request(app)
       .post('/api/v1/menu')
@@ -40,7 +41,6 @@ describe('/POST a menu', () => {
         meals: [
           {
             id: 1,
-            date: '12-03-233',
             meals: [1, 2]
           }
         ]
@@ -49,6 +49,98 @@ describe('/POST a menu', () => {
         res.body.should.be.a('object');
         res.body.should.have.property('message');
         res.body.message.should.eql('date is required');
+        res.body.should.have.property('error');
+        res.body.error.should.eql(true);
+        done();
+      });
+  });
+
+  it('it should not POST a menu with an empty meal request', (done) => {
+    chai.request(app)
+      .post('/api/v1/menu')
+      .send({
+        meals: [
+        ]
+      })
+      .end((err, res) => {
+        res.body.should.be.a('object');
+        res.body.should.have.property('message');
+        res.body.message.should.eql('meals can not be empty');
+        res.body.should.have.property('error');
+        res.body.error.should.eql(true);
+        done();
+      });
+  });
+
+  it('it should not POST a menu with an existing date', (done) => {
+    chai.request(app)
+      .post('/api/v1/menu')
+      .send({
+        date: '1-2-2015',
+        meals: [
+          {
+            meals: [2]
+          }
+        ]
+      })
+      .end((err, res) => {
+        res.body.should.be.a('object');
+        res.body.should.have.property('message');
+        res.body.message.should.eql('date is already existing');
+        res.body.should.have.property('error');
+        res.body.error.should.eql(true);
+        done();
+      });
+  });
+
+  it('it should not POST a menu with no date', (done) => {
+    chai.request(app)
+      .post('/api/v1/menu')
+      .send({
+        meals: [
+          {
+            id: 1,
+            meals: [1]
+          }
+        ]
+      })
+      .end((err, res) => {
+        res.body.should.be.a('object');
+        res.body.should.have.property('message');
+        res.body.message.should.eql('date is required');
+        res.body.should.have.property('error');
+        res.body.error.should.eql(true);
+        done();
+      });
+  });
+
+  it('it should not POST a menu with an invalid meal request', (done) => {
+    chai.request(app)
+      .post('/api/v1/menu')
+      .send({
+        date: '2-2-2015',
+        meals: ['a']
+      })
+      .end((err, res) => {
+        res.body.should.be.a('object');
+        res.body.should.have.property('message');
+        res.body.message.should.eql('invalid meal request');
+        res.body.should.have.property('error');
+        res.body.error.should.eql(true);
+        done();
+      });
+  });
+  it('it should not POST a menu with an empty meal request', (done) => {
+    chai.request(app)
+      .post('/api/v1/menu')
+      .send({
+        date: '1-2-2015',
+        meals: []
+      })
+      .end((err, res) => {
+        res.body.should.be.a('object');
+        res.body.should.have.property('message');
+        res.body.message.should.eql('meals can not be empty');
         res.body.should.have.property('error');
         res.body.error.should.eql(true);
         done();

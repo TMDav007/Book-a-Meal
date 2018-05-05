@@ -52,6 +52,7 @@ describe('/POST a meal', () => {
     chai.request(app)
       .post('/api/v1/meals')
       .send({
+        food: '',
         quantity: 1,
         image: 'img.png',
         amount: '5000',
@@ -59,10 +60,8 @@ describe('/POST a meal', () => {
       })
       .end((err, res) => {
         res.body.should.be.a('object');
-        res.body.should.have.property('message');
-        res.body.message.should.eql('food is required');
-        res.body.should.have.property('error');
-        res.body.error.should.eql(true);
+        res.body.should.have.property('errors');
+        res.body.errors.should.eql({ food: 'food field is required' });
         done();
       });
   });
@@ -147,25 +146,6 @@ describe('/Update a meal', () => {
         res.body.should.be.a('object');
         res.body.should.have.property('message');
         res.body.message.should.eql('food is already existing');
-        res.body.should.have.property('error');
-        res.body.error.should.eql(true);
-        done();
-      });
-  });
-  it('it should not update without a food field', (done) => {
-    chai
-      .request(app)
-      .put('/api/v1/meals/1')
-      .send({
-        quantity: 1,
-        image: 'img.png',
-        amount: '5000',
-        category: 'local-dish'
-      })
-      .end((err, res) => {
-        res.body.should.be.a('object');
-        res.body.should.have.property('message');
-        res.body.message.should.eql('food is required');
         res.body.should.have.property('error');
         res.body.error.should.eql(true);
         done();

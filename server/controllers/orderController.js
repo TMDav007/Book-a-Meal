@@ -49,7 +49,7 @@ class orderController {
 
     orderDB.forEach((order) => {
       if (order.user === req.body.user) {
-        errorStatus(400, 'user name already existing', res);
+        errorStatus(400, 'username already existing', res);
       }
     });
 
@@ -71,7 +71,7 @@ class orderController {
     const total = orderTotal(orderDB[orderDB.length - 1].meals);
 
     // return response
-    return res.json({
+    return res.status(201).json({
       message: 'successfully added',
       error: false,
       total,
@@ -108,7 +108,7 @@ class orderController {
         const total = orderTotal(orderDB[orderDB.length - 1].meals);
 
         // return response
-        return res.json({
+        return res.status(200).json({
           message: 'update successfully',
           error: false,
           total,

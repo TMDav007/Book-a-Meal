@@ -1,9 +1,12 @@
 import meals from './../models/meals';
 import controllerFunction from './controllerFunction';
 
+
 const {
-  getAll, remove, getByGroup, errorStatus
+  getAll, remove, getByGroup, errorStatus, updateMeal
 } = controllerFunction;
+
+
 /**
  * it is a class that control all meal api;
  */
@@ -13,7 +16,7 @@ class mealController {
    * @param {string} req
    * @param {string} res
    * @param {string} meal
-   * @returns {object} all meal
+   * @returns {obiect} all meal
    */
   static getAllMeals(req, res, meal) {
     getAll(meals, req, res, meal);
@@ -24,7 +27,7 @@ class mealController {
    * @param {string} req
    * @param {string} res
    * @param {string} food
-   * @returns {object} add meal
+   * @returns {obiect} add meal
    */
   static addMeal(req, res) {
     const id = meals.length + 1;
@@ -40,7 +43,7 @@ class mealController {
     meals.push({
       id, food, quantity, image, category
     });
-    return res.json({
+    return res.status(201).json({
       meals,
       message: 'successfully added',
       error: false
@@ -51,39 +54,24 @@ class mealController {
    * it PUT(update) a meal
    * @param {string} req
    * @param {string} res
-   * @returns {object} PUT(update) a meal
+   * @returns {obiect} PUT(update) a meal
    */
   static updateMeal(req, res) {
     const {
       food, quantity, image, amount, category
     } = req.body;
-
-    for (let j = 0; j < meals.length; j += 1) {
-      if (meals[j].id !== parseInt(req.params.id, 10)) {
-        return errorStatus(404, 'id not found', res);
-      } else if (meals[j].food === req.body.food) {
-        return errorStatus(400, 'food is already existing', res);
-      } else if (!req.body.food) {
-        return errorStatus(400, 'food is required', res);
-      }
-      meals[j].food = food;
-      meals[j].quantity = quantity;
-      meals[j].image = image;
-      meals[j].amount = amount;
-      meals[j].category = category;
-      return res.json({
-        meals: meals[j],
-        message: 'update successful',
-        error: false
-      });
+    const idCheck = meals.every(meal => meal.id !== parseInt(req.params.id, 10));
+    if (idCheck) {
+      errorStatus(400, 'id not found', res);
     }
+    updateMeal(meals, req, res, food, quantity, image, amount, category);
   }
 
   /**
    * it DELETE meal
    * @param {string} req
    * @param {string} res
-   * @returns {object} remove an meal
+   * @returns {obiect} remove an meal
    */
   static removeMeal(req, res) {
     remove(meals, req, res);
@@ -93,7 +81,7 @@ class mealController {
    * it GET a meal
    * @param {string} req
    * @param {string} res
-   * @returns {object} meals
+   * @returns {obiect} meals
    */
   static getMealByName(req, res) {
     getByGroup(meals, req, res);

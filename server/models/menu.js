@@ -1,9 +1,7 @@
-const today = new Date();
-
 const menu = [
   {
     id: 1,
-    date: today,
+    date: '1-2-2015',
     meals: [
       {
         id: 1,

@@ -10,18 +10,6 @@ const getAll = (element, req, res) => {
       error: false
     });
   }
-
-  return errorStatus(404, 'not available', res);
-};
-
-const add = (models, req, res, id) => {
-  models.forEach((model) => {
-    if (model[id] === req.body[id]) {
-      return errorStatus(404, 'this field isalready existing', res);
-    } else if (!req.body.id) {
-      return errorStatus(404, 'id is required', res);
-    }
-  });
 };
 
 const remove = (element, req, res) => {
@@ -34,7 +22,7 @@ const remove = (element, req, res) => {
       });
     }
   }
-  return errorStatus(404, 'id not found', res);
+  errorStatus(404, 'id not found', res);
 };
 
 const getByGroup = (element, req, res) => {
@@ -64,11 +52,57 @@ const orderTotal = (model) => {
   return total;
 };
 
+const orderSuccessMessage = (code, message, total, db, res) => {
+  res.status(code).json({
+    message,
+    error: false,
+    total,
+    result: db
+  });
+};
+
+const updateMeal = (models, req, res, food, quantity, image, amount, category) => {
+  models.forEach((model) => {
+    const foodUpdate = food || model.food;
+    const quantityUpdate = quantity || model.quantity;
+    const imageUpdate = image || model.image;
+    const amountUpdate = amount || model.amount;
+    const categoryUpdate = category || model.category;
+    if (model.food === req.body.food) {
+      errorStatus(400, 'food is already existing', res);
+    }
+    if (model.id === parseInt(req.params.id, 10)) {
+      model.food = foodUpdate;
+      model.quantity = quantityUpdate;
+      model.image = imageUpdate;
+      model.amount = amountUpdate;
+      model.category = categoryUpdate;
+      return res.status(200).json({
+        models: model,
+        message: 'update successful',
+        error: false
+      });
+    }
+  });
+};
+
+const checkForDate = (models, req, res) => {
+  models.forEach((model) => {
+    if (model.date === req.body.date) {
+      errorStatus(400, 'date is already existing', res);
+    } else if (!req.body.date) {
+      errorStatus(400, 'date is required', res);
+    }
+  });
+};
+
 export default {
   getAll,
   remove,
   getByGroup,
   errorStatus,
   orderTotal,
-  add
+  orderSuccessMessage,
+  updateMeal,
+  checkForDate
 };

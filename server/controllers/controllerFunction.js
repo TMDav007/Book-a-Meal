@@ -61,11 +61,43 @@ const orderSuccessMessage = (code, message, total, db, res) => {
   });
 };
 
+const updateMeal = (models, req, res, food, quantity, image, amount, category) => {
+  models.forEach((model) => {
+    if (model.food === req.body.food) {
+      errorStatus(400, 'food is already existing', res);
+    }
+    if (model.id === parseInt(req.params.id, 10)) {
+      model.food = food || model.food;
+      model.quantity = quantity || model.quantity;
+      model.image = image || model.image;
+      model.amount = amount || model.amount;
+      model.category = category || model.category;
+      return res.status(200).json({
+        models: model,
+        message: 'update successful',
+        error: false
+      });
+    }
+  });
+};
+
+const checkForDate = (models, req, res) => {
+  models.forEach((model) => {
+    if (model.date === req.body.date) {
+      errorStatus(400, 'date is already existing', res);
+    } else if (!req.body.date) {
+      errorStatus(400, 'date is required', res);
+    }
+  });
+};
+
 export default {
   getAll,
   remove,
   getByGroup,
   errorStatus,
   orderTotal,
-  orderSuccessMessage
+  orderSuccessMessage,
+  updateMeal,
+  checkForDate
 };

@@ -1,9 +1,12 @@
 import meals from './../models/meals';
 import controllerFunction from './controllerFunction';
 
+
 const {
-  getAll, remove, getByGroup, errorStatus
+  getAll, remove, getByGroup, errorStatus, updateMeal
 } = controllerFunction;
+
+
 /**
  * it is a class that control all meal api;
  */
@@ -61,24 +64,7 @@ class mealController {
     if (idCheck) {
       errorStatus(400, 'id not found', res);
     }
-    for (let i = 0; i < meals.length; i += 1) {
-      if (meals[i].food === req.body.food) {
-        errorStatus(400, 'food is already existing', res);
-      }
-
-      if (meals[i].id === parseInt(req.params.id, 10)) {
-        meals[i].food = food || meals[i].food;
-        meals[i].quantity = quantity || meals[i].quantity;
-        meals[i].image = image || meals[i].image;
-        meals[i].amount = amount || meals[i].amount;
-        meals[i].category = category || meals[i].category;
-        return res.status(200).json({
-          meals: meals[i],
-          message: 'update successful',
-          error: false
-        });
-      }
-    }
+    updateMeal(meals, req, res, food, quantity, image, amount, category);
   }
 
   /**

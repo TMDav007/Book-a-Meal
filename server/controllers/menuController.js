@@ -2,7 +2,8 @@ import menuDb from './../models/menu';
 import Meals from './../models/meals';
 import controllerFunction from './controllerFunction';
 
-const { errorStatus } = controllerFunction;
+const { errorStatus, checkForDate } = controllerFunction;
+
 /**
  * it is a class that control all menuDb api;
  */
@@ -23,14 +24,7 @@ class menuDbController {
       errorStatus(400, 'meals can not be empty', res);
     }
     // loop through the MenuDb
-    for (let i = 0; i < menuDb.length; i += 1) {
-      // check if date is existing or null
-      if (menuDb[i].date === req.body.date) {
-        errorStatus(400, 'date is already existing', res);
-      } else if (!req.body.date) {
-        errorStatus(400, 'date is required', res);
-      }
-    }
+    checkForDate(menuDb, req, res);
 
     // loop through and check for meals on Meal Db
     menuMeal.forEach((menu) => {
@@ -43,7 +37,7 @@ class menuDbController {
     // if all meals selected is not available
     const noMeals = selectedMeals.every(meal => meal.length === 0);
     if (noMeals) {
-      return (409, 'None of the meals selected is available', res);
+      errorStatus(409, 'None of the meals selected is available', res);
     }
 
     // if meal selected is not on the mealDB, it should send a message

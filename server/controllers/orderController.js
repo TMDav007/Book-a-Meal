@@ -69,8 +69,7 @@ class orderController {
 
     // calculate  total of amount
     const total = orderTotal(orderDB[orderDB.length - 1].meals);
-
-
+    
     // return response
     orderSuccessMessage(201, 'successfully added', total, orderDB[orderDB.length - 1], res);
   }

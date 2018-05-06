@@ -13,7 +13,7 @@ class mealController {
    * @param {string} req
    * @param {string} res
    * @param {string} meal
-   * @returns {object} all meal
+   * @returns {obiect} all meal
    */
   static getAllMeals(req, res, meal) {
     getAll(meals, req, res, meal);
@@ -24,7 +24,7 @@ class mealController {
    * @param {string} req
    * @param {string} res
    * @param {string} food
-   * @returns {object} add meal
+   * @returns {obiect} add meal
    */
   static addMeal(req, res) {
     const id = meals.length + 1;
@@ -51,29 +51,33 @@ class mealController {
    * it PUT(update) a meal
    * @param {string} req
    * @param {string} res
-   * @returns {object} PUT(update) a meal
+   * @returns {obiect} PUT(update) a meal
    */
   static updateMeal(req, res) {
     const {
       food, quantity, image, amount, category
     } = req.body;
-
-    for (let j = 0; j < meals.length; j += 1) {
-      if (meals[j].id !== parseInt(req.params.id, 10)) {
-        return errorStatus(404, 'id not found', res);
-      } else if (meals[j].food === req.body.food) {
-        return errorStatus(400, 'food is already existing', res);
+    const idCheck = meals.every(meal => meal.id !== parseInt(req.params.id, 10));
+    if (idCheck) {
+      errorStatus(400, 'id not found', res);
+    }
+    for (let i = 0; i < meals.length; i += 1) {
+      if (meals[i].food === req.body.food) {
+        errorStatus(400, 'food is already existing', res);
       }
-      meals[j].food = food || meals[j].food;
-      meals[j].quantity = quantity || meals[j].quantity;
-      meals[j].image = image || meals[j].image;
-      meals[j].amount = amount || meals[j].amount;
-      meals[j].category = category || meals[j].category;
-      return res.json({
-        meals: meals[j],
-        message: 'update successful',
-        error: false
-      });
+
+      if (meals[i].id === parseInt(req.params.id, 10)) {
+        meals[i].food = food || meals[i].food;
+        meals[i].quantity = quantity || meals[i].quantity;
+        meals[i].image = image || meals[i].image;
+        meals[i].amount = amount || meals[i].amount;
+        meals[i].category = category || meals[i].category;
+        return res.status(200).json({
+          meals: meals[i],
+          message: 'update successful',
+          error: false
+        });
+      }
     }
   }
 
@@ -81,7 +85,7 @@ class mealController {
    * it DELETE meal
    * @param {string} req
    * @param {string} res
-   * @returns {object} remove an meal
+   * @returns {obiect} remove an meal
    */
   static removeMeal(req, res) {
     remove(meals, req, res);
@@ -91,7 +95,7 @@ class mealController {
    * it GET a meal
    * @param {string} req
    * @param {string} res
-   * @returns {object} meals
+   * @returns {obiect} meals
    */
   static getMealByName(req, res) {
     getByGroup(meals, req, res);

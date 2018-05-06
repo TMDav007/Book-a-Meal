@@ -112,7 +112,7 @@ describe('/Update a order', () => {
       .end((err, res) => {
         res.body.should.be.a('object');
         res.body.should.have.property('message');
-        res.body.message.should.eql('update successfully');
+        res.body.message.should.eql('update successful');
         res.body.should.have.property('error');
         res.body.error.should.eql(false);
         done();

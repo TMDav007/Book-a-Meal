@@ -22,7 +22,7 @@ const remove = (element, req, res) => {
       });
     }
   }
-  return errorStatus(404, 'id not found', res);
+  errorStatus(404, 'id not found', res);
 };
 
 const getByGroup = (element, req, res) => {
@@ -52,10 +52,20 @@ const orderTotal = (model) => {
   return total;
 };
 
+const orderSuccessMessage = (code, message, total, db, res) => {
+  res.status(code).json({
+    message,
+    error: false,
+    total,
+    result: db
+  });
+};
+
 export default {
   getAll,
   remove,
   getByGroup,
   errorStatus,
-  orderTotal
+  orderTotal,
+  orderSuccessMessage
 };

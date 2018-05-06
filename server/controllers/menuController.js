@@ -20,22 +20,22 @@ class menuDbController {
     const selectedMeals = [];
 
     if (menuMeal.length < 1) {
-      return errorStatus(400, 'meals can not be empty', res);
+      errorStatus(400, 'meals can not be empty', res);
     }
     // loop through the MenuDb
     for (let i = 0; i < menuDb.length; i += 1) {
       // check if date is existing or null
       if (menuDb[i].date === req.body.date) {
-        return errorStatus(400, 'date is already existing', res);
+        errorStatus(400, 'date is already existing', res);
       } else if (!req.body.date) {
-        return errorStatus(400, 'date is required', res);
+        errorStatus(400, 'date is required', res);
       }
     }
 
     // loop through and check for meals on Meal Db
     menuMeal.forEach((menu) => {
       if (!Number.isInteger(menu)) {
-        return errorStatus(409, 'invalid meal request', res);
+        errorStatus(409, 'invalid meal request', res);
       }
       selectedMeals.push(...Meals.filter(meal => meal.id === menu));
     });
@@ -43,7 +43,7 @@ class menuDbController {
     // if all meals selected is not available
     const noMeals = selectedMeals.every(meal => meal.length === 0);
     if (noMeals) {
-      return errorStatus(409, 'None of the meals selected is available', res);
+      return (409, 'None of the meals selected is available', res);
     }
 
     // if meal selected is not on the mealDB, it should send a message

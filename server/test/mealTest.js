@@ -94,10 +94,9 @@ describe('/Update a meal', () => {
   // PUT a meal
   it('it should update the meal', (done) => {
     chai.request(app)
-      .put('/api/v1/meals/1')
+      .put('/api/v1/meals/2')
       .send({
-        id: 1,
-        food: 'llof-rice'
+        food: 'Jollof-rices'
       })
       .end((err, res) => {
         res.body.should.be.a('object');
@@ -132,15 +131,11 @@ describe('/Update a meal', () => {
       });
   });
   it('it should not update with food already existing', (done) => {
-    chai
-      .request(app)
+    chai.request(app)
       .put('/api/v1/meals/1')
       .send({
-        food: 'llof-rice',
-        quantity: 1,
-        image: 'img.png',
-        amount: '5000',
-        category: 'local-dish'
+        id: 1,
+        food: 'Jollof-rice'
       })
       .end((err, res) => {
         res.body.should.be.a('object');

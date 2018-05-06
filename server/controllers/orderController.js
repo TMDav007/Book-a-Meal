@@ -3,7 +3,7 @@ import menuDB from './../models/menu';
 import controlFunction from './controllerFunction';
 
 const {
-  errorStatus, orderTotal
+  errorStatus, orderTotal, orderSuccessMessage
 } = controlFunction;
 
 /**
@@ -70,13 +70,9 @@ class orderController {
     // calculate  total of amount
     const total = orderTotal(orderDB[orderDB.length - 1].meals);
 
+
     // return response
-    return res.status(201).json({
-      message: 'successfully added',
-      error: false,
-      total,
-      result: orderDB[orderDB.length - 1]
-    });
+    orderSuccessMessage(201, 'successfully added', total, orderDB[orderDB.length - 1], res);
   }
 
   /**
@@ -108,12 +104,7 @@ class orderController {
         const total = orderTotal(orderDB[orderDB.length - 1].meals);
 
         // return response
-        return res.status(200).json({
-          message: 'update successfully',
-          error: false,
-          total,
-          result: orderDB[orderDB.length - 1]
-        });
+        orderSuccessMessage(201, 'update successful', total, orderDB[orderDB.length - 1], res);
       }
     }
     return errorStatus(404, 'id not found', res);

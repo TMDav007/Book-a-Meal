@@ -63,15 +63,20 @@ const orderSuccessMessage = (code, message, total, db, res) => {
 
 const updateMeal = (models, req, res, food, quantity, image, amount, category) => {
   models.forEach((model) => {
+    const foodUpdate = food || model.food;
+    const quantityUpdate = quantity || model.quantity;
+    const imageUpdate = image || model.image;
+    const amountUpdate = amount || model.amount;
+    const categoryUpdate = category || model.category;
     if (model.food === req.body.food) {
       errorStatus(400, 'food is already existing', res);
     }
     if (model.id === parseInt(req.params.id, 10)) {
-      model.food = food || model.food;
-      model.quantity = quantity || model.quantity;
-      model.image = image || model.image;
-      model.amount = amount || model.amount;
-      model.category = category || model.category;
+      model.food = foodUpdate;
+      model.quantity = quantityUpdate;
+      model.image = imageUpdate;
+      model.amount = amountUpdate;
+      model.category = categoryUpdate;
       return res.status(200).json({
         models: model,
         message: 'update successful',

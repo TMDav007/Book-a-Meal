@@ -24,13 +24,13 @@ export default (sequelize, DataTypes) => {
   }, {});
   User.associate = (models) => {
     // associations can be defined here
-    User.hasMany(models.Meals, {
+    User.hasMany(models.Meal, {
       foreignKey: 'userId',
     });
-    User.hasMany(models.Menus, {
+    User.hasMany(models.Menu, {
       foreignKey: 'userId',
     });
-    User.hasMany(models.Orders, {
+    User.hasMany(models.Order, {
       foreignKey: 'userId',
     });
   };

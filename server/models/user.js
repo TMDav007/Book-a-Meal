@@ -27,9 +27,6 @@ export default (sequelize, DataTypes) => {
     User.hasMany(models.Meal, {
       foreignKey: 'userId',
     });
-    User.hasMany(models.Menu, {
-      foreignKey: 'userId',
-    });
     User.hasMany(models.Order, {
       foreignKey: 'userId',
     });

@@ -32,12 +32,12 @@ module.exports = {
         key: 'id'
       },
     },
-    MenuId: {
+    orderId: {
       type: Sequelize.INTEGER,
       allowNull: false,
       onDelete: 'CASCADE',
       references: {
-        model: 'Menus',
+        model: 'Orders',
         key: 'id'
       },
     },

@@ -19,6 +19,6 @@ module.exports = {
     },
   }),
 
-  down: queryInterface => queryInterface.dropTable('MenuDetails')
+  down: queryInterface => queryInterface.dropTable('Menudetails')
 
 };

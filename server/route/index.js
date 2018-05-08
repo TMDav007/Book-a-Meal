@@ -1,7 +1,9 @@
 import userController from './../controllers/userController';
 import middleware from './../middleware/middleware';
+import mealController from './../controllers/mealController';
 
 const { signUp, logIn } = userController;
+const { addMeal } = mealController;
 const { validateSignUp, validateLogIn } = middleware;
 
 const routes = (app) => {
@@ -17,8 +19,10 @@ const routes = (app) => {
 
   // User
   app.post('/api/v1/auth/signup', validateSignUp, signUp);
-
   app.post('/api/v1/auth/login', validateLogIn, logIn);
+
+  // Meal
+  app.post('/api/v1/meals', addMeal);
 };
 
 export default routes;

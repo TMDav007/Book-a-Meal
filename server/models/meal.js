@@ -5,10 +5,6 @@ export default (sequelize, DataTypes) => {
       allowNull: false,
       unique: true
     },
-    qty: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
     image: {
       type: DataTypes.STRING,
       allowNull: true
@@ -20,11 +16,11 @@ export default (sequelize, DataTypes) => {
   }, {});
   Meal.associate = (models) => {
     // associations can be defined here
-    Meal.belongsTo(models.Order, {
-      foreign: 'orderId'
+    Meal.belongsToMany(models.Order, {
+      through: 'orderMeal'
     });
     Meal.belongsTo(models.User, {
-      foreign: 'userId'
+      foreignKey: 'userId'
     });
     Meal.belongsToMany(models.Menu, {
       through: 'menuDetails',

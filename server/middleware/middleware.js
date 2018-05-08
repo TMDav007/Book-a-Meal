@@ -22,13 +22,13 @@ const authenicateUser = (req, res, next) => {
 const validateSignUp = (req, res, next) => {
   middlewareFunction.checkField(req.body.username, 'username', res);
   middlewareFunction.checkField(req.body.email, 'email', res);
-  middlewareFunction.checkField(req.body.phoneNo, 'phone number', res);
-  if (!number.test(req.body.phoneNo)) {
-    return middlewareFunction.errorStatus(400, 'valid phone number required', res);
+  middlewareFunction.checkField(req.body.phoneNumber, 'phone number', res);
+  if (!number.test(req.body.phoneNumber)) {
+    middlewareFunction.errorStatus(400, 'valid phone number required', res);
   }
   middlewareFunction.checkField(req.body.password, 'password', res);
   if (!(password.test(req.body.password))) {
-    return middlewareFunction.errorStatus(400, 'password should be a combination of uppercase,lowercase and numbers', res);
+    middlewareFunction.errorStatus(400, 'password should be a combination of uppercase,lowercase and numbers', res);
   } else if (req.body.password !== req.body.confirmPassword) {
     middlewareFunction.errorStatus(400, 'password not confirmed', res);
   }

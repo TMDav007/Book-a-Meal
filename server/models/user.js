@@ -1,0 +1,38 @@
+export default (sequelize, DataTypes) => {
+  const User = sequelize.define('User', {
+    username: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      Unique: true
+    },
+    phoneNo: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    role: {
+      type: DataTypes.ENUM,
+      values: ['user', 'admin']
+    },
+  }, {});
+  User.associate = (models) => {
+    // associations can be defined here
+    User.hasMany(models.Meals, {
+      foreignKey: 'userId',
+    });
+    User.hasMany(models.Menus, {
+      foreignKey: 'userId',
+    });
+    User.hasMany(models.Orders, {
+      foreignKey: 'userId',
+    });
+  };
+  return User;
+};

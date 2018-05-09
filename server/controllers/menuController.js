@@ -1,87 +1,40 @@
-import menuDb from './../models/menu';
-import Meals from './../models/meals';
-import controllerFunction from './controllerFunction';
+import Model from './../models';
+import middlewareFunction from './../middleware/middlewareFunction';
 
-const { errorStatus, checkForDate } = controllerFunction;
+const { Menu, Meal, menuDetails } = Model;
+
 
 /**
- * it is a class that control all menuDb api;
+ * it is a class that control all meal method;
  */
-class menuDbController {
+class mealController {
   /**
-   * it ADD a menuDb
+   * it post all meal
    * @param {string} req
    * @param {string} res
-   * @returns {object} add menuDb
+   * @return {object} an object
    */
-  static addMenu(req, res) {
-    // variable declaration
-    const id = menuDb.length + 1;
-    const menuMeal = req.body.meals; // meals to be added by Admin or caterer
-    const selectedMeals = [];
-
-    if (menuMeal.length < 1) {
-      errorStatus(400, 'meals can not be empty', res);
-    }
-    // loop through the MenuDb
-    checkForDate(menuDb, req, res);
-
-    // loop through and check for meals on Meal Db
-    menuMeal.forEach((menu) => {
-      if (!Number.isInteger(menu)) {
-        errorStatus(409, 'invalid meal request', res);
+  static setMenu(req, res) {
+    Menu.findOne({
+      where: { date: req.body.date }
+    }).then((existedMenuDate) => {
+      if (existedMenuDate) {
+        return middlewareFunction.errorStatus(409, 'Date is already existing', res);
       }
-      selectedMeals.push(...Meals.filter(meal => meal.id === menu));
+      Meal.create({
+        mealName: req.body.mealName,
+        image: req.body.image,
+        amount: req.body.amount,
+        userId: req.body.userId
+      })
+        .then((meal) => {
+          if (!meal) {
+            return res.status(401).send({
+              message: 'Server error. Meals not created'
+            });
+          }
+          return res.status(201).send({ success: true, meal });
+        }).catch(e => res.status(500).send(e));
     });
-
-    // if all meals selected is not available
-    const noMeals = selectedMeals.every(meal => meal.length === 0);
-    if (noMeals) {
-      errorStatus(409, 'None of the meals selected is available', res);
-    }
-
-    // if meal selected is not on the mealDB, it should send a message
-    selectedMeals.forEach((meal) => {
-      if (meal.length === 0) {
-        meal.push('meal is not available');
-      }
-    });
-
-    // add to the db
-    menuDb.push({
-      id,
-      date: req.body.date,
-      meals: selectedMeals
-    });
-    // return response
-    return res.status(201).json({
-      message: 'menu successfully added',
-      error: false,
-      result: menuDb[menuDb.length - 1] // get the last element one the db.
-    });
-  }
-
-  /**
-   * it GET a menuDb
-   * @param {string} req
-   * @param {string} res
-   * @returns {object} a menuDb
-   */
-  static getMenu(req, res) {
-    // variables
-    const todayDate = (new Date()).toLocaleDateString();
-    const todayMenu = menuDb.find(menu => menu.date === todayDate);
-
-    // get the latest menuDb based on the recent date
-    if (todayMenu) {
-      return res.status(200).json({
-        message: 'success',
-        error: false,
-        result: todayMenu
-      });
-    }
-    return errorStatus(400, 'menu for today not available', res);
   }
 }
-
-export default menuDbController;

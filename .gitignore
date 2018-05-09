@@ -1,14 +1,17 @@
 # dependencies
-/node_modules
+node_modules
 
 # nyc output
-/.nyc_output
+.nyc_output
 
 # coverage
-/coverage
+coverage
 
 # dist folder
-/dist
+dist
 
 #coverall
-/.coveralls.yml
+.coveralls.yml
+
+# node environment
+.env

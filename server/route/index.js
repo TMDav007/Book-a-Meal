@@ -1,12 +1,19 @@
 import userController from './../controllers/userController';
 import middleware from './../middleware/middleware';
 import mealController from './../controllers/mealController';
+import menuController from '../controllers/menuController';
 
 const { signUp, logIn } = userController;
 const {
   addMeal, getMeals, updateMeal, removeMeal
 } = mealController;
-const { validateSignUp, validateLogIn, authenicateAdmin } = middleware;
+
+const { setMenu, getMenu } = menuController;
+
+const {
+  validateSignUp, validateLogIn, authenicateAdmin, authenicateUser
+} = middleware;
+
 
 const routes = (app) => {
   app.get('', (req, res) =>
@@ -29,6 +36,10 @@ const routes = (app) => {
 
   app.put('/api/v1/meals/:id', authenicateAdmin, updateMeal)
     .delete('/api/v1/meals/:id', authenicateAdmin, removeMeal);
+
+  // menu
+  app.post('/api/v1/menu', authenicateAdmin, setMenu)
+    .get('/api/v1/menu', authenicateUser, getMenu);
 };
 
 export default routes;

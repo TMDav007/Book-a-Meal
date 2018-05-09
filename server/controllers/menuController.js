@@ -1,13 +1,12 @@
 import Model from './../models';
 import middlewareFunction from './../middleware/middlewareFunction';
 
-const { Menu, Meal, menuDetails } = Model;
-
-
+const { errorStatus } = middlewareFunction;
+const { Menu, Meal } = Model;
 /**
  * it is a class that control all meal method;
  */
-class mealController {
+class menuController {
   /**
    * it post all meal
    * @param {string} req
@@ -15,26 +14,50 @@ class mealController {
    * @return {object} an object
    */
   static setMenu(req, res) {
+    const { date, mealIds } = req.body;
+
     Menu.findOne({
-      where: { date: req.body.date }
+      where: { date }
     }).then((existedMenuDate) => {
       if (existedMenuDate) {
-        return middlewareFunction.errorStatus(409, 'Date is already existing', res);
+        return errorStatus(409, 'Date is already existing', res);
       }
-      Meal.create({
-        mealName: req.body.mealName,
-        image: req.body.image,
-        amount: req.body.amount,
-        userId: req.body.userId
+      Menu.create({
+        date
       })
-        .then((meal) => {
-          if (!meal) {
-            return res.status(401).send({
-              message: 'Server error. Meals not created'
-            });
-          }
-          return res.status(201).send({ success: true, meal });
-        }).catch(e => res.status(500).send(e));
+        .then((setMenu) => {
+          setMenu.addMeal(mealIds);
+          return res.status(201).json({ success: true, message: 'Menu for the day has been' });
+        })
+        .catch(error => res.status(500).send(error));
     });
   }
+
+  /**
+   * it post all meal
+   * @param {string} req
+   * @param {string} res
+   * @return {object} an object
+   */
+  static getMenu(req, res) {
+    const todayDate = (new Date()).toLocaleDateString(); // 2018-8-9;
+    return Menu.findOne({
+      where: { date: todayDate },
+      include: [{
+        model: Meal,
+        through: {
+          foreignKey: 'mealId',
+          attributes: []
+        }
+      }]
+    })
+      .then((menu) => {
+        if (!menu) {
+          errorStatus(404, 'menu not set for this date', res);
+        }
+        return res.status(200).json({ success: true, menu });
+      }).catch(error => res.status(500).send(error));
+  }
 }
+
+export default menuController;

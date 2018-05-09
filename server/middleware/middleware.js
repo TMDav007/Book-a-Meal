@@ -18,6 +18,10 @@ const authenicateUser = (req, res, next) => {
       return res.status(403).json({ success: false, message: 'Forbidden to non user' });
     }
     req.id = decoded.id;
+    req.role = decoded.role;
+    if (req.role !== 'user') {
+      return res.status(403).json({ success: false, message: 'Forbidden to non user' });
+    }
     return next();
   });
 };

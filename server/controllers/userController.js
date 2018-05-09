@@ -1,14 +1,15 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import Model from './../models';
-import middlewareFunction from './../middleware/middlewareFunc';
+import middlewareFunction from './../middleware/middlewareFunction';
+
+require('dotenv').config();
 
 const { errorStatus } = middlewareFunction;
 const { User } = Model;
 
-// class eventController class
 /**
- * it is a class that control all event method;
+ * it is a class that control all event method
  */
 class userController {
   /**
@@ -28,26 +29,21 @@ class userController {
             User.create({
               username: req.body.username,
               email: req.body.email,
-              phoneNo: req.body.phoneNo,
+              phoneNumber: req.body.phoneNumber,
               password: hash,
               role: req.body.role,
             })
-              .then((user) => {
-                const token = jwt.sign({ id: user.id, role: user.role }, 'secretKey', { expiresIn: 86400 });
-                return res.status(201).json({
-                  authentication: true,
-                  message: 'sign up successful',
-                  data: {
-                    token,
-                    user: {
-                      id: user.id,
-                      username: user.username,
-                      email: user.email,
-                      phoneno: user.phoneNo,
-                    },
+              .then(user => res.status(201).json({
+                success: true,
+                message: 'sign up successful',
+                data: {
+                  user: {
+                    username: user.username,
+                    email: user.email,
+                    phoneNumber: user.phoneNumber,
                   },
-                });
-              }).catch(() => res.status(500).send({
+                },
+              })).catch(() => res.status(500).send({
                 error: true,
                 message: 'server error'
               }));
@@ -70,10 +66,13 @@ class userController {
         }
         const validPassword = bcrypt.compareSync(req.body.password, user.password);
         if (!validPassword) {
-          return res.status(401).send({ authentication: false, message: 'login failed , incorrect password', token: null });
+          return res.status(401).send({ success: false, message: 'login failed , incorrect password', token: null });
         }
-        const token = jwt.sign({ id: user.id }, 'secretKey', { expiresIn: 86400 });
-        return res.status(200).send({ authentication: true, message: 'login successful', token });
+        const token = jwt.sign(
+          { id: user.id, role: user.role },
+          process.env.SECRET, { expiresIn: 86400 }
+        );
+        return res.status(200).send({ success: true, message: 'login successful', token });
       });
   }
 }

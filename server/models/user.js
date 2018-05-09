@@ -9,7 +9,7 @@ export default (sequelize, DataTypes) => {
       allowNull: false,
       Unique: true
     },
-    phoneNo: {
+    phoneNumber: {
       type: DataTypes.STRING,
       allowNull: false
     },

@@ -6,15 +6,6 @@ module.exports = {
       primaryKey: true,
       type: Sequelize.INTEGER
     },
-    menuId: {
-      type: Sequelize.INTEGER,
-      allowNull: false,
-      onDelete: 'CASCADE',
-      references: {
-        model: 'Menus',
-        key: 'id',
-      },
-    },
     userId: {
       type: Sequelize.INTEGER,
       allowNull: false,

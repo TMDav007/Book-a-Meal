@@ -8,10 +8,8 @@ export default (sequelize, DataTypes) => {
   }, {});
   Menu.associate = (models) => {
     // associations can be defined here
-    Menu.hasMany(models.Meals, {
-      foreignKey: 'menuId',
-    });
-    Menu.hasMany(models.Orders, {
+    Menu.belongsToMany(models.Meal, {
+      through: 'menuDetails',
       foreignKey: 'menuId',
     });
   };

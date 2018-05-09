@@ -12,3 +12,6 @@
 
 #coverall
 /.coveralls.yml
+
+# node environment
+/.env

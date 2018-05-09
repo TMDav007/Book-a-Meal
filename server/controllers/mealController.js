@@ -1,5 +1,5 @@
 import Model from './../models';
-import middlewareFunction from './../middleware/middlewareFunc';
+import middlewareFunction from './../middleware/middlewareFunction';
 
 const { Meal, User } = Model;
 

@@ -1,5 +1,8 @@
 import jwt from 'jsonwebtoken';
-import middlewareFunction from './middlewareFunc';
+import middlewareFunction from './middlewareFunction';
+
+require('dotenv').config();
+
 
 // number can start with a + or not, only digit, !< 10 digits
 const number = /^\+?[0-9]{10,}$/;
@@ -10,7 +13,7 @@ const password = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
 const authenicateUser = (req, res, next) => {
   const token = req.headers['x-access-token'] || req.body.token || req.query.token;
 
-  jwt.verify(token, 'secretKey', (err, decoded) => {
+  jwt.verify(token, process.env.SECRET, (err, decoded) => {
     if (err) {
       return res.status(403).json({ success: false, message: 'Forbidden to non user' });
     }
@@ -22,7 +25,7 @@ const authenicateUser = (req, res, next) => {
 const authenicateAdmin = (req, res, next) => {
   const token = req.headers['x-access-token'] || req.body.token || req.query.token;
 
-  jwt.verify(token, 'secretKey', (err, decoded) => {
+  jwt.verify(token, process.env.SECRET, (err, decoded) => {
     if (err) {
       return res.status(403).json({ success: false, message: 'Forbidden to non admin' });
     }

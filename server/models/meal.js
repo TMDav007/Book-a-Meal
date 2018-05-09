@@ -16,15 +16,16 @@ export default (sequelize, DataTypes) => {
   }, {});
   Meal.associate = (models) => {
     // associations can be defined here
-    Meal.belongsToMany(models.Order, {
-      through: 'orderMeal'
-    });
+    // Meal.belongsToMany(models.Order, {
+    //   foreignKey: 'mealId',
+    //   through: 'orderMeal'
+    // });
     Meal.belongsTo(models.User, {
       foreignKey: 'userId'
     });
     Meal.belongsToMany(models.Menu, {
-      through: 'menuDetails',
       foreignKey: 'mealId',
+      through: 'menuDetails',
     });
   };
   return Meal;

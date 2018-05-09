@@ -14,7 +14,23 @@ const authenicateUser = (req, res, next) => {
     if (err) {
       return res.status(403).json({ success: false, message: 'Forbidden to non user' });
     }
-    req.userId = decoded.id;
+    req.id = decoded.id;
+    return next();
+  });
+};
+
+const authenicateAdmin = (req, res, next) => {
+  const token = req.headers['x-access-token'] || req.body.token || req.query.token;
+
+  jwt.verify(token, 'secretKey', (err, decoded) => {
+    if (err) {
+      return res.status(403).json({ success: false, message: 'Forbidden to non admin' });
+    }
+    req.id = decoded.id;
+    req.role = decoded.role;
+    if (req.role !== 'admin') {
+      return res.status(403).json({ success: false, message: 'Forbidden to non admin' });
+    }
     return next();
   });
 };
@@ -42,6 +58,6 @@ const validateLogIn = (req, res, next) => {
 };
 
 export default {
-  validateSignUp, validateLogIn, authenicateUser
+  validateSignUp, validateLogIn, authenicateUser, authenicateAdmin
 };
 

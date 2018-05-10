@@ -8,7 +8,7 @@ const { Menu, Meal } = Model;
  */
 class menuController {
   /**
-   * it post all meal
+   * it post a menu
    * @param {string} req
    * @param {string} res
    * @return {object} an object
@@ -27,14 +27,14 @@ class menuController {
       })
         .then((setMenu) => {
           setMenu.addMeal(mealIds);
-          return res.status(201).json({ success: true, message: 'Menu for the day has been' });
+          return res.status(201).json({ success: true, message: 'Menu for the day has been set' });
         })
         .catch(error => res.status(500).send(error));
     });
   }
 
   /**
-   * it post all meal
+   * it post a menu
    * @param {string} req
    * @param {string} res
    * @return {object} an object
@@ -47,7 +47,7 @@ class menuController {
         model: Meal,
         through: {
           foreignKey: 'mealId',
-          attributes: []
+          attributes: ['mealName', 'image', 'amount']
         }
       }]
     })

@@ -21,12 +21,6 @@ module.exports = (sequelize, Datatypes) => {
     },
   }, {});
   menuDetails.associate = function () {
-    // associations can be defined here
-    // menuDetails.hasMany(models.Meal, {
-    //   foreignKey: 'mealId',
-    // });
-    // menuDetails.hasMany(models.Menu, {
-    //   foreignKey: 'menuId',
     // });
   };
   return menuDetails;

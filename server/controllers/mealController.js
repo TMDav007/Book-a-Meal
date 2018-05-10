@@ -22,7 +22,7 @@ class mealController {
       }],
     }).then((existedMealName) => {
       if (existedMealName) {
-        return middlewareFunction.errorStatus(409, 'Meal Name is already existing', res);
+        middlewareFunction.errorStatus(409, 'Meal Name is already existing', res);
       }
       Meal.create({
         mealName: req.body.mealName,

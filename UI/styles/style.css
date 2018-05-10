@@ -28,7 +28,7 @@ header nav {
   position: fixed; }
   header nav .menu-icon {
     width: 100%;
-    background: #13212a;
+    background: #a2958f;
     height: 60px;
     text-align: right;
     -webkit-box-sizing: border-box;
@@ -423,7 +423,7 @@ button[type="submit"] {
         z-index: 1000; } }
   .container .dashboard .menu-icon {
     width: 100%;
-    background: #13212a;
+    background: #a2958f;
     height: 60px;
     text-align: right;
     -webkit-box-sizing: border-box;

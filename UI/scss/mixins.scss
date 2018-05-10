@@ -1,7 +1,7 @@
 //Mixins
 @mixin menu-icon {
     width: 100%;
-    background: $blue;
+    background: #a2958f;
     height: 60px;
     text-align: right;
     box-sizing: border-box;
@@ -9,6 +9,9 @@
     color: #fff;
     display: block;
     cursor: pointer;
+    i.fa {
+        color: #75646c;
+    }
 
     @media only screen and (min-width: 700px) {
         display: none;
@@ -56,7 +59,7 @@
         z-index:3;
         height: 100vh;
         padding: 5em 0em;
-        background: $blue;
+        background: #a2958f;
         text-align: center;
         transform-origin: left;
         transform:perspective(1200px) rotateY(90deg);
@@ -123,7 +126,7 @@
         thead{
             font-weight: bold;
             text-align:center;
-            background-color:rgba(148, 180, 185, 0.75);
+            background-color:#c5b8b2;
             @media only screen and (min-width: 700px) {
                 font-size: 16px;
             }
@@ -182,6 +185,7 @@
                 padding: 1em 0em;
             }
         }
+
         td#total {
             text-align: right;
             font-weight: bold;
@@ -218,7 +222,7 @@
         color: #3e3b46;
         height: 40px;
         width: 25%;
-        background-color: rgba(148, 180, 185, 0.75);
+        background-color: #c5b8b2;
         float: right;
         transition : all 0.5s;
         margin-top: .3em;

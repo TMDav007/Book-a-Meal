@@ -2,11 +2,14 @@ import userController from './../controllers/userController';
 import middleware from './../middleware/middleware';
 import mealController from './../controllers/mealController';
 import menuController from '../controllers/menuController';
+import orderController from './../controllers/orderController';
 
 const { signUp, logIn } = userController;
 const {
   addMeal, getMeals, updateMeal, removeMeal
 } = mealController;
+const { postOrder } = orderController;
+
 
 const { setMenu, getMenu } = menuController;
 
@@ -40,6 +43,9 @@ const routes = (app) => {
   // menu
   app.post('/api/v1/menu', authenicateAdmin, setMenu)
     .get('/api/v1/menu', authenicateUser, getMenu);
+
+  // order
+  app.post('/api/v1/orders', postOrder);
 };
 
 export default routes;

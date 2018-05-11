@@ -1,20 +1,8 @@
-$(window).on("load",function(){
-    background(homepageAnimation);
-   
-});
-
 
 // Menu -toggle-button
 $(document). ready(function() {
     $(".menu-icon").on("click", function(){
         $("nav .menu ul").toggleClass("showing");
-    })
-
-    //status show
-    $("#status").on("click", function(){
-        $("nav ul").toggleClass("showing");
-        $(".cover").fadeIn('slow');
-        $(".popup").fadeIn('slow');
     })
 
     //delte meal

@@ -1,70 +1,248 @@
+import validator from 'validator';
 import jwt from 'jsonwebtoken';
-import middlewareFunction from './middlewareFunction';
 
 require('dotenv').config();
 
 
-// number can start with a + or not, only digit, !< 10 digits
-const number = /^\+?[0-9]{10,}$/;
-// passowrd must have 1 digit,1 lowercase,1 uppercase,!< 8 char, must be alphanumeric
-const password = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
+/** middleware class */
+class middleware {
+  /**
+   *
+   * @param {object} req
+   * @param {object} res
+   * @param {object} next
+   * @returns {object} next
+   */
+  static authenicateAdmin(req, res, next) {
+    const token = req.headers['x-access-token'] || req.body.token || req.query.token;
+    jwt.verify(token, process.env.SECRET, (err, decoded) => {
+      if (err) {
+        return res.status(403).json({ success: false, message: 'Forbidden to non admin' });
+      }
+      req.id = decoded.id;
+      req.role = decoded.role;
+      if (req.role !== 'admin') {
+        return res.status(403).json({ success: false, message: 'Forbidden to non admin' });
+      }
+      return next();
+    });
+  }
 
+  /**
+   *
+   * @param {object} req
+   * @param {object} res
+   * @param {object} next
+   * @returns {object} next
+   */
+  static authenicateUser(req, res, next) {
+    const token = req.headers['x-access-token'] || req.body.token || req.query.token;
 
-const authenicateUser = (req, res, next) => {
-  const token = req.headers['x-access-token'] || req.body.token || req.query.token;
+    jwt.verify(token, process.env.SECRET, (err, decoded) => {
+      if (err) {
+        return res.status(403).json({ success: false, message: 'Forbidden to non user' });
+      }
+      req.id = decoded.id;
+      req.role = decoded.role;
+      if (req.role !== 'user') {
+        return res.status(403).json({ success: false, message: 'Forbidden to non user' });
+      }
+      return next();
+    });
+  }
 
-  jwt.verify(token, process.env.SECRET, (err, decoded) => {
-    if (err) {
-      return res.status(403).json({ success: false, message: 'Forbidden to non user' });
+  /**
+   *
+   * @param {object} req
+   * @param {object} res
+   * @param {object} next
+   * @returns {object} next
+   */
+  static validateSignup(req, res, next) {
+    const errors = [];
+    if (!req.body.username || req.body.username === undefined) {
+      errors.push('username is required');
+      return res.status(400).send({
+        status: 'error',
+        message: errors
+      });
     }
-    req.id = decoded.id;
-    req.role = decoded.role;
-    if (req.role !== 'user') {
-      return res.status(403).json({ success: false, message: 'Forbidden to non user' });
+    if (req.body.username === '') {
+      errors.push('username cannot be empty');
+      return res.status(400).send({
+        status: 'error',
+        message: errors
+      });
+    }
+    if (req.body.username.length <= 1) {
+      errors.push('username should be greater than 1 character');
+      return res.status(400).send({
+        status: 'error',
+        message: errors
+      });
+    }
+
+    if (!req.body.email || req.body.email === undefined) {
+      errors.push('email is required');
+      return res.status(400).send({
+        status: 'error',
+        message: errors
+      });
+    }
+    if (!validator.isEmail(req.body.email.toString())) {
+      errors.push('Valid email required');
+      return res.status(400).send({
+        status: 'error',
+        message: errors
+      });
+    }
+
+    if (req.body.phoneNumber === undefined) {
+      errors.push('valid phone number is required');
+      return res.status(400).send({
+        status: 'Error',
+        message: errors
+      });
+    }
+
+    if (req.body.phoneNumber.length <= 8) {
+      errors.push('phone number must exceed 8 characters');
+      return res.status(400).send({
+        status: 'Error',
+        message: errors
+      });
+    }
+
+    if (!req.body.password || req.body.password === undefined) {
+      errors.push('valid password required');
+      return res.status(400).send({
+        status: 'Error',
+        message: errors
+      });
+    }
+
+    if (req.body.password.length <= 6) {
+      errors.push('Password must exceed 6 characters');
+      return res.status(400).send({
+        status: 'Error',
+        message: errors
+      });
+    }
+
+    if (validator.isEmpty(req.body.confirmPassword)) {
+      errors.push('you need to confirm your password');
+      return res.status(400).send({
+        status: 'Error',
+        message: errors
+      });
+    }
+    if (!validator.equals(req.body.password, req.body.confirmPassword)) {
+      errors.push('Passwords must match');
+      return res.status(400).send({
+        status: 'Error',
+        message: errors
+      });
+    }
+    if (errors.length > 0) {
+      return res.status(400).send({
+        status: 'Error',
+        message: errors
+      });
     }
     return next();
-  });
-};
+  }
 
-const authenicateAdmin = (req, res, next) => {
-  const token = req.headers['x-access-token'] || req.body.token || req.query.token;
-
-  jwt.verify(token, process.env.SECRET, (err, decoded) => {
-    if (err) {
-      return res.status(403).json({ success: false, message: 'Forbidden to non admin' });
+  /**
+   *
+   * @param {object} req
+   * @param {object} res
+   * @param {object} next
+   * @returns {object} next
+   */
+  static validateLogin(req, res, next) {
+    const errors = [];
+    if (req.body.email === undefined) {
+      errors.push('Email is required');
+      return res.status(400).send({
+        status: 'Error',
+        message: errors
+      });
     }
-    req.id = decoded.id;
-    req.role = decoded.role;
-    if (req.role !== 'admin') {
-      return res.status(403).json({ success: false, message: 'Forbidden to non admin' });
+
+    if (!validator.isEmail(req.body.email.toString())) {
+      errors.push('Valid email required');
+      return res.status(400).send({
+        status: 'Error',
+        message: errors
+      });
+    }
+
+    if (req.body.password === undefined) {
+      errors.push('Valid password required');
+      return res.status(400).send({
+        status: 'Error',
+        message: errors
+      });
+    }
+
+    if (req.body.password.length <= 6) {
+      errors.push('Password must exceed 6 characters');
+      return res.status(400).send({
+        status: 'Error',
+        message: errors
+      });
+    }
+
+    if (errors.length > 0) {
+      return res.status(400).send({
+        status: 'Error',
+        message: errors
+      });
     }
     return next();
-  });
-};
-
-const validateSignUp = (req, res, next) => {
-  middlewareFunction.checkField(req.body.username, 'username', res);
-  middlewareFunction.checkField(req.body.email, 'email', res);
-  middlewareFunction.checkField(req.body.phoneNumber, 'phone number', res);
-  if (!number.test(req.body.phoneNumber)) {
-    middlewareFunction.errorStatus(400, 'valid phone number required', res);
   }
-  middlewareFunction.checkField(req.body.password, 'password', res);
-  if (!(password.test(req.body.password))) {
-    middlewareFunction.errorStatus(400, 'password should be a combination of uppercase,lowercase and numbers', res);
-  } else if (req.body.password !== req.body.confirmPassword) {
-    middlewareFunction.errorStatus(400, 'password not confirmed', res);
+
+  /**
+   *
+   * @param {object} req
+   * @param {object} res
+   * @param {object} next
+   * @returns {object} next
+   */
+  static validateMeal(req, res, next) {
+    const errors = [];
+    if (!req.body.mealName || req.body.mealName === undefined) {
+      errors.push('mealName is required');
+      return res.status(400).send({
+        status: 'Error',
+        message: errors
+      });
+    }
+
+    if (req.body.amount === undefined) {
+      errors.push('amount is required');
+      return res.status(400).send({
+        status: 'Error',
+        message: errors
+      });
+    }
+
+    if (!Number.isInteger(req.body.userid)) {
+      errors.push('user id must be an integer');
+      return res.status(400).send({
+        status: 'Error',
+        message: errors
+      });
+    }
+
+    if (errors.length > 0) {
+      return res.status(400).send({
+        status: 'Error',
+        message: errors
+      });
+    }
+    return next();
   }
-  return next();
-};
+}
 
-const validateLogIn = (req, res, next) => {
-  middlewareFunction.checkField(req.body.email, 'email', res);
-  middlewareFunction.checkField(req.body.password, 'password', res);
-  next();
-};
-
-export default {
-  validateSignUp, validateLogIn, authenicateUser, authenicateAdmin
-};
-
+export default middleware;

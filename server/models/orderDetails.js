@@ -1,6 +1,15 @@
 
 module.exports = (sequelize, Datatypes) => {
-  const menudetails = sequelize.define('menudetails', {
+  const orderdetails = sequelize.define('orderdetails', {
+    orderId: {
+      type: Datatypes.INTEGER,
+      allowNull: false,
+      onDelete: 'CASCADE',
+      references: {
+        model: 'orders',
+        key: 'id'
+      },
+    },
     mealId: {
       type: Datatypes.INTEGER,
       allowNull: false,
@@ -10,18 +19,9 @@ module.exports = (sequelize, Datatypes) => {
         key: 'id'
       },
     },
-    menuId: {
-      type: Datatypes.INTEGER,
-      allowNull: false,
-      onDelete: 'CASCADE',
-      references: {
-        model: 'menus',
-        key: 'id'
-      },
-    },
   }, {});
-  menudetails.associate = function () {
-    //
+  orderdetails.associate = function () {
+    // associations can be defined here
   };
-  return menudetails;
+  return orderdetails;
 };

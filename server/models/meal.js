@@ -1,5 +1,5 @@
 export default (sequelize, DataTypes) => {
-  const Meal = sequelize.define('Meal', {
+  const meal = sequelize.define('meal', {
     mealName: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -14,19 +14,19 @@ export default (sequelize, DataTypes) => {
       allowNull: false,
     },
   }, {});
-  Meal.associate = (models) => {
+  meal.associate = (models) => {
     // associations can be defined here
-    // Meal.belongsToMany(models.Order, {
-    //   foreignKey: 'mealId',
-    //   through: 'orderMeal'
-    // });
-    Meal.belongsTo(models.User, {
-      foreignKey: 'userId'
-    });
-    Meal.belongsToMany(models.Menu, {
+    meal.belongsToMany(models.order, {
       foreignKey: 'mealId',
-      through: 'menuDetails',
+      through: models.orderdetails
+    });
+    meal.belongsTo(models.user, {
+      foreignKey: 'userid'
+    });
+    meal.belongsToMany(models.menu, {
+      foreignKey: 'mealId',
+      through: models.menudetails,
     });
   };
-  return Meal;
+  return meal;
 };

@@ -1,5 +1,5 @@
 export default (sequelize, DataTypes) => {
-  const User = sequelize.define('User', {
+  const user = sequelize.define('user', {
     username: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -22,14 +22,14 @@ export default (sequelize, DataTypes) => {
       values: ['user', 'admin']
     },
   }, {});
-  User.associate = (models) => {
+  user.associate = (models) => {
     // associations can be defined here
-    User.hasMany(models.Meal, {
-      foreignKey: 'userId',
+    user.hasMany(models.meal, {
+      foreignKey: 'userid',
     });
-    User.hasMany(models.Order, {
+    user.hasMany(models.order, {
       foreignKey: 'userId',
     });
   };
-  return User;
+  return user;
 };

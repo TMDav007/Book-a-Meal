@@ -8,10 +8,11 @@ const {
   addMeal, getMeals, updateMeal, removeMeal
 } = mealController;
 
+
 const { setMenu, getMenu } = menuController;
 
 const {
-  validateSignUp, validateLogIn, authenicateAdmin, authenicateUser
+  validateSignup, validateLogin, authenicateAdmin, authenicateUser, validateMeal
 } = middleware;
 
 
@@ -27,11 +28,11 @@ const routes = (app) => {
     }));
 
   // User
-  app.post('/api/v1/auth/signup', validateSignUp, signUp);
-  app.post('/api/v1/auth/signin', validateLogIn, logIn);
+  app.post('/api/v1/auth/signup', validateSignup, signUp);
+  app.post('/api/v1/auth/login', validateLogin, logIn);
 
   // Meal
-  app.post('/api/v1/meals', authenicateAdmin, addMeal)
+  app.post('/api/v1/meals', authenicateAdmin, validateMeal, addMeal)
     .get('/api/v1/meals', authenicateAdmin, getMeals);
 
   app.put('/api/v1/meals/:id', authenicateAdmin, updateMeal)

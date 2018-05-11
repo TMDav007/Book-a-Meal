@@ -1,13 +1,16 @@
 export default (sequelize) => {
-  const Order = sequelize.define('Order', {}, {});
-  Order.associate = (models) => {
+  const order = sequelize.define('order', {
+
+  }, {});
+  order.associate = (models) => {
     // associations can be defined here
-    Order.belongsToMany(models.Meal, {
-      through: 'orderMeal'
-    });
-    Order.belongsTo(models.User, {
+    order.belongsTo(models.user, {
       foreignkey: 'userId'
     });
+    order.belongsToMany(models.meal, {
+      foreignkey: 'orderId',
+      through: 'orderdetails',
+    });
   };
-  return Order;
+  return order;
 };

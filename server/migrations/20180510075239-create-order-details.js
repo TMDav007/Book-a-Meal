@@ -1,5 +1,7 @@
+
+
 module.exports = {
-  up: (queryInterface, Sequelize) => queryInterface.createTable('orderMeals', {
+  up: (queryInterface, Sequelize) => queryInterface.createTable('orderdetails', {
     id: {
       allowNull: false,
       autoIncrement: true,
@@ -8,21 +10,11 @@ module.exports = {
     },
     orderId: {
       type: Sequelize.INTEGER,
-      allowNull: false,
-      onDelete: 'CASCADE',
-      references: {
-        model: 'Orders',
-        key: 'id'
-      },
+      primaryKey: true,
     },
     mealId: {
       type: Sequelize.INTEGER,
-      allowNull: false,
-      onDelete: 'CASCADE',
-      references: {
-        model: 'Meals',
-        key: 'id'
-      },
+      primaryKey: true,
     },
     createdAt: {
       allowNull: false,
@@ -33,5 +25,5 @@ module.exports = {
       type: Sequelize.DATE
     }
   }),
-  down: queryInterface => queryInterface.dropTable('orderMeals')
+  down: queryInterface => queryInterface.dropTable('orderdetails')
 };

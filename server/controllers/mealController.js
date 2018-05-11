@@ -1,7 +1,7 @@
 import Model from './../models';
 import middlewareFunction from './../middleware/middlewareFunction';
 
-const { Meal, User } = Model;
+const { meal, user } = Model;
 
 
 /**
@@ -15,29 +15,29 @@ class mealController {
  * @return {object} an object
  */
   static addMeal(req, res) {
-    Meal.findOne({
+    meal.findOne({
       where: { mealName: req.body.mealName },
       include: [{
-        model: User,
+        model: user,
       }],
     }).then((existedMealName) => {
       if (existedMealName) {
-        return middlewareFunction.errorStatus(409, 'Meal Name is already existing', res);
+        middlewareFunction.errorStatus(409, 'Meal Name is already existing', res);
       }
-      Meal.create({
+      meal.create({
         mealName: req.body.mealName,
         image: req.body.image,
         amount: req.body.amount,
-        userId: req.body.userId
+        userid: req.body.userid
       })
-        .then((meal) => {
-          if (!meal) {
+        .then((mealCreated) => {
+          if (!mealCreated) {
             return res.status(401).send({
               message: 'Server error. Meals not created'
             });
           }
-          return res.status(201).send({ success: true, meal });
-        }).catch(e => res.status(500).send(e));
+          return res.status(201).send({ success: true, mealCreated });
+        }).catch(error => res.status(500).send(error));
     });
   }
 
@@ -48,15 +48,15 @@ class mealController {
  * @returns {object} a Meal
  */
   static getMeals(req, res) {
-    // jwt.verify(req.headers['x-access-token'], 'secretKey');
-    return Meal.findAll()
+    return meal.findAll()
       .then((meals) => {
         if (!meals) {
           return middlewareFunction.errorStatus(400, 'unable to get all meals, try again', res);
         }
+        console.log(meals);
         return res.status(200).send({ success: true, meals });
       })
-      .catch(e => res.status(500).send(e));
+      .catch(error => res.status(500).send(error));
   }
 
   /**
@@ -66,7 +66,7 @@ class mealController {
    * @returns {object} PUT(update) Meal
    */
   static updateMeal(req, res) {
-    Meal.findOne({
+    meal.findOne({
       where: {
         $or: [
           {
@@ -78,32 +78,32 @@ class mealController {
         ]
       }
     })
-      .then((meal) => {
-        if (!meal.id) {
+      .then((foundMeal) => {
+        if (!foundMeal.id) {
           return middlewareFunction.errorStatus(404, 'meal id not found', res);
         }
-        if (meal.mealName === req.body.mealName) {
+        if (foundMeal.mealName === req.body.mealName) {
           return middlewareFunction.errorStatus(409, 'meal name is already existing', res);
         }
-        meal.update({
-          id: req.body.id || meal.id,
-          mealName: req.body.mealName || meal.mealName,
-          image: req.body.image || meal.image,
-          amount: req.body.amount || meal.amount,
-          userId: req.body.userId || meal.userId
+        foundMeal.update({
+          id: req.body.id || foundMeal.id,
+          mealName: req.body.mealName || foundMeal.mealName,
+          image: req.body.image || foundMeal.image,
+          amount: req.body.amount || foundMeal.amount,
+          userId: req.body.userId || foundMeal.userId
         }, {
           where: {
             id: req.params.id,
           },
           include: [{
-            model: User,
+            model: user,
           }],
         }).then((updatedMeals) => {
           if (!updatedMeals) {
             return middlewareFunction.errorStatus(400, 'Meals could not be updated, try again', res);
           }
           return res.status(200).json({ success: true, updatedMeals });
-        }).catch(e => res.status(500).send(e));
+        }).catch(error => res.status(500).send(error));
       });
   }
 
@@ -114,12 +114,12 @@ class mealController {
  * @returns {object} delete a Meal
  */
   static removeMeal(req, res) {
-    Meal.findOne({ where: { id: req.params.id } })
-      .then((meal) => {
-        if (!meal) {
+    meal.findOne({ where: { id: req.params.id } })
+      .then((foundMeal) => {
+        if (!foundMeal) {
           return middlewareFunction.errorStatus(404, 'Meal not found', res);
         }
-        meal.destroy({
+        foundMeal.destroy({
           where: {
             mealName: req.params.mealName,
           }
@@ -129,7 +129,7 @@ class mealController {
               return middlewareFunction.errorStatus(500, 'Meal unable to delete, try again', res);
             }
             return res.status(200).json({ message: 'Meal deleted' });
-          }).catch(e => res.status(500).send(e));
+          }).catch(error => res.status(500).send(error));
       });
   }
 }

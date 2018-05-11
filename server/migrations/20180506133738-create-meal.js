@@ -1,5 +1,5 @@
 module.exports = {
-  up: (queryInterface, Sequelize) => queryInterface.createTable('Meals', {
+  up: (queryInterface, Sequelize) => queryInterface.createTable('meals', {
     id: {
       allowNull: false,
       autoIncrement: true,
@@ -19,12 +19,12 @@ module.exports = {
       type: Sequelize.STRING,
       allowNull: false,
     },
-    userId: {
+    userid: {
       type: Sequelize.INTEGER,
       allowNull: false,
       onDelete: 'CASCADE',
       references: {
-        model: 'Users',
+        model: 'users',
         key: 'id'
       },
     },
@@ -37,5 +37,5 @@ module.exports = {
       type: Sequelize.DATE
     }
   }),
-  down: queryInterface => queryInterface.dropTable('Meals')
+  down: queryInterface => queryInterface.dropTable('meals')
 };

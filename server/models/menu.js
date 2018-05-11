@@ -1,17 +1,17 @@
 export default (sequelize, DataTypes) => {
-  const Menu = sequelize.define('Menu', {
+  const menu = sequelize.define('menu', {
     date: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true
     }
   }, {});
-  Menu.associate = (models) => {
+  menu.associate = (models) => {
     // associations can be defined here
-    Menu.belongsToMany(models.Meal, {
-      through: 'menuDetails',
+    menu.belongsToMany(models.meal, {
+      through: 'menudetails',
       foreignKey: 'menuId',
     });
   };
-  return Menu;
+  return menu;
 };

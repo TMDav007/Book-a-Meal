@@ -6,7 +6,7 @@ import middlewareFunction from './../middleware/middlewareFunction';
 require('dotenv').config();
 
 const { errorStatus } = middlewareFunction;
-const { User } = Model;
+const { user } = Model;
 
 /**
  * it is a class that control all event method
@@ -21,26 +21,26 @@ class userController {
   static signUp(req, res) {
     bcrypt.genSalt(10, (err, salt) => {
       bcrypt.hash(req.body.password, salt, (err, hash) => {
-        User.findOne({ where: { email: req.body.email.trim().toLowerCase() } })
+        user.findOne({ where: { email: req.body.email.trim().toLowerCase() } })
           .then((existingUser) => {
             if (existingUser) {
               return res.status(409).json({ error: 'email already existing' });
             }
-            User.create({
+            user.create({
               username: req.body.username,
               email: req.body.email,
               phoneNumber: req.body.phoneNumber,
               password: hash,
               role: req.body.role,
             })
-              .then(user => res.status(201).json({
+              .then(foundUser => res.status(201).json({
                 success: true,
                 message: 'sign up successful',
                 data: {
-                  user: {
-                    username: user.username,
-                    email: user.email,
-                    phoneNumber: user.phoneNumber,
+                  foundUser: {
+                    username: foundUser.username,
+                    email: foundUser.email,
+                    phoneNumber: foundUser.phoneNumber,
                   },
                 },
               })).catch(() => res.status(500).send({
@@ -59,19 +59,16 @@ class userController {
  * @return {object} an object
  */
   static logIn(req, res) {
-    User.findOne({ where: { email: req.body.email } })
-      .then((user) => {
-        if (!user) {
-          return errorStatus(404, 'email not found', res);
+    user.findOne({ where: { email: req.body.email } })
+      .then((foundUser) => {
+        if (!foundUser) {
+          return errorStatus(404, 'user email not found', res);
         }
-        const validPassword = bcrypt.compareSync(req.body.password, user.password);
+        const validPassword = bcrypt.compareSync(req.body.password, foundUser.password);
         if (!validPassword) {
           return res.status(401).send({ success: false, message: 'login failed , incorrect password', token: null });
         }
-        const token = jwt.sign(
-          { id: user.id, role: user.role },
-          process.env.SECRET, { expiresIn: 86400 }
-        );
+        const token = jwt.sign({ id: foundUser.id, role: foundUser.role }, process.env.SECRET, { expiresIn: 86400 });
         return res.status(200).send({ success: true, message: 'login successful', token });
       });
   }

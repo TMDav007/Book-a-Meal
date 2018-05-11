@@ -1,12 +1,12 @@
 
 module.exports = (sequelize, Datatypes) => {
-  const menuDetails = sequelize.define('menuDetails', {
+  const menudetails = sequelize.define('menudetails', {
     mealId: {
       type: Datatypes.INTEGER,
       allowNull: false,
       onDelete: 'CASCADE',
       references: {
-        model: 'Meals',
+        model: 'meals',
         key: 'id'
       },
     },
@@ -15,13 +15,13 @@ module.exports = (sequelize, Datatypes) => {
       allowNull: false,
       onDelete: 'CASCADE',
       references: {
-        model: 'Menus',
+        model: 'menus',
         key: 'id'
       },
     },
   }, {});
-  menuDetails.associate = function () {
-    // });
+  menudetails.associate = function () {
+    //
   };
-  return menuDetails;
+  return menudetails;
 };

@@ -1,12 +1,12 @@
 
 module.exports = (sequelize, Datatypes) => {
-  const orderDetails = sequelize.define('orderDetails', {
+  const orderdetails = sequelize.define('orderdetails', {
     orderId: {
       type: Datatypes.INTEGER,
       allowNull: false,
       onDelete: 'CASCADE',
       references: {
-        model: 'Orders',
+        model: 'orders',
         key: 'id'
       },
     },
@@ -15,13 +15,13 @@ module.exports = (sequelize, Datatypes) => {
       allowNull: false,
       onDelete: 'CASCADE',
       references: {
-        model: 'Meals',
+        model: 'meals',
         key: 'id'
       },
     },
   }, {});
-  orderDetails.associate = () => {
+  orderdetails.associate = function () {
+    // associations can be defined here
   };
-  return orderDetails;
+  return orderdetails;
 };
-

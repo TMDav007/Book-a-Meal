@@ -64,14 +64,11 @@ class userController {
         if (!foundUser) {
           return errorStatus(404, 'user email not found', res);
         }
-        const validPassword = bcrypt.compareSync(req.body.password, user.password);
+        const validPassword = bcrypt.compareSync(req.body.password, foundUser.password);
         if (!validPassword) {
           return res.status(401).send({ success: false, message: 'login failed , incorrect password', token: null });
         }
-        const token = jwt.sign(
-          { id: foundUser.id, role: foundUser.role },
-          process.env.SECRET, { expiresIn: 86400 }
-        );
+        const token = jwt.sign({ id: foundUser.id, role: foundUser.role }, process.env.SECRET, { expiresIn: 86400 });
         return res.status(200).send({ success: true, message: 'login successful', token });
       });
   }

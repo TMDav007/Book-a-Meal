@@ -28,7 +28,7 @@ class mealController {
         mealName: req.body.mealName,
         image: req.body.image,
         amount: req.body.amount,
-        userId: req.body.userId
+        userid: req.body.userid
       })
         .then((mealCreated) => {
           if (!mealCreated) {
@@ -53,6 +53,7 @@ class mealController {
         if (!meals) {
           return middlewareFunction.errorStatus(400, 'unable to get all meals, try again', res);
         }
+        console.log(meals);
         return res.status(200).send({ success: true, meals });
       })
       .catch(error => res.status(500).send(error));

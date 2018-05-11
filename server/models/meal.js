@@ -24,7 +24,7 @@ export default (sequelize, DataTypes) => {
       foreignKey: 'userid'
     });
     meal.belongsToMany(models.menu, {
-      foreignKey: 'mealid',
+      foreignKey: 'mealId',
       through: models.menudetails,
     });
   };

@@ -18,11 +18,8 @@ module.exports = {
     dialect: 'postgres',
   },
   production: {
-    username: 'root',
-    password: null,
-    database: 'database_production',
-    host: '127.0.0.1',
-    dialect: 'mysql'
+    use_env_variable: 'postgres://pkygpiytzhylqc:ea73f35f464e42d400aefe6be4bc45d4a2f5579fc682a5f34be91d6325be9a93@ec2-107-20-249-68.compute-1.amazonaws.com:5432/d7d5gff5hjp7qe',
+    dialect: 'postgres'
   }
 };
 

@@ -7,7 +7,7 @@
     "start": "node ./dist/server.js",
     "start:dev": "nodemon --watch server --exec babel-node server/server.js",
     "build": "babel server -s -d dist",
-    "test": "nyc mocha --require babel-core/register server/test/ --exit && nyc report --reporter=html --reporter=text-lcov | coveralls",
+    "test": "nyc mocha --require babel-core/register server/test/userTest --exit  && nyc report --reporter=html --reporter=text-lcov | coveralls",
     "coverage": "nyc report --reporter=html --reporter=text-lcov | coveralls"
   },
   "repository": {
@@ -28,6 +28,7 @@
     "coveralls": "^3.0.0",
     "dotenv": "^5.0.1",
     "express": "^4.16.3",
+    "faker": "^4.1.0",
     "jsonwebtoken": "^8.2.1",
     "lodash": "^4.17.10",
     "mocha": "^5.1.1",

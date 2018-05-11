@@ -20,7 +20,7 @@ header {
         
         ul{
             max-height: 0px;
-            background: $blue;
+            background: #a2958f;
             padding: 0;
             list-style: none;
             overflow: hidden;
@@ -42,8 +42,8 @@ header {
             border-bottom: 1px solid $border; 
             @media only screen and (min-width: 700px){
                 display: inline-block;
-                padding: 20px;
-                width: 7em;
+                padding: 20px 0;
+                width: 5em;
             }
             a{
                 text-decoration: none;
@@ -225,7 +225,7 @@ header {
 /* footer */
 #footer{
     padding: 2em;
-    background: #13212a;
+    background: #a2958f;
     color: #fff;
     font-size: 1.2em;
     text-align: center;
@@ -280,7 +280,7 @@ button[type="submit"]{
 button[type="submit"]{
     color: #ffffff;
     height: 40px;
-    background-color: #13212a;
+    background-color: #c5b8b2;
     transition : all 0.5s;  
     margin-right: 10px;
     margin-bottom: .3em;
@@ -294,10 +294,10 @@ button[type="submit"]{
         transition : all 0.5s;
     }
     @media only screen and (min-width: 900px) {
-        font-size: 1.1em;
+        font-size: .9em;
     }
     @media only screen and (min-width: 1000px) {
-        font-size: 1.1em;
+        font-size: .9em;
         width: 6em;
     }
     &:hover{
@@ -311,10 +311,14 @@ button[type="submit"]{
 
 .form-box{
     border: 1px solid rgba(39, 30, 43, 0.7);
-    margin: 4em 0 0em 0;
+    margin: 4em 2em 7em 2em;
     padding: 0 2em 3em 2em;
     background: #fff;
+    @media only screen and (min-width: 1000px) {
+        margin: 4em 4em 7em 4em;
+    }
 }
+
 
 #login,#signup {
     position: relative;
@@ -351,7 +355,7 @@ button[type="submit"]{
             color: rgba(0, 0, 0, 0.801);
         }
         @media only screen and (min-width: 900px) {
-            font-size: 2.1em;
+            font-size: 1.8em;
         }
     }
     a{
@@ -365,7 +369,7 @@ button[type="submit"]{
             float: left;
         }
         @media only screen and (min-width: 900px) {
-            font-size: 1em;
+            font-size: .9em;
         }
         &:hover{
             opacity: 0.7;

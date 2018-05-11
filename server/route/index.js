@@ -8,7 +8,7 @@ const { signUp, logIn } = userController;
 const {
   addMeal, getMeals, updateMeal, removeMeal
 } = mealController;
-const { postOrder } = orderController;
+const { postOrder, updateOrder } = orderController;
 
 
 const { setMenu, getMenu } = menuController;
@@ -31,21 +31,22 @@ const routes = (app) => {
 
   // User
   app.post('/api/v1/auth/signup', validateSignUp, signUp);
-  app.post('/api/v1/auth/signin', validateLogIn, logIn);
+  app.post('/api/v1/auth/login', validateLogIn, logIn);
 
   // Meal
-  app.post('/api/v1/meals', authenicateAdmin, addMeal)
-    .get('/api/v1/meals', authenicateAdmin, getMeals);
+  app.post('/api/v1/meals', addMeal)
+    .get('/api/v1/meals', getMeals);
 
   app.put('/api/v1/meals/:id', authenicateAdmin, updateMeal)
     .delete('/api/v1/meals/:id', authenicateAdmin, removeMeal);
 
   // menu
-  app.post('/api/v1/menu', authenicateAdmin, setMenu)
+  app.post('/api/v1/menu', setMenu)
     .get('/api/v1/menu', authenicateUser, getMenu);
 
   // order
   app.post('/api/v1/orders', postOrder);
+  app.put('/api/v1/orders/:id', updateOrder);
 };
 
 export default routes;

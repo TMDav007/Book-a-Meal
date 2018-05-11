@@ -4,9 +4,23 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/e882166b997e60914cf7/maintainability)](https://codeclimate.com/github/TMDav007/Book-a-Meal/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/e882166b997e60914cf7/test_coverage)](https://codeclimate.com/github/TMDav007/Book-a-Meal/test_coverage)
 
-Book a Meal is an Applications that enable users order food based on the menu of the a day.
+# Overview
 
+Book a Meal is an Applications that enable users order food based on the menu of the a day.
 The application UI is on https://tmdav007.github.io/Book-a-Meal/UI/index.html
+
+
+# Table of content
+
+1 [Installation](#installation)
+
+2 [API Reference]()
+
+3 [API Route]()
+
+4 [Author](#author)
+
+
 
 ## Installation
 - To run this app, install node version 8.9.1 or above
@@ -17,8 +31,7 @@ The application UI is on https://tmdav007.github.io/Book-a-Meal/UI/index.html
 - Start API server with command:
   > npm start
 
-- use the url on Postman:
-  > http://localhost:3030
+- test with Postman
 
 - Run test with:
   > npm test
@@ -48,4 +61,4 @@ The application UI is on https://tmdav007.github.io/Book-a-Meal/UI/index.html
     > DELETE: /id/
 
 ## Author
- - Afolabi, Opeyemi T.
+ - Afolabi, Opeyemi T.-afolabi.toluwalase@yahoo.com.
